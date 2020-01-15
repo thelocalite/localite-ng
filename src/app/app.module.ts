@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {ChangePasswordComponent} from './auth/change-password/change-password.component';
 import {LoginComponent} from './auth/login/login.component';
 import {LogoutComponent} from './auth/logout/logout.component';
-import {RegisterComponent} from './auth/register/register.component';
 import {UsersComponent} from './auth/users/users.component';
 import {SearchComponent} from './components/search/search.component';
 import {SliderComponent} from './components/slider/slider.component';
@@ -19,9 +18,8 @@ import {LocationComponent} from './user/location/location.component';
 @NgModule({
   declarations: [
     AppComponent, NavbarComponent, HomeComponent, LoginComponent,
-    RegisterComponent, ChangePasswordComponent, UsersComponent, FooterComponent,
-    LogoutComponent, CartComponent, LocationComponent, SearchComponent,
-    SliderComponent
+    ChangePasswordComponent, UsersComponent, FooterComponent, LogoutComponent,
+    CartComponent, LocationComponent, SearchComponent, SliderComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

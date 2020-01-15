@@ -77,7 +77,7 @@
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }"
             >
-              <i class="material-icons white-text">room</i>
+              <i class="material-icons white-text">near_me</i>
             </a>
           </li>
         </ul>
@@ -88,12 +88,30 @@
 
 <!-- sidenav menulist -->
 <ul class="sidenav" id="mobile-nav">
+  <li style="height: 100px;" class="center teal white-text">
+    <div
+      [routerLink]="['/']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      style="text-align: center !important; height: 100%;"
+    >
+      <h6
+        class="white-text center"
+        style="height: 100%; margin: auto; font-size: 25px; padding-top: 15px"
+      >
+        <i class="material-icons white-text center" style="font-size: 40px;"
+          >location_on</i
+        >
+        <div style="margin-bottom: 50px;">The Localite</div>
+      </h6>
+    </div>
+  </li>
   <li>
     <a
       [routerLink]="['/']"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }"
-      >Home</a
+      ><i class="material-icons black-text">home</i>Home</a
     >
   </li>
 
@@ -103,7 +121,7 @@
       [routerLink]="['/login']"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }"
-      >Login</a
+      ><i class="material-icons black-text">person</i>Login</a
     >
   </li>
 
@@ -113,7 +131,7 @@
       [routerLink]="['/register']"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }"
-      >Register</a
+      ><i class="material-icons black-text">group_add</i>Register</a
     >
   </li>
 
@@ -124,7 +142,7 @@
       [routerLink]="['/logout']"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }"
-      >Logout</a
+      ><i class="material-icons black-text">exit_to_app</i>Logout</a
     >
   </li>
 
@@ -144,7 +162,7 @@
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <i class="material-icons black-text">room</i> Location
+      <i class="material-icons black-text">near_me</i> Location
     </a>
   </li>
 </ul>

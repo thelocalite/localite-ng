@@ -4,13 +4,15 @@
     <div class="container">
       <div class="nav-wrapper">
         <!-- Branding  -->
-        <a
-          [routerLink]="['/']"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="brand-logo"
-          >The Localite</a
-        >
+        <div class="brand-logo">
+          <a
+            [routerLink]="['/']"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >The Localite</a
+          >
+        </div>
+
         <!-- Hamburger / Sidenav // Links to id = mobile-nav-->
         <a data-target="mobile-nav" class="sidenav-trigger">
           <i class="material-icons">menu</i>
@@ -58,6 +60,26 @@
               >Logout</a
             >
           </li>
+
+          <li>
+            <a
+              [routerLink]="['/cart']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><i class="material-icons white-text">shopping_cart</i></a
+            >
+          </li>
+
+          <li>
+            <a
+              id="locationIcon"
+              [routerLink]="['/location']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="material-icons white-text">room</i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -104,5 +126,25 @@
       [routerLinkActiveOptions]="{ exact: true }"
       >Logout</a
     >
+  </li>
+
+  <li>
+    <a
+      [routerLink]="['/cart']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ><i class="material-icons black-text">shopping_cart</i> Cart</a
+    >
+  </li>
+
+  <li>
+    <a
+      id="locationIcon"
+      [routerLink]="['/location']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <i class="material-icons black-text">room</i> Location
+    </a>
   </li>
 </ul>

@@ -1,0 +1,108 @@
+<!-- Navbar  -->
+<div class="navbar-fixed">
+  <nav class="teal">
+    <div class="container">
+      <div class="nav-wrapper">
+        <!-- Branding  -->
+        <a
+          [routerLink]="['/']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="brand-logo"
+          >The Localite</a
+        >
+        <!-- Hamburger / Sidenav // Links to id = mobile-nav-->
+        <a data-target="mobile-nav" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <!-- / Hamburger / Sidenav -->
+
+        <!-- Menubar Items  -->
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a
+              [routerLink]="['/']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Home</a
+            >
+          </li>
+
+          <!-- Login  -->
+          <li *ngIf="!authService.isLoggedIn()">
+            <a
+              [routerLink]="['/login']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Login</a
+            >
+          </li>
+
+          <!-- Register  -->
+          <li *ngIf="!authService.isLoggedIn()">
+            <a
+              [routerLink]="['/register']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Register</a
+            >
+          </li>
+
+          <!-- Logout  -->
+
+          <li *ngIf="authService.isLoggedIn()">
+            <a
+              [routerLink]="['/logout']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- sidenav menulist -->
+<ul class="sidenav" id="mobile-nav">
+  <li>
+    <a
+      [routerLink]="['/']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+  </li>
+
+  <!-- Login  -->
+  <li *ngIf="!authService.isLoggedIn()">
+    <a
+      [routerLink]="['/login']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Login</a
+    >
+  </li>
+
+  <!-- Register  -->
+  <li *ngIf="!authService.isLoggedIn()">
+    <a
+      [routerLink]="['/register']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Register</a
+    >
+  </li>
+
+  <!-- Logout  -->
+
+  <li *ngIf="authService.isLoggedIn()">
+    <a
+      [routerLink]="['/logout']"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Logout</a
+    >
+  </li>
+</ul>

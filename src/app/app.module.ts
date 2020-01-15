@@ -8,6 +8,8 @@ import {LoginComponent} from './auth/login/login.component';
 import {LogoutComponent} from './auth/logout/logout.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {UsersComponent} from './auth/users/users.component';
+import {SearchComponent} from './components/search/search.component';
+import {SliderComponent} from './components/slider/slider.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {HomeComponent} from './layout/home/home.component';
 import {NavbarComponent} from './layout/navbar/navbar.component';
@@ -18,7 +20,8 @@ import {LocationComponent} from './user/location/location.component';
   declarations: [
     AppComponent, NavbarComponent, HomeComponent, LoginComponent,
     RegisterComponent, ChangePasswordComponent, UsersComponent, FooterComponent,
-    LogoutComponent, CartComponent, LocationComponent
+    LogoutComponent, CartComponent, LocationComponent, SearchComponent,
+    SliderComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

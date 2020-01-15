@@ -1,0 +1,7 @@
+.section-search input {
+  padding: 5px !important;
+  font-size: 22px !important;
+  width: 90% !important;
+  border-radius: 30px;
+  border: rgb(0, 155, 155) 3px solid !important;
+}

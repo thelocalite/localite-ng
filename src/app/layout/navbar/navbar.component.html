@@ -5,10 +5,20 @@
       <div class="nav-wrapper">
         <!-- Branding  -->
         <div class="brand-logo">
+          <i
+            [routerLink]="['/']"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="material-icons white-text center"
+            style="font-size: 40px;"
+            id="navLogoIcon"
+            >location_on</i
+          >
           <a
             [routerLink]="['/']"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: true }"
+            id="navLogoText"
             >The Localite</a
           >
         </div>
@@ -88,7 +98,13 @@
 
 <!-- sidenav menulist -->
 <ul class="sidenav" id="mobile-nav">
-  <li style="height: 100px;" class="center teal white-text">
+  <li
+    [routerLink]="['/']"
+    [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{ exact: true }"
+    style="height: 100px;"
+    class="center teal white-text"
+  >
     <div
       [routerLink]="['/']"
       [routerLinkActive]="['active']"

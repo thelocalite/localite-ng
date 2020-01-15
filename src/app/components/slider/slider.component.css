@@ -108,3 +108,26 @@
   -webkit-transform: translate3d(var(--xcarousel-offset-right), 0, 0);
   transform: translate3d(var(--xcarousel-offset-right), 0, 0);
 }
+
+#content-wrapper {
+  width: 300px;
+  word-wrap: break-word;
+  overflow-wrap: break-word !important;
+}
+
+.card-panel {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+p {
+  word-wrap: break-word !important;
+}
+
+@media only screen and (max-width: 600px) {
+  #content-wrapper {
+    width: 80vw;
+    word-wrap: break-word;
+    overflow-wrap: break-word !important;
+  }
+}

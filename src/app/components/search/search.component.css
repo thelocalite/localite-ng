@@ -15,12 +15,12 @@
 
   #wrapper {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column-reverse !important;
     align-items: center;
   }
 
   #select {
-    width: 30% !important;
+    width: 35% !important;
   }
 
   select {

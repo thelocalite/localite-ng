@@ -71,10 +71,9 @@ export class AuthService {
   }
 
   updatePassword(token: any, password: string) {
-    return this.httpClient
-        .get<any>('http://localhost:9090/users/token-signin/' + token)
-        .pipe(map(data => {
-          console.log(data);
-        }));
+    console.log(token);
+    console.log(password);
+
+    this.httpClient.get<any>('http://localhost:9090/users/token-signin');
   }
 }

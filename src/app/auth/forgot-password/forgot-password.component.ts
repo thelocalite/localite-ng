@@ -16,7 +16,9 @@ export class ForgotPasswordComponent implements OnInit {
   confirmPassword = '';
   notMatching = false;
 
+
   changedPassword = false;
+  updatedPassword = false;
 
   constructor(private authService: AuthService) {}
 
@@ -41,12 +43,9 @@ export class ForgotPasswordComponent implements OnInit {
 
   updatePassword() {
     this.notMatching = false;
-    console.log('Password' + this.password);
-    console.log(this.confirmPassword);
-    console.log(this.changedPassword);
     if (this.password === this.confirmPassword) {
-      console.log(this.token);
-      console.log(this.password);
+      // console.log(this.token);
+      // console.log(this.password);
       this.authService.updatePassword(this.token, this.password);
     } else {
       this.notMatching = true;

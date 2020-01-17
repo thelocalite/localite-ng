@@ -1,4 +1,6 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -14,14 +16,15 @@ import {HomeComponent} from './layout/home/home.component';
 import {NavbarComponent} from './layout/navbar/navbar.component';
 import {CartComponent} from './user/cart/cart.component';
 import {LocationComponent} from './user/location/location.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent, NavbarComponent, HomeComponent, LoginComponent,
     ChangePasswordComponent, UsersComponent, FooterComponent, LogoutComponent,
-    CartComponent, LocationComponent, SearchComponent, SliderComponent
+    CartComponent, LocationComponent, SearchComponent, SliderComponent, ForgotPasswordComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })

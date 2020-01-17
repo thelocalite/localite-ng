@@ -71,12 +71,22 @@
             >
           </li>
 
+          <!-- cart  -->
           <li>
             <a
               [routerLink]="['/cart']"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }"
               ><i class="material-icons white-text">shopping_cart</i></a
+            >
+          </li>
+
+          <li *ngIf="authService.isLoggedIn()">
+            <a
+              class="dropdown-trigger"
+              id="profileListDrop"
+              data-target="profileList"
+              ><i class="material-icons white-text">face</i></a
             >
           </li>
 
@@ -180,5 +190,19 @@
     >
       <i class="material-icons black-text">near_me</i> Location
     </a>
+  </li>
+</ul>
+
+<!-- Dropdown Structure -->
+<ul id="profileList" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider" tabindex="-1"></li>
+  <li><a href="#!">three</a></li>
+  <li>
+    <a href="#!"><i class="material-icons">view_module</i>four</a>
+  </li>
+  <li>
+    <a href="#!"><i class="material-icons">cloud</i>five</a>
   </li>
 </ul>

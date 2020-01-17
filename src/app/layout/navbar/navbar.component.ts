@@ -15,5 +15,11 @@ export class NavbarComponent implements OnInit {
     // Sidenav Init
     const sidenav = document.querySelector('.sidenav');
     M.Sidenav.init(sidenav, {});
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init('#profileListDrop', {});
+    });
   }
 }

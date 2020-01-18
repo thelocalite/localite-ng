@@ -46,7 +46,13 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.password === this.confirmPassword) {
       // console.log(this.token);
       // console.log(this.password);
-      this.authService.updatePassword(this.token, this.password);
+      this.authService.updatePassword(this.token, this.password)
+          .subscribe(data => {
+            console.log(data);
+            if (data.msg === 'success') {
+              this.updatedPassword = true;
+            }
+          });
     } else {
       this.notMatching = true;
     }

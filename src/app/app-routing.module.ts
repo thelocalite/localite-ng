@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
-import {LoginComponent} from './auth/login/login.component';
-import {LogoutComponent} from './auth/logout/logout.component';
-import {HomeComponent} from './layout/home/home.component';
-import {CartComponent} from './user/cart/cart.component';
-import {LocationComponent} from './user/location/location.component';
+import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-password.component';
+import {LoginComponent} from './components/auth/login/login.component';
+import {LogoutComponent} from './components/auth/logout/logout.component';
+import {HomeComponent} from './components/layout/home/home.component';
+import {CartComponent} from './components/user/cart/cart.component';
+import {LocationComponent} from './components/user/location/location.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},

@@ -74,6 +74,8 @@ export class AuthService {
     console.log(token);
     console.log(password);
 
-    this.httpClient.get<any>('http://localhost:9090/users/token-signin');
+    return this.httpClient.post<any>(
+        'http://localhost:9090/users/token-signin/' + token,
+        {password: password});
   }
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 
-import * as M from '../../../assets/js/materialize.min';
+import * as M from '../../../../assets/js/materialize.min';
 
 
 @Component({

@@ -26,6 +26,7 @@ import {TechnicianDetailsComponent} from './components/store/services/technician
 import {CartComponent} from './components/user/cart/cart.component';
 import {LocationComponent} from './components/user/location/location.component';
 import {OrdersComponent} from './components/user/orders/orders.component';
+import { ServiceDetailsComponent } from './components/store/services/service-details/service-details.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {OrdersComponent} from './components/user/orders/orders.component';
     ProductCategoriesComponent,
     ProductDetailsComponent,
     ServiceListComponent,
-    TechnicianDetailsComponent
+    TechnicianDetailsComponent,
+    ServiceDetailsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

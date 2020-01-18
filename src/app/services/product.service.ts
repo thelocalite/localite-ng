@@ -4,5 +4,7 @@ import {Injectable} from '@angular/core';
 export class ProductService {
   constructor() {}
 
-  // Handle Cart
+  // List All Stores In the Locality
+
+  // Implement Search functionality to search among products
 }

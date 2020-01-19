@@ -11,11 +11,14 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   isLoggedIn() {
-    return this.loggedIn;
+    let email = sessionStorage.getItem('email');
+    return !(email === null);
   }
 
   logout() {
-    this.loggedIn = false;
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('name');
   }
 
   login(email, password) {
@@ -29,6 +32,9 @@ export class AuthService {
             this.loggedIn = true;
             this.user = data.user;
             this.jwtToken = data.token;
+            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('name', data.user.name);
+            sessionStorage.setItem('token', data.token);
             return true;
           } else {
             this.loggedIn = false;

@@ -1,6 +1,6 @@
 <div class="row" id="formsContainer">
   <!-- Login  -->
-  <div class="col s12 m6" id="form">
+  <div class="col s12 m6" id="form loginForm">
     <div class="card-panel grey lighten-5">
       <form (ngSubmit)="login()" #form="ngForm">
         <h5>Login</h5>
@@ -30,6 +30,15 @@
         </p>
         <h6><a href="/forgot-password">Forgot Password</a></h6>
       </form>
+      <br />
+      <!-- facebook  -->
+      <a class="waves-effect waves-light btn left" style="width: 45%; background-color: #3b5998;"
+        ><i class="fab fa-facebook-f"></i> Facebook</a
+      >
+      <!-- google  -->
+      <a class="waves-effect waves-light btn right" style="width: 45%; background-color: #dd4b39;"
+        ><i class="fab fa-google-plus-g"></i> Google</a
+      >
     </div>
   </div>
 

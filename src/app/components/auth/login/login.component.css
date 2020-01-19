@@ -1,12 +1,10 @@
 #formsContainer {
   /* display: flex; */
   height: 100%;
+  display: flex;
+  align-items: center !important;
 }
 
-.row {
-  display: flex;
-  align-items: center;
-}
 .col {
   flex-grow: 2;
   max-width: 400px !important;
@@ -32,5 +30,14 @@
     display: flex;
     align-items: center !important;
     justify-content: center !important;
+  }
+  .col {
+    flex-grow: 2;
+    max-width: none !important;
+  }
+
+  .card-panel {
+    max-width: 400px !important;
+    margin: auto;
   }
 }

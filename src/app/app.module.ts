@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -29,6 +29,37 @@ import { OrdersComponent } from "./components/user/orders/orders.component";
 import { ServiceDetailsComponent } from "./components/store/services/service-details/service-details.component";
 import { NotFoundComponent } from "./components/layout/not-found/not-found.component";
 
+// Social Login
+import { SocialLoginModule } from "angularx-social-login";
+import {
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from "angularx-social-login";
+import { AuthHttpInterceptorService } from "./services/auth/auth-http-interceptor.service";
+import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
+import { ProductService } from "./services/product.service";
+import { UserService } from "./services/user.service";
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(
+      "200802725189-eg42ov83u9fch748jp5sfcg4gf29pl10.apps.googleusercontent.com"
+    )
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("2533623390096460")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
+// Social Login Ends
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,8 +87,27 @@ import { NotFoundComponent } from "./components/layout/not-found/not-found.compo
     ServiceDetailsComponent,
     NotFoundComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    SocialLoginModule
+  ],
+  providers: [
+    ProductService,
+    UserService,
+    AuthGaurdService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -9,7 +9,9 @@ import {AuthService} from 'src/app/services/auth/auth.service';
 export class ForgotPasswordComponent implements OnInit {
   email = false;
   nomail = false;
+
   forgotEmail = '';
+
   token = null;
 
   password = '';
@@ -30,31 +32,36 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword() {
     this.email = false;
     this.nomail = false;
-    this.authService.forgotPassword(this.forgotEmail).subscribe((data) => {
-      if (data === true) {
-        this.email = true;
-        this.nomail = false;
-      } else {
-        this.email = false;
-        this.nomail = true;
-      }
-    });
+    if (this.forgotEmail != '') {
+      this.authService.forgotPassword(this.forgotEmail).subscribe((data) => {
+        if (data === true) {
+          this.email = true;
+          this.nomail = false;
+        } else {
+          this.email = false;
+          this.nomail = true;
+        }
+      });
+    }
   }
 
   updatePassword() {
     this.notMatching = false;
-    if (this.password === this.confirmPassword) {
-      // console.log(this.token);
-      // console.log(this.password);
-      this.authService.updatePassword(this.token, this.password)
-          .subscribe(data => {
-            console.log(data);
-            if (data.msg === 'success') {
-              this.updatedPassword = true;
-            }
-          });
-    } else {
-      this.notMatching = true;
+
+    if (this.token != '' && this.password != '') {
+      if (this.password === this.confirmPassword) {
+        // console.log(this.token);
+        // console.log(this.password);
+        this.authService.updatePassword(this.token, this.password)
+            .subscribe(data => {
+              console.log(data);
+              if (data.msg === 'success') {
+                this.updatedPassword = true;
+              }
+            });
+      } else {
+        this.notMatching = true;
+      }
     }
   }
 }

@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems, {});
+      var options = document.querySelectorAll("option");
+      var instances = M.FormSelect.init(elems, options);
     });
   }
 

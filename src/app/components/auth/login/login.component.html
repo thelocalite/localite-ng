@@ -70,7 +70,11 @@
         <p class="text-flow">If you're new to Localite</p>
 
         <div class="input-field col s12">
-          <select [(ngModel)]="registerRole" name="registerRole">
+          <select
+            [(ngModel)]="registerRole"
+            class="browser_default"
+            name="registerRole"
+          >
             <option value="" disabled selected>I am a</option>
             <option value="CUSTOMER">Customer</option>
             <option value="MERCHANT">Merchant</option>

@@ -6,13 +6,13 @@ import { map, tap, catchError } from "rxjs/operators";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
-  private productsUrl = "api/products"; // URL to web api
+  private productsUrl = "https://my-json-server.typicode.com/technologic808/json-server/product"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /** GET all products from the server */
   getProducts(): Observable<Product[]> {

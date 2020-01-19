@@ -1,4 +1,5 @@
 <div class="row" id="formsContainer">
+  <br class="col" />
   <!-- Login  -->
   <div class="col s12 m6" id="form loginForm">
     <div class="card-panel grey lighten-5">
@@ -10,8 +11,14 @@
             placeholder="Email"
             name="loginEmail"
             [(ngModel)]="loginEmail"
-            required
+            class="validate"
+            required=""
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Email"
+            data-success=""
+          ></span>
         </div>
 
         <div class="input-field">
@@ -20,11 +27,18 @@
             placeholder="Password"
             name="loginPassword"
             [(ngModel)]="loginPassword"
+            class="validate"
+            required=""
             required
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Password"
+            data-success=""
+          ></span>
         </div>
 
-        <input type="submit" value="Login" class="btn" />
+        <input type="submit" value="Login" class="btn z-depth-2" />
         <p *ngIf="faliedToLogin" class="red-text">
           Failed To Login
         </p>
@@ -32,11 +46,17 @@
       </form>
       <br />
       <!-- facebook  -->
-      <a class="waves-effect waves-light btn left" style="width: 45%; background-color: #3b5998;"
+      <a
+        class="btn left z-depth-2"
+        style="width: 45%; background-color: #3b5998;"
+        (click)="facebookLogin()"
         ><i class="fab fa-facebook-f"></i> Facebook</a
       >
       <!-- google  -->
-      <a class="waves-effect waves-light btn right" style="width: 45%; background-color: #dd4b39;"
+      <a
+        class="btn right z-depth-2"
+        style="width: 45%; background-color: #dd4b39;"
+        (click)="googleLogin()"
         ><i class="fab fa-google-plus-g"></i> Google</a
       >
     </div>
@@ -56,6 +76,9 @@
             <option value="MERCHANT">Merchant</option>
           </select>
         </div>
+        <span *ngIf="emptyOption" class="red-text"
+          >Please select an option</span
+        >
 
         <div class="input-field">
           <input
@@ -63,7 +86,14 @@
             placeholder="Name"
             name="registerName"
             [(ngModel)]="registerName"
+            class="validate"
+            required=""
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Name"
+            data-success=""
+          ></span>
         </div>
         <div class="input-field">
           <input
@@ -71,15 +101,29 @@
             placeholder="Email"
             name="registerEmail"
             [(ngModel)]="registerEmail"
+            class="validate"
+            required=""
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Email"
+            data-success=""
+          ></span>
         </div>
         <div class="input-field">
           <input
             type="password"
-            placeholder="Passowrd"
+            placeholder="Password"
             name="registerPassword"
             [(ngModel)]="registerPassword"
+            class="validate"
+            required=""
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Password"
+            data-success=""
+          ></span>
         </div>
         <div class="input-field">
           <input
@@ -87,13 +131,20 @@
             placeholder="Confirm Password"
             name="registerConfirmPassword"
             [(ngModel)]="registerConfirmPassword"
+            class="validate"
+            required=""
           />
+          <span
+            class="helper-text"
+            data-error="Invalid Password"
+            data-success=""
+          ></span>
         </div>
         <p *ngIf="passwordsDontMatch" class="red-text">
           Passwords don't match!
         </p>
 
-        <input type="submit" value="Register" class="btn" />
+        <input type="submit" value="Register" class="btn z-depth-2" />
         <p *ngIf="registeredSuccesfully" class="green-text">
           Registered Succesfully!
         </p>

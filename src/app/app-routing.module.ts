@@ -9,6 +9,8 @@ import { NotFoundComponent } from "./components/layout/not-found/not-found.compo
 import { CartComponent } from "./components/user/cart/cart.component";
 import { LocationComponent } from "./components/user/location/location.component";
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
+import { ProductDetailsComponent } from './components/store/products/product-details/product-details.component';
+import { ProductsComponent } from './components/store/products/products.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -21,7 +23,10 @@ const routes: Routes = [
   },
   { path: "cart", component: CartComponent },
   { path: "location", component: LocationComponent },
+  { path: "product/:id", component: ProductDetailsComponent },
+  { path: "products", component: ProductsComponent },
   // {path: 'forgot-password', component: ForgotPasswordComponent},
+
   {
     path: "forgot-password",
     children: [
@@ -33,4 +38,4 @@ const routes: Routes = [
 ];
 
 @NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

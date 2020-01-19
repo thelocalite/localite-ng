@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-product-details',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
+  // Takes product as input from parent component
+  @Input() product: Product;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+  ) { }
 
   ngOnInit() {
+    this.getProduct();
   }
+
+  getProduct(): void {
+    const id = +this.route.snapshot.paramMap.get("id");
+    this.productService.getProduct(id).subscribe(product => (this.product = product));
+  }
+
 
 }

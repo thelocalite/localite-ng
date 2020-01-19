@@ -69,16 +69,30 @@
         <h5>Register</h5>
         <p class="text-flow">If you're new to Localite</p>
 
-        <div class="input-field col s12">
-          <select
-            [(ngModel)]="registerRole"
-            class="browser_default"
-            name="registerRole"
-          >
-            <option value="" disabled selected>I am a</option>
-            <option value="CUSTOMER">Customer</option>
-            <option value="MERCHANT">Merchant</option>
-          </select>
+        <div class="input-field">
+          <p>
+            <label>
+              <input
+                name="registerRole"
+                type="radio"
+                [(ngModel)]="registerRole"
+                value="CUSTOMER"
+                checked
+              />
+              <span>Customer</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                name="registerRole"
+                type="radio"
+                value="MERCHANT"
+                [(ngModel)]="registerRole"
+              />
+              <span>Merchant</span>
+            </label>
+          </p>
         </div>
         <span *ngIf="emptyOption" class="red-text"
           >Please select an option</span

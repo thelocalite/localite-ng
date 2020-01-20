@@ -1,0 +1,142 @@
+/*
+      Anthony Krivonos
+      Flix xCarousel
+      src/xcarousel.js
+      09.13.2018
+*/
+
+/* Global Variables */
+:root {
+    /* Tile Dimensions */
+    --xcarousel-tile-spacing: 10px;
+    --xcarousel-tile-width: 250px;
+    --xcarousel-tile-height: calc(var(--xcarousel-tile-width) / (16 / 9));
+  
+    /* Growth Factor */
+    --xcarousel-growth-factor: 1.5;
+  
+    /* Fade to Opacity */
+    --xcarousel-fade-opacity: 0.25;
+    --xcarousel-normal-opacity: 1;
+  
+    /* Automatic Offsets - DO NOT ALTER */
+    --xcarousel-offset-left: calc(
+      -1 * (var(--xcarousel-tile-width) * (var(--xcarousel-growth-factor) - 1) / 2)
+    );
+    --xcarousel-offset-right: calc(
+      var(--xcarousel-tile-width) * (var(--xcarousel-growth-factor) - 1)
+    );
+  
+    /* Transition Speeds */
+    --xcarousel-transition-1: 1s;
+    --xcarousel-transition-2: 0.5s;
+    --xcarousel-transition-3: 0.3s;
+  }
+  
+  /* xCarousel Container */
+  .xcarousel {
+    margin: 10;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  /* xCarousel Row */
+  .xcarousel-row {
+    white-space: nowrap;
+    margin-top: calc(
+      (var(--xcarousel-tile-height) * (var(--xcarousel-growth-factor) - 1)) / 2
+    );
+    margin-bottom: calc(
+      (var(--xcarousel-tile-height) * (var(--xcarousel-growth-factor) - 1)) / 2
+    );
+    margin-left: calc(
+      (var(--xcarousel-tile-width) * (var(--xcarousel-growth-factor) - 1)) / 2
+    );
+    margin-right: calc(
+      (var(--xcarousel-tile-width) * (var(--xcarousel-growth-factor) - 1)) / 2
+    );
+    transition: var(--xcarousel-transition-2);
+  }
+  
+  /* Content Tile */
+  .xcarousel-tile {
+    position: relative;
+    display: inline-block;
+    width: var(--xcarousel-tile-width);
+    height: var(--xcarousel-tile-height);
+    margin-right: var(--xcarousel-tile-spacing);
+    transition: var(--xcarousel-transition-2);
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+    cursor: pointer;
+    cursor: hand;
+    margin: 5px;
+  }
+  
+  /* Add Extra Margin to Last xCarousel Tile */
+  .xcarousel-tile:last-of-type {
+    margin-right: calc(var(--xcarousel-tile-width) / 2);
+  }
+  
+  /* Ensure All Elements Inside Tile are Block */
+  .xcarousel-tile * {
+    display: block;
+  }
+  
+  /* xCarousel Row on Hover */
+  .xcarousel-row:hover {
+    -webkit-transform: translate3d(var(--xcarousel-offset-left), 0, 0);
+    transform: translate3d(var(--xcarousel-offset-left), 0, 0);
+  }
+  
+  /* Content Tile on xCarousel Row Hover */
+  .xcarousel-row:hover .xcarousel-tile {
+    opacity: var(--xcarousel-fade-opacity);
+  }
+  
+  /* Content Tile on Hover on xCarousel Row Hover */
+  .xcarousel-row:hover .xcarousel-tile:hover {
+    -webkit-transform: scale(var(--xcarousel-growth-factor));
+    transform: scale(var(--xcarousel-growth-factor));
+    opacity: var(--xcarousel-normal-opacity);
+  }
+  
+  /* Content Tile on Hover */
+  .xcarousel-tile:hover ~ .xcarousel-tile {
+    -webkit-transform: translate3d(var(--xcarousel-offset-right), 0, 0);
+    transform: translate3d(var(--xcarousel-offset-right), 0, 0);
+  }
+  
+  #content-wrapper {
+    width: 300px;
+    word-wrap: break-word;
+    overflow-wrap: break-word !important;
+  }
+  
+  .card-panel {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  p {
+    word-wrap: break-word !important;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    #content-wrapper {
+      width: 45vw;
+      word-wrap: break-word;
+      overflow-wrap: break-word !important;
+    }
+  
+    p {
+      display: none !important;
+    }
+  
+    h4 {
+      font-size: 90%;
+    }
+  }
+  

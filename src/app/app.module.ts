@@ -40,6 +40,7 @@ import { AuthHttpInterceptorService } from "./services/auth/auth-http-intercepto
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
 import { ProductService } from "./services/product.service";
 import { UserService } from "./services/user.service";
+import { StoreCarouselComponent } from './components/layout/store-carousel/store-carousel.component';
 
 const config = new AuthServiceConfig([
   {
@@ -85,7 +86,8 @@ export function provideConfig() {
     ServiceListComponent,
     TechnicianDetailsComponent,
     ServiceDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    StoreCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -110,4 +112,4 @@ export function provideConfig() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

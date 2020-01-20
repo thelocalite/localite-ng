@@ -1,0 +1,19 @@
+<div class="xcarousel">
+    <div class="xcarousel-row">
+        <div *ngFor="let store of stores" class="xcarousel-tile">
+            <div id="content-wrapper">
+                <div class="card-panel">
+                    <img height="250px" width="250px" src={{store.imageurl}}>
+                    <h4>{{store.name}}</h4>
+                    <p>
+                        {{store.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ml-3">
+    <h6>See all Stores</h6>
+</div>
+<br />

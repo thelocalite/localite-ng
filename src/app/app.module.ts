@@ -40,6 +40,8 @@ import { AuthHttpInterceptorService } from "./services/auth/auth-http-intercepto
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
 import { ProductService } from "./services/product.service";
 import { UserService } from "./services/user.service";
+import { PrivacyComponent } from './components/pages/privacy/privacy.component';
+import { TermsComponent } from './components/pages/terms/terms.component';
 
 const config = new AuthServiceConfig([
   {
@@ -85,7 +87,9 @@ export function provideConfig() {
     ServiceListComponent,
     TechnicianDetailsComponent,
     ServiceDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PrivacyComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

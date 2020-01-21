@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Service } from 'src/app/models/service';
+import { ActivatedRoute } from '@angular/router';
+import { ServiceService } from 'src/app/services/service.service';
+import { Technician } from 'src/app/models/technician';
 
 @Component({
   selector: 'app-service-details',
@@ -6,10 +10,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service-details.component.css']
 })
 export class ServiceDetailsComponent implements OnInit {
+  @Input() service: Service;
+ 
+  list:Technician[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private serviceService: ServiceService,
+  ) { }
 
   ngOnInit() {
+    this.getService();
   }
 
+  getService(): void {
+    const id = +this.route.snapshot.paramMap.get("id");
+    this.serviceService.getService(id).subscribe(service => (this.service = service));
+    this.list = this.service.list;
+    
+  }
 }

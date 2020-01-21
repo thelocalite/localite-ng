@@ -13,6 +13,9 @@ import { ProductsComponent } from "./components/store/products/products.componen
 import { CartComponent } from "./components/user/cart/cart.component";
 import { LocationComponent } from "./components/user/location/location.component";
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
+import { ServiceDetailsComponent } from './components/store/services/service-details/service-details.component';
+import { ServiceListComponent } from './components/store/services/service-list/service-list.component';
+import { ServicesComponent } from './components/store/services/services.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -27,6 +30,8 @@ const routes: Routes = [
   { path: "location", component: LocationComponent },
   { path: "product/:id", component: ProductDetailsComponent },
   { path: "products", component: ProductsComponent },
+  { path: "services", component: ServicesComponent },
+  { path: "service/:id", component: ServiceDetailsComponent },
   { path: "privacy", component: PrivacyComponent },
   {
     path: "terms",

@@ -1,1 +1,22 @@
-<p>service-list works!</p>
+<!-- <p>service-list works!</p> -->
+
+<ul>
+    <div class="container">
+       <li *ngFor="let service of services">
+                <div class="col s12 m6 l3">
+                    <div class="card horizontal small">
+                        <div class="card-image">
+                            <img src="/assets/images/services/{{service.imageurl}}">
+                        </div>
+                        <div class="card-content">
+                            <h5>{{service.name}}</h5>
+                        </div>
+                        <div class="card-action">
+                            <a routerLink="/service/{{service.id}}">
+                                <span>Details</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+    </div>

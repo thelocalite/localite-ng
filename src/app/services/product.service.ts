@@ -6,7 +6,8 @@ import { map, tap, catchError } from "rxjs/operators";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
-  private productsUrl = "https://my-json-server.typicode.com/technologic808/json-server/product"; // URL to web api
+  // private productsUrl = "https://my-json-server.typicode.com/technologic808/json-server/product"; // URL to web api
+  private productsUrl = "http://localhost:8080/product"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -50,6 +51,12 @@ export class ProductService {
     return this.http
       .get<Product[]>(`${this.productsUrl}/?name=${term}`)
       .pipe(catchError(this.handleError<Product[]>("searchProducts", [])));
+  }
+
+  /** POST: add a new product to the server */
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(catchError(this.handleError<Product>("addProduct"))
+    );
   }
 
   /**

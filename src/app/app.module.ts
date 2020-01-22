@@ -43,6 +43,7 @@ import { UserService } from "./services/user.service";
 import { PrivacyComponent } from "./components/pages/privacy/privacy.component";
 import { TermsComponent } from "./components/pages/terms/terms.component";
 import { StoreCarouselComponent } from "./components/layout/store-carousel/store-carousel.component";
+import { AddProductComponent } from './components/data/add-product/add-product.component';
 
 const config = new AuthServiceConfig([
   {
@@ -91,7 +92,8 @@ export function provideConfig() {
     NotFoundComponent,
     PrivacyComponent,
     TermsComponent,
-    StoreCarouselComponent
+    StoreCarouselComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -116,4 +118,4 @@ export function provideConfig() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

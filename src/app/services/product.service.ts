@@ -55,7 +55,7 @@ export class ProductService {
 
   /** POST: add a new product to the server */
   addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(catchError(this.handleError<Product>("addProduct"))
+    return this.http.post<Product>(this.productsUrl + "/add", product, this.httpOptions).pipe(catchError(this.handleError<Product>("addProduct"))
     );
   }
 

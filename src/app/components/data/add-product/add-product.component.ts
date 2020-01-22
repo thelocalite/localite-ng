@@ -12,8 +12,6 @@ export class AddProductComponent implements OnInit {
   // Add Product to bind to form
   product: Product = new Product();
 
-
-
   constructor(private productService: ProductService) { }
 
   ngOnInit() {

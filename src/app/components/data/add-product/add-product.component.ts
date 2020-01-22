@@ -17,11 +17,25 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * @method addProduct :  Adds Product to Database 
+   * Calls addProduct() method of Product Service 
+   * to send Product to Spring Boot REST API 
+   * using POST method 
+   */
   addProduct() {
     console.log(this.product);
     this.productService.addProduct(this.product).subscribe({
-      complete: () => { console.log("Product add completed") }, // completeHandler
+      // completeHandler
+      complete: () => {
+        console.log("Product add completed");
+        this.resetForm();
+      },
     });
   }
 
+  // Resets form by resetting product object
+  resetForm() {
+    this.product = new Product();
+  }
 }

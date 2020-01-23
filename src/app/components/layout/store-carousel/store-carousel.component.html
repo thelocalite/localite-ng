@@ -1,46 +1,22 @@
-<!-- 
-                <div class="card-panel">
-                    <img height="250px" width="250px" src={{store.vendorImageUrl}}>
-                    <h4>{{store.vendorName}}</h4>
-                    <p>
-                        {{store.vendorDescription}}
-                    </p>
-                </div>
--->
-
 <div class="xcarousel">
     <div class="xcarousel-row">
-
-
         <div *ngFor="let store of stores" class="xcarousel-tile">
             <div id="content-wrapper">
-
-
                 <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src={{store.vendorImageUrl}}>
+                    <div class="card-image">
+                        <img src="{{store.vendorImageUrl}}">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red">
+                            <i class="material-icons">arrow_forward</i>
+                        </a>
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><a
-                                href="#">{{store.vendorName}}</a><i class="material-icons right">more_vert</i></span>
-                        <p></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{store.vendorName}}<i
-                                class="material-icons right">close</i></span>
+                        <span class="card-title">{{store.vendorName}}</span>
                         <p>{{store.vendorDescription}}</p>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
-
-
-
     </div>
-
 </div>
 <div class="ml-3">
     <h6>See all Stores</h6>

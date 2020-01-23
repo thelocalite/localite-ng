@@ -139,4 +139,9 @@
       font-size: 90%;
     }
   }
+
+  .card-title{
+    color: black;
+    text-decoration: none, black;
+  }
   

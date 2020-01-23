@@ -8,7 +8,8 @@ import { map, tap, catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class StoreService {
-  private storesUrl = "https://my-json-server.typicode.com/technologic808/json-server/store"; // URL to web api
+  // private storesUrl = "https://localite-core.herokuapp.com/vendor"; // URL to web api PRODUCTION
+  private storesUrl = "http://localhost/vendor"; // URL to web api DEVELOPMENT
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

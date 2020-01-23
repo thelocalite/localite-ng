@@ -11,12 +11,13 @@ import { TermsComponent } from "./components/pages/terms/terms.component";
 import { ProductDetailsComponent } from "./components/store/products/product-details/product-details.component";
 import { ProductsComponent } from "./components/store/products/products.component";
 import { CartComponent } from "./components/user/cart/cart.component";
+import { ProfileComponent } from "./components/user/profile/profile.component";
 import { LocationComponent } from "./components/user/location/location.component";
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
-import { ServiceDetailsComponent } from './components/store/services/service-details/service-details.component';
-import { ServiceListComponent } from './components/store/services/service-list/service-list.component';
-import { ServicesComponent } from './components/store/services/services.component';
-import { AddProductComponent } from './components/data/add-product/add-product.component';
+import { ServiceDetailsComponent } from "./components/store/services/service-details/service-details.component";
+import { ServiceListComponent } from "./components/store/services/service-list/service-list.component";
+import { ServicesComponent } from "./components/store/services/services.component";
+import { AddProductComponent } from "./components/data/add-product/add-product.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -28,6 +29,11 @@ const routes: Routes = [
     canActivate: [AuthGaurdService]
   },
   { path: "cart", component: CartComponent },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGaurdService]
+  },
   { path: "location", component: LocationComponent },
   { path: "product/:id", component: ProductDetailsComponent },
   { path: "products", component: ProductsComponent },
@@ -50,4 +56,4 @@ const routes: Routes = [
 ];
 
 @NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

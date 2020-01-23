@@ -44,6 +44,7 @@ import { PrivacyComponent } from "./components/pages/privacy/privacy.component";
 import { TermsComponent } from "./components/pages/terms/terms.component";
 import { StoreCarouselComponent } from "./components/layout/store-carousel/store-carousel.component";
 import { AddProductComponent } from './components/data/add-product/add-product.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 const config = new AuthServiceConfig([
   {
@@ -93,7 +94,8 @@ export function provideConfig() {
     PrivacyComponent,
     TermsComponent,
     StoreCarouselComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

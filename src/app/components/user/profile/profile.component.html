@@ -1,0 +1,160 @@
+<div class="container">
+  <!-- Register  -->
+  <div class="col s12 m4 offset-m4" id="form">
+    <div class="card-panel grey lighten-5">
+      <!-- form  -->
+      <form (ngSubmit)="onUpdate()" #form="ngForm">
+        <div class="section">
+          <img
+            src="../../../../assets/images/md.jpg
+          "
+            class="circle responsive-img right"
+            style="width: 40%;"
+            alt="Image on Aditya's Request"
+          />
+          <h5 class="text-flow">Pofile</h5>
+
+          <!-- user role -->
+
+          <div class="input-field">
+            <!-- user role : coustomer -->
+            <p>
+              <label>
+                <input
+                  class="with-gap form-control"
+                  name="userRole"
+                  type="radio"
+                  value="CUSTOMER"
+                  checked
+                  [(ngModel)]="userRole"
+                  required
+                />
+                <span>Customer</span>
+              </label>
+            </p>
+
+            <!-- user role : coustomer -->
+            <p>
+              <label>
+                <input
+                  class="with-gap form-control"
+                  name="userRole"
+                  type="radio"
+                  value="MERCHANT"
+                  [(ngModel)]="userRole"
+                />
+                <span>Merchant</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <!-- <span *ngIf="emptyOption" class="red-text"
+            >Please select an option</span
+          > -->
+        <br />
+        <div></div>
+        <br>
+        <br>
+        <div class="section">
+          <!-- User Name  -->
+          <div class="input-field">
+            <input
+              type="text"
+              name="userName"
+              id="userName"
+              [(ngModel)]="userName"
+              class="validate form-control"
+              required
+            />
+            <label for="userName">Name</label>
+            <!-- <span
+              class="helper-text"
+              data-error="Invalid Name"
+              data-success=""
+            ></span> -->
+          </div>
+
+          <!-- User Email -->
+          <!-- <div class="input-field">
+            <input
+              type="text"
+              name="userEmail"
+              [(ngModel)]="userEmail"
+              class="validate form-control"
+              id="userEmail"
+              required
+              email
+            />
+            <label for="userEmail">Email</label>
+            <span
+              class="helper-text"
+              data-error="Invalid Email"
+              data-success=""
+            ></span>
+          </div> -->
+
+          <!-- User DOB -->
+          <div class="input-field">
+            <input
+              type="text"
+              [(ngModel)]="userDOB"
+              name="userDOB"
+              class="datepicker form-control"
+              id="date"
+            />
+            <label for="date">Date of Birth</label>
+          </div>
+
+          <!-- User Address -->
+          <div class="input-field">
+            <input
+              type="text"
+              name="userAddress"
+              id="userAddress"
+              [(ngModel)]="userAddress"
+              class="validate form-control"
+              required
+            />
+            <label for="userAddress">Address</label>
+            <!-- <span
+              class="helper-text"
+              data-error="Invalid Address"
+              data-success=""
+            ></span> -->
+          </div>
+          <!-- Phone Number -->
+          <div class="input-field">
+            <input
+              type="text"
+              name="userContact"
+              id="userContact"
+              [(ngModel)]="userContact"
+              class="validate form-control"
+              required
+            />
+            <label for="userContact">Contact No.</label>
+            <!-- <span
+              class="helper-text"
+              data-error="Invalid Contact Number"
+              data-success=""
+            ></span> -->
+          </div>
+
+          <!-- submit button  -->
+          <input
+            type="submit"
+            value="Update"
+            class="btn z-depth-2"
+            [disabled]="!form.valid || !form.touched"
+          />
+          <p *ngIf="updatedSuccessfully" class="green-text">
+            Updated Succesfully!
+          </p>
+          <p *ngIf="updateFailed" class="red-text">
+            Update Failed!
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

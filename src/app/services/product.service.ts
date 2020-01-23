@@ -7,7 +7,7 @@ import { map, tap, catchError } from "rxjs/operators";
 @Injectable({ providedIn: "root" })
 export class ProductService {
   // private productsUrl = "https://my-json-server.typicode.com/technologic808/json-server/product"; // URL to web api
-  private productsUrl = "http://localhost/product"; // URL to web api
+  private productsUrl = "https://localite-core.herokuapp.com/product"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

@@ -48,6 +48,7 @@ import { AddStoreComponent } from './components/data/add-store/add-store.compone
 import { StorePageComponent } from './components/store/stores/store-page/store-page.component';
 import { StoresComponent } from './components/store/stores/stores.component';
 import { ShopDetailsComponent } from './components/store/stores/shop-details/shop-details.component';
+import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
 
 const config = new AuthServiceConfig([
   {
@@ -101,7 +102,8 @@ export function provideConfig() {
     ProfileComponent,
     StorePageComponent,
     AddStoreComponent,
-    StoresComponent
+    StoresComponent,
+    ImageUploaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
+
 import { AuthService as AxAuthService } from "angularx-social-login";
 
 import * as M from "../../../../assets/js/materialize.min";
@@ -16,6 +18,8 @@ import {
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
+  @ViewChild("form", { static: false }) loginForm: NgForm;
+  @ViewChild("rform", { static: false }) registrationForm: NgForm;
   loginEmail = "";
   loginPassword = "";
 
@@ -47,6 +51,7 @@ export class LoginComponent implements OnInit {
     this.registeredSuccesfully = false;
     console.log(this.loginEmail);
     console.log(this.loginPassword);
+    console.log(this.loginForm);
 
     if (this.loginEmail != "" && this.loginPassword != "") {
       this.authService
@@ -67,6 +72,7 @@ export class LoginComponent implements OnInit {
     console.log(this.registerPassword);
     console.log(this.registerConfirmPassword);
     console.log(this.registerRole);
+    console.log(this.registrationForm);
 
     this.passwordsDontMatch = false;
 

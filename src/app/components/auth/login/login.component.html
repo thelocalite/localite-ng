@@ -1,44 +1,52 @@
 <div class="row" id="formsContainer">
   <br class="col" />
-  <!-- Login  -->
   <div class="col s12 m6" id="form loginForm">
     <div class="card-panel grey lighten-5">
+      <!-- Login Form -->
       <form (ngSubmit)="login()" #form="ngForm">
         <h5>Login</h5>
         <div class="input-field">
+          <!-- Email -->
           <input
             type="email"
-            placeholder="Email"
+            id="loginEmail"
             name="loginEmail"
             [(ngModel)]="loginEmail"
-            class="validate"
-            required=""
+            class="validate form-control"
+            required
+            email
           />
+          <label for="loginEmail">Email</label>
           <span
             class="helper-text"
             data-error="Invalid Email"
             data-success=""
           ></span>
         </div>
-
+        <!-- Password  -->
         <div class="input-field">
           <input
             type="password"
-            placeholder="Password"
             name="loginPassword"
+            id="loginPassword"
             [(ngModel)]="loginPassword"
-            class="validate"
-            required=""
+            class="validate form-control"
             required
           />
+          <label for="loginPassword">Password</label>
           <span
             class="helper-text"
             data-error="Invalid Password"
             data-success=""
           ></span>
         </div>
-
-        <input type="submit" value="Login" class="btn z-depth-2" />
+        <!-- Submit  -->
+        <input
+          type="submit"
+          value="Login"
+          class="btn z-depth-2"
+          [disabled]="!form.valid"
+        />
         <p *ngIf="faliedToLogin" class="red-text">
           Failed To Login
         </p>
@@ -65,16 +73,18 @@
   <!-- Register  -->
   <div class="col s12 m6" id="form">
     <div class="card-panel grey lighten-5">
-      <form (ngSubmit)="register()" #form="ngForm">
+      <!-- Registeration Form -->
+      <form (ngSubmit)="register()" #rform="ngForm">
         <h5>Register</h5>
         <p class="text-flow">If you're new to Localite</p>
-
+        <!-- Register User Role -->
         <div class="input-field">
           <p>
             <label>
               <input
                 name="registerRole"
                 type="radio"
+                class="form-control"
                 [(ngModel)]="registerRole"
                 value="CUSTOMER"
                 checked
@@ -87,8 +97,10 @@
               <input
                 name="registerRole"
                 type="radio"
+                class="form-control"
                 value="MERCHANT"
                 [(ngModel)]="registerRole"
+                required
               />
               <span>Merchant</span>
             </label>
@@ -98,60 +110,69 @@
           >Please select an option</span
         >
 
+        <!-- Register User Name -->
         <div class="input-field">
           <input
             type="text"
-            placeholder="Name"
+            id="registerName"
             name="registerName"
             [(ngModel)]="registerName"
-            class="validate"
-            required=""
+            class="validate form-control"
+            required
           />
+          <label for="registerName">Name</label>
           <span
             class="helper-text"
             data-error="Invalid Name"
             data-success=""
           ></span>
         </div>
+        <!-- Register Email -->
         <div class="input-field">
           <input
-            type="text"
-            placeholder="Email"
+            type="email"
+            id="registerEmail"
             name="registerEmail"
             [(ngModel)]="registerEmail"
-            class="validate"
-            required=""
+            class="validate form-control"
+            required
+            email
           />
+          <label for="registerEmail">Email</label>
           <span
             class="helper-text"
             data-error="Invalid Email"
             data-success=""
           ></span>
         </div>
+        <!-- Register Password -->
         <div class="input-field">
           <input
             type="password"
-            placeholder="Password"
+            id="registerPassword"
             name="registerPassword"
             [(ngModel)]="registerPassword"
-            class="validate"
-            required=""
+            class="validate form-control"
+            required
           />
+          <label for="registerPassword">Password</label>
           <span
-            class="helper-text"
-            data-error="Invalid Password"
-            data-success=""
+          class="helper-text"
+          data-error="Invalid Password"
+          data-success=""
           ></span>
         </div>
+        <!-- Confirm Password -->
         <div class="input-field">
           <input
-            type="password"
-            placeholder="Confirm Password"
-            name="registerConfirmPassword"
-            [(ngModel)]="registerConfirmPassword"
-            class="validate"
-            required=""
+          type="password"
+          name="registerConfirmPassword"
+          id="registerConfirmPassword"
+          [(ngModel)]="registerConfirmPassword"
+          class="validate form-control"
+          required
           />
+          <label for="registerConfirmPassword">Confirm Password</label>
           <span
             class="helper-text"
             data-error="Invalid Password"
@@ -161,8 +182,14 @@
         <p *ngIf="passwordsDontMatch" class="red-text">
           Passwords don't match!
         </p>
-
-        <input type="submit" value="Register" class="btn z-depth-2" />
+        <!--  Submit-->
+        <input
+          type="submit"
+          value="Register"
+          class="btn left z-depth-2"
+          [disabled]="!rform.valid"
+          />
+          <!-- && passwordsDontMatch" -->
         <p *ngIf="registeredSuccesfully" class="green-text">
           Registered Succesfully!
         </p>

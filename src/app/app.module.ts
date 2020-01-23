@@ -19,7 +19,6 @@ import { ProductCategoriesComponent } from "./components/store/products/product-
 import { ProductDetailsComponent } from "./components/store/products/product-details/product-details.component";
 import { ProductListComponent } from "./components/store/products/product-list/product-list.component";
 import { ProductsComponent } from "./components/store/products/products.component";
-import { ShopDetailsComponent } from "./components/store/products/shop-details/shop-details.component";
 import { ServiceListComponent } from "./components/store/services/service-list/service-list.component";
 import { ServicesComponent } from "./components/store/services/services.component";
 import { TechnicianDetailsComponent } from "./components/store/services/technician-details/technician-details.component";
@@ -45,6 +44,10 @@ import { TermsComponent } from "./components/pages/terms/terms.component";
 import { StoreCarouselComponent } from "./components/layout/store-carousel/store-carousel.component";
 import { AddProductComponent } from './components/data/add-product/add-product.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { AddStoreComponent } from './components/data/add-store/add-store.component';
+import { StorePageComponent } from './components/store/stores/store-page/store-page.component';
+import { StoresComponent } from './components/store/stores/stores.component';
+import { ShopDetailsComponent } from './components/store/stores/shop-details/shop-details.component';
 
 const config = new AuthServiceConfig([
   {
@@ -95,7 +98,10 @@ export function provideConfig() {
     TermsComponent,
     StoreCarouselComponent,
     AddProductComponent,
-    ProfileComponent
+    ProfileComponent,
+    StorePageComponent,
+    AddStoreComponent,
+    StoresComponent
   ],
   imports: [
     BrowserModule,

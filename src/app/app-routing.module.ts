@@ -18,6 +18,9 @@ import { ServiceDetailsComponent } from "./components/store/services/service-det
 import { ServiceListComponent } from "./components/store/services/service-list/service-list.component";
 import { ServicesComponent } from "./components/store/services/services.component";
 import { AddProductComponent } from "./components/data/add-product/add-product.component";
+import { StoresComponent } from './components/store/stores/stores.component';
+import { AddStoreComponent } from './components/data/add-store/add-store.component';
+import { StorePageComponent } from './components/store/stores/store-page/store-page.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -38,6 +41,9 @@ const routes: Routes = [
   { path: "product/:id", component: ProductDetailsComponent },
   { path: "products", component: ProductsComponent },
   { path: "products/add", component: AddProductComponent },
+  { path: "stores", component: StoresComponent },
+  { path: "stores/add", component: AddStoreComponent },
+  { path: "store/:id", component: StorePageComponent },
   { path: "services", component: ServicesComponent },
   { path: "service/:id", component: ServiceDetailsComponent },
   { path: "privacy", component: PrivacyComponent },
@@ -56,4 +62,4 @@ const routes: Routes = [
 ];
 
 @NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

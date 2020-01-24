@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  authurl: "http://localhost:9090"
+  authurl: 'http://localhost:9090',
+  // uploadUrl: 'http://localhost:3000/upload',
+  uploadUrl:
+      'https://j0fw5osim7.execute-api.us-east-1.amazonaws.com/dev/upload',
 };
 
 /*

@@ -9,7 +9,6 @@ import { NotFoundComponent } from "./components/layout/not-found/not-found.compo
 import { PrivacyComponent } from "./components/pages/privacy/privacy.component";
 import { TermsComponent } from "./components/pages/terms/terms.component";
 import { ProductDetailsComponent } from "./components/store/products/product-details/product-details.component";
-import { ProductsComponent } from "./components/store/products/products.component";
 import { CartComponent } from "./components/user/cart/cart.component";
 import { ProfileComponent } from "./components/user/profile/profile.component";
 import { LocationComponent } from "./components/user/location/location.component";
@@ -21,6 +20,7 @@ import { AddProductComponent } from "./components/data/add-product/add-product.c
 import { StoresComponent } from './components/store/stores/stores.component';
 import { AddStoreComponent } from './components/data/add-store/add-store.component';
 import { StorePageComponent } from './components/store/stores/store-page/store-page.component';
+import { ProductListComponent } from './components/store/products/product-list/product-list.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   { path: "location", component: LocationComponent },
   { path: "product/:id", component: ProductDetailsComponent },
-  { path: "products", component: ProductsComponent },
+  { path: "products", component: ProductListComponent },
   { path: "products/add", component: AddProductComponent },
   { path: "stores", component: StoresComponent },
   { path: "stores/add", component: AddStoreComponent },

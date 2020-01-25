@@ -1,88 +1,117 @@
 <p>cart works!</p>
 
 <!-- <p>cart works!</p> -->
-<br>
+<br />
 <!-- Shooping cart will be displayed only when Products are there in Cart  -->
 <!-- Else display "Shopping Cart Empty Message" -->
-<div class="col s12 m7" id="shoppingCart" *ngIf="cartProducts.length; else emptyCart;">
-    <h5 class="header" >Shopping Cart</h5>
+<div
+  class="col s12 m7"
+  id="shoppingCart"
+  *ngIf="cartProducts.length; else emptyCart"
+>
+  <h5 class="header">Shopping Cart</h5>
 
-    <h6 class="header right-align">Price</h6>
-    <hr>
+  <h6 class="header right-align">Price</h6>
+  <hr />
 
-
-    <div class="card horizontal grey lighten-5" *ngFor="let cartProduct of cartProducts" >
-        <div class="card-image">
-            <img src="/assets/images/cart/{{cartProduct.imgUrl}}">
-        </div>
-        <div class="card-stacked">
-            
-            <div class="card-content">
-                <a href="#"><span class="card-title">
-                        {{ cartProduct.name }}</span>
-                </a>
-            </div>
-            <div class="right">
-                <!-- '&#8377' for displaying indian currency -->
-                <h6 class="right-align #e65100 orange-text text-darken-4">&#8377;{{ cartProduct.price }}&nbsp;</h6>
-            </div>
-            
-            
-            <div class="card-action">
-                <a class="waves-effect btn-flat deep-orange-text text-darken-3" (click)="onDeleteFromCart(cartProduct)">Delete</a> |&nbsp; &nbsp; &nbsp; 
-                <a class="waves-effect btn-flat deep-orange-text text-darken-3" (click)="onSaveForLater(cartProduct)">Save For Later</a>
-            </div>
-        </div>
+  <div
+    class="card horizontal grey lighten-5"
+    *ngFor="let cartProduct of cartProducts"
+  >
+    <div class="card-image">
+      <img src="/assets/images/cart/{{ cartProduct.imgUrl }}" />
     </div>
-    <hr>
-    <h6 class="header right-align #e65100 orange-text text-darken-4">Sub-Total ( {{cartProducts.length}} items) : &#8377;{{ subTotal }}&nbsp;</h6>
-    
+    <div class="card-stacked">
+      <div class="card-content">
+        <a href="#"
+          ><span class="card-title"> {{ cartProduct.name }}</span>
+        </a>
+      </div>
+      <div class="right">
+        <!-- '&#8377' for displaying indian currency -->
+        <h6 class="right-align #e65100 orange-text text-darken-4">
+          &#8377;{{ cartProduct.price }}&nbsp;
+        </h6>
+      </div>
+
+      <div class="card-action">
+        <a
+          class="waves-effect btn-flat deep-orange-text text-darken-3"
+          (click)="onDeleteFromCart(cartProduct)"
+          >Delete</a
+        >
+        |&nbsp; &nbsp; &nbsp;
+        <a
+          class="waves-effect btn-flat deep-orange-text text-darken-3"
+          (click)="onSaveForLater(cartProduct)"
+          >Save For Later</a
+        >
+      </div>
+    </div>
+  </div>
+  <hr />
+  <h6 class="header right-align #e65100 orange-text text-darken-4">
+    Sub-Total ( {{ cartProducts.length }} items) : &#8377;{{ subTotal }}&nbsp;
+  </h6>
 </div>
 <div>
-<br>
+  <br />
 
-    <a class="btn waves-effect right" (click)="onProceedToBuy()">Proceed To Buy<i class="material-icons right">send</i></a> 
-
-
-</div>  
-<br>
+  <a class="btn waves-effect right" (click)="onProceedToBuy()"
+    >Proceed To Buy<i class="material-icons right">send</i></a
+  >
+</div>
+<br />
 <!-- Saved Items cart will be displayed only when Products are present for 'Save for later' Cart  -->
-<div class="col s12 m7"  *ngIf="savedProducts.length">
-    <br>
-    <br>
-    <h5 class="header">Saved Items ( {{ savedProducts.length }} items)</h5>
+<div class="col s12 m7" *ngIf="savedProducts.length">
+  <br />
+  <br />
+  <h5 class="header">Saved Items ( {{ savedProducts.length }} items)</h5>
 
-    <h6 class="header right-align">Price</h6>
-    <hr>
+  <h6 class="header right-align">Price</h6>
+  <hr />
 
-
-    <div class="card horizontal grey lighten-5" *ngFor="let savedProduct of savedProducts">
-        <div class="card-image">
-            <img src="/assets/images/cart/{{ savedProduct.imgUrl }}">
-        </div>
-        <div class="card-stacked">
-            <!-- <div> -->
-            <div class="card-content">
-                <a href="#"><span class="card-title">
-                        {{ savedProduct.name }}</span>
-                </a>
-            </div>
-            <div class="right">
-                <h6 class="right-align #e65100 orange-text text-darken-4">&#8377;{{ savedProduct.price }}&nbsp;</h6>
-            </div>
-            <!-- </div> -->
-            
-            <div class="card-action">
-                <a class="waves-effect btn-flat deep-orange-text text-darken-3" (click)="onDeleteFromSavedItems(savedProduct)">Delete</a> |&nbsp; &nbsp; &nbsp; 
-                <a class="waves-effect btn-flat deep-orange-text text-darken-3" (click)="onMoveToCart(savedProduct)">Move To Cart</a>
-            </div>
-        </div>
+  <div
+    class="card horizontal grey lighten-5"
+    *ngFor="let savedProduct of savedProducts"
+  >
+    <div class="card-image">
+      <img src="/assets/images/cart/{{ savedProduct.imgUrl }}" />
     </div>
+    <div class="card-stacked">
+      <!-- <div> -->
+      <div class="card-content">
+        <a href="#"
+          ><span class="card-title"> {{ savedProduct.name }}</span>
+        </a>
+      </div>
+      <div class="right">
+        <h6 class="right-align #e65100 orange-text text-darken-4">
+          &#8377;{{ savedProduct.price }}&nbsp;
+        </h6>
+      </div>
+      <!-- </div> -->
+
+      <div class="card-action">
+        <a
+          class="waves-effect btn-flat deep-orange-text text-darken-3"
+          (click)="onDeleteFromSavedItems(savedProduct)"
+          >Delete</a
+        >
+        |&nbsp; &nbsp; &nbsp;
+        <a
+          class="waves-effect btn-flat deep-orange-text text-darken-3"
+          (click)="onMoveToCart(savedProduct)"
+          >Move To Cart</a
+        >
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Empty Shopping Cart Message -->
-<ng-template  #emptyCart>
-<div >
+<ng-template #emptyCart>
+  <div>
     <h5 class="orange-text text-darken-4">Your Shopping Cart is Empty !!!</h5>
-</div>
+  </div>
 </ng-template>

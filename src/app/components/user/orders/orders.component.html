@@ -1,1 +1,202 @@
-<p>orders works!</p>
+<!-- <p>orders works!</p> -->
+
+<!-- Tab -->
+<ul class="tabs tabs-fixed-width flow-text teal z-depth-1">
+  <li class="tab">
+    <a class="white-text active" href="#test1">
+      Past Orders
+    </a>
+  </li>
+  <li class="tab">
+    <a class="white-text " href="#test2">
+      Ongoing Orders
+    </a>
+  </li>
+</ul>
+
+<!-- Past Orders Tab Content -->
+<div id="test1" class="col s12 ">
+  <!-- Hard coded content for view, can be commented  START-->
+  <div class="order-group">
+    <table>
+      <thead class="grey">
+        <tr>
+          <th>
+            <span class="left">Order Date: 2/2/2020</span>
+          </th>
+          <th>Shipped to: Tanmay</th>
+          <th>Order Staus: Delivered</th>
+          <th>
+            <span class="right">Total: &#8377;200</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="grey lighten-2 flow-text">
+        <tr>
+          <td>
+            <img
+              src="../../../../assets/images/cart/chocos.jpg"
+              alt="chocos"
+              class="left"
+            />
+          </td>
+          <td >
+            Chocos
+          </td>
+          <td>
+            Quntity: 2
+          </td>
+          <td>
+            <span class="right">Price: &#8377;200</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="order-group">
+    <table>
+      <thead class="grey">
+        <tr>
+          <th>
+            <span class="left">Order Date: 22/2/2020</span>
+          </th>
+          <th>Shipped to: Tanmay</th>
+          <th>Order Staus: Delivered</th>
+          <th>
+            <span class="right">Total: &#8377;300</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="grey lighten-2 flow-text">
+        <tr>
+          <td>
+            <img
+              src="../../../../assets/images/cart/maggie.jpg"
+              alt="chocos"
+              class="left"
+            />
+          </td>
+          <td >
+            Maggie
+          </td>
+          <td>
+            Quntity: 1
+          </td>
+          <td>
+            <span class="right">Price: &#8377;100</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img
+              src="../../../../assets/images/cart/chocos.jpg"
+              alt="chocos"
+              class="left"
+            />
+          </td>
+          <td >
+            Chocos
+          </td>
+          <td>
+            Quntity: 1
+          </td>
+          <td>
+            <span class="right">Price: &#8377;200</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Hard Coded Conetent END -->
+
+  <!-- Dynamic content -->
+  <!-- Check if pastOrders Array has length -->
+  <div *ngIf="pastOrders.length; else emptyDiv1">
+    <!-- A single order containing a number of products  -->
+    <div class="order-group" *ngFor="let order of pastOrders">
+      <table>
+        <thead class="grey">
+          <tr>
+            <th>
+              <span class="left">Order Date:{{ order.orderDate }}</span>
+            </th>
+            <th>Shipped to: {{ order.shippedTo }}</th>
+            <th>Order Status: {{ order.status }}</th>
+            <th>
+              <span class="right">Total: &#8377;{{ order.totalPrice }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="grey lighten-2">
+          <tr *ngFor="let product of order.products">
+            <td>
+              <img
+                src="../../../../assets/images/cart/chocos.jpg"
+                alt="chocos"
+                class="left"
+              />
+            </td>
+            <!-- <td > -->
+            <td>
+              {{ product.name }}
+            </td>
+            <td>Quntity: {{ product.quantity }}</td>
+            <td>
+              <span class="right">Price: &#8377;{{ product.price }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- If order array is empty -->
+  <ng-template #emptyDiv1>
+    <h5 class="center flow-text">No Past Orders.</h5>
+  </ng-template>
+</div>
+
+<!-- Ongoing Orders Tab Content -->
+<div id="test2" class="col s12">
+  <div *ngIf="ongoingOrders.length; else emptyDiv2">
+    <!-- A single order containing a number of products  -->
+    <div class="order-group" *ngFor="let order of ongoingOrders">
+      <table>
+        <thead class="grey">
+          <tr>
+            <th>
+              <span class="left">Order Date:{{ order.orderDate }}</span>
+            </th>
+            <th>Shipped to: {{ order.shippedTo }}</th>
+            <th>Order Status: {{ order.status }}</th>
+            <th>
+              <span class="right">Total: &#8377;{{ order.totalPrice }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="grey lighten-2">
+          <tr *ngFor="let product of order.products">
+            <td>
+              <img
+                src="../../../../assets/images/cart/chocos.jpg"
+                alt="chocos"
+                class="left"
+              />
+            </td>
+            <!-- <td > -->
+            <td>
+              {{ product.name }}
+            </td>
+            <td>Quntity: {{ product.quantity }}</td>
+            <td>
+              <span class="right">Price: &#8377;{{ product.price }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #emptyDiv2>
+    <h5 class="center flow-text">No Ongoing Orders.</h5>
+  </ng-template>
+</div>

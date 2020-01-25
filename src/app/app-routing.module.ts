@@ -19,6 +19,7 @@ import { StorePageComponent } from './components/store/stores/store-page/store-p
 import { StoresComponent } from './components/store/stores/stores.component';
 import { CartComponent } from './components/user/cart/cart.component';
 import { LocationComponent } from './components/user/location/location.component';
+import { OrdersComponent } from './components/user/orders/orders.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
 import { AuthGaurdService } from './services/auth/auth-gaurd.service';
@@ -35,6 +36,7 @@ const routes: Routes = [
     canActivate: [AuthGaurdService]
   },
   { path: 'location', component: LocationComponent },
+  { path: 'orders', component: OrdersComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'products/add', component: AddProductComponent },

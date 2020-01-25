@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { map, tap, catchError } from "rxjs/operators";
+import { map, tap, catchError, retry } from "rxjs/operators";
 import { CartProduct } from "../models/cartProducts";
 
-@Injectable({ providedIn: "root" })
+@Injectable(
+  { providedIn: "root" }
+  )
 export class UserService {
   private cartUrl =
     "https://my-json-server.typicode.com/ndivya03/json-server/cartProducts"; // URL to web api
@@ -15,15 +17,17 @@ export class UserService {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
+
   constructor(private http: HttpClient) {}
 
   //---------------CartProducts Methods--------------
 
   /** GET all services from the server */
   getCartProducts(): Observable<CartProduct[]> {
+
     return this.http
-      .get<CartProduct[]>(this.cartUrl)
-      .pipe(catchError(this.handleError<CartProduct[]>("getCartProducts", [])));
+    .get<CartProduct[]>(this.cartUrl)
+    .pipe(retry(3),catchError(this.handleError<CartProduct[]>("getCartProducts", [])));
   }
 
   /** DELETE: delete the product from the server */
@@ -34,10 +38,10 @@ export class UserService {
       .pipe(catchError(this.handleError("deleteCartProduct")));
   }
 
-  updateCart(cartProducts: CartProduct[]): Observable<CartProduct[]> {
+  updateCart(cartProduct: CartProduct): Observable<CartProduct> {
     return this.http
-      .put<CartProduct[]>(this.cartUrl, cartProducts, this.httpOptions)
-      .pipe(catchError(this.handleError("updateCart", cartProducts)));
+      .post<CartProduct>(this.cartUrl, cartProduct, this.httpOptions)
+      .pipe(catchError(this.handleError("updateCart", cartProduct)));
   }
 
   //----------------SavedProducts Methods-------------------
@@ -45,7 +49,7 @@ export class UserService {
   getSavedProducts(): Observable<CartProduct[]> {
     return this.http
       .get<CartProduct[]>(this.savedUrl)
-      .pipe(
+      .pipe(retry(3),
         catchError(this.handleError<CartProduct[]>("getSavedProducts", []))
       );
   }
@@ -57,10 +61,10 @@ export class UserService {
       .pipe(catchError(this.handleError("deleteSavedProduct")));
   }
 
-  updateSaved(savedProducts: CartProduct[]): Observable<CartProduct[]> {
+  updateSaved(savedProduct: CartProduct): Observable<CartProduct> {
     return this.http
-      .put<CartProduct[]>(this.savedUrl, savedProducts, this.httpOptions)
-      .pipe(catchError(this.handleError("updateSaved", savedProducts)));
+      .post<CartProduct>(this.savedUrl, savedProduct, this.httpOptions)
+      .pipe(catchError(this.handleError("updateSaved", savedProduct)));
   }
 
   /**

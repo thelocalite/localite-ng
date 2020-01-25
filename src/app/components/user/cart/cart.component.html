@@ -54,14 +54,15 @@
     Sub-Total ( {{ cartProducts.length }} items) : &#8377;{{ subTotal }}&nbsp;
   </h6>
 </div>
-<div>
+<div *ngIf="cartProducts.length">
   <br />
-
-  <a class="btn waves-effect right" (click)="onProceedToBuy()"
-    >Proceed To Buy<i class="material-icons right">send</i></a
+  <a class="btn waves-effect right" (click)="onPlaceOrder()"
+    >Place Order<i class="material-icons right">send</i></a
   >
+  <br />
+  <br />
 </div>
-<br />
+
 <!-- Saved Items cart will be displayed only when Products are present for 'Save for later' Cart  -->
 <div class="col s12 m7" *ngIf="savedProducts.length">
   <br />

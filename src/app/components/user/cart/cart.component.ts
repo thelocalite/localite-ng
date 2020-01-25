@@ -22,33 +22,36 @@ export class CartComponent implements OnInit {
   //Current Product being worked on
   product: CartProduct;
 
-  //Calculating Sub-Total
-  //  this.cartProducts.forEach(cartProduct => {
-  //   this.subTotal = this.subTotal + cartProduct.price;
-  // });
+ 
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.getCartProducts();
-    this.getSavedProducts();
+    this.userService.getCartProducts()
+    .subscribe(cartProducts => {this.cartProducts = cartProducts
+      this.cartProducts.forEach(cartProduct => {
+        this.subTotal = this.subTotal + cartProduct.price;
+      });
+      console.log(cartProducts);
+    });
+    
+
+    this.userService.getSavedProducts()
+    .subscribe(savedProducts => {this.savedProducts = savedProducts
+      console.log(savedProducts);
+    });
+
   }
 
-  getCartProducts(): void {
-    this.userService
-      .getCartProducts()
-      .subscribe(cartProducts => (this.cartProducts = cartProducts));
+  getSubTotal(): number {
+
+      return this.subTotal;
   }
 
-  getSavedProducts(): void {
-    this.userService
-      .getSavedProducts()
-      .subscribe(savedProducts => (this.savedProducts = savedProducts));
-  }
 
-  //'Shopping Cart' methods
+  //----------------'Shopping Cart' methods-----------
 
-  //On deleting product from Cart
+  //----------On deleting product from Cart---------
   onDeleteFromCart(cartProduct) {
     console.log("Entered onDeleteFromCart");
     this.product = cartProduct;
@@ -63,7 +66,7 @@ export class CartComponent implements OnInit {
     this.userService.deleteFromCart(cartProduct.id).subscribe();
   }
 
-  //On Saving to 'save for later' and deleting product from Cart
+  //----------On Saving to 'save for later' and deleting product from Cart---------
   onSaveForLater(cartProduct) {
     console.log("Entered onSaveForLater");
     console.log(this.savedProducts);
@@ -76,7 +79,7 @@ export class CartComponent implements OnInit {
 
     //Add The product to savedProducts
     this.savedProducts.push(this.product);
-    this.userService.updateSaved(this.savedProducts).subscribe();
+    this.userService.updateSaved(this.product).subscribe();
 
     //Delete the Product from CartProducts
     this.onDeleteFromCart(this.product);
@@ -84,7 +87,7 @@ export class CartComponent implements OnInit {
 
   // ---------------'Saved Items' methods----------
 
-  //On deleting product from 'Save for later' list
+  //----------On deleting product from 'Save for later' list-----------
   onDeleteFromSavedItems(savedProduct) {
     console.log("Entered onDeleteFromSavedItems");
     this.product = savedProduct;
@@ -100,7 +103,9 @@ export class CartComponent implements OnInit {
     this.userService.deleteFromSaved(savedProduct.id).subscribe();
   }
 
-  //On deleting product from Cart and saving to 'save for later'
+
+
+  //---------On deleting product from Cart and saving to 'save for later'------
   onMoveToCart(savedProduct) {
     console.log("Entered onMoveToCart");
     this.savedItemsFlag = true;
@@ -110,15 +115,17 @@ export class CartComponent implements OnInit {
 
     //push it into cartProducts
     this.cartProducts.push(this.product);
-    this.userService.updateCart(this.cartProducts).subscribe();
+    this.userService.updateCart(this.product).subscribe();
 
     //Delete From Saved Products
     this.onDeleteFromSavedItems(this.product);
   }
 
-  //To Place Order/Proceed To Buy
 
-  onProceedToBuy() {
-    console.log("Entered onProceedToBuy");
+
+  //---------------To Place Order/Proceed To Buy-----------
+
+  onPlaceOrder() {
+    console.log("Entered onPlaceOrder");
   }
 }

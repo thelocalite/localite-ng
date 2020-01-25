@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <li *ngFor="let product of products">
-                <div class="col s12 m6 l3">
+                <div class="col s12 m6 l4">
                     <div class="card medium">
                         <div class="card-image">
                             <img src={{product.productImageUrl}}>
                         </div>
                         <div class="card-content">
-                            <h5>{{product.productName}}</h5>
+                            <h6>{{product.productName}}</h6>
                             <p>by {{product.productBrand}}</p>
                         </div>
                         <div class="card-action">

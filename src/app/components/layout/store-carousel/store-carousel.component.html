@@ -4,15 +4,15 @@
             <div id="content-wrapper">
                 <div class="card">
                     <div class="card-image">
-                        <img src="{{store.vendorImageUrl}}">
+                        <img src="{{store.imageUrl}}">
                         <a class="btn-floating btn-large halfway-fab waves-effect waves-light red"
-                            routerLink="/store/{{store.vendorId}}">
+                            routerLink="/store/{{store.id}}">
                             <i class="large material-icons">arrow_forward</i>
                         </a>
                     </div>
                     <div class="card-content">
-                        <span class="card-title">{{store.vendorName}}</span>
-                        <p>{{store.vendorDescription}}</p>
+                        <span class="card-title">{{store.name}}</span>
+                        <p>{{store.description}}</p>
                     </div>
                 </div>
             </div>

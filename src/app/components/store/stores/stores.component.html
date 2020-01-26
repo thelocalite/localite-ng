@@ -1,24 +1,24 @@
 <ul>
-    <div class="container">
-        <div class="row">
-            <li *ngFor="let store of stores">
-                <div class="col s12 m6 l3">
-                    <div class="card medium">
-                        <div class="card-image">
-                            <img src={{store.imageUrl}}>
-                        </div>
-                        <div class="card-content">
-                            <h5>{{store.name}}</h5>
-                            <p>by </p>
-                        </div>
-                        <div class="card-action">
-                            <a routerLink="/store/{{store.id}}">
-                                <span>Shop Store</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </li>
+  <div class="container">
+    <div class="row">
+      <li *ngFor="let store of stores">
+        <div class="col s12 m4 l3">
+          <div class="card medium">
+            <div class="card-image">
+              <img src="{{ store.imageUrl }}" />
+            </div>
+            <div class="card-content">
+              <h5>{{ store.name }}</h5>
+              <p>by</p>
+            </div>
+            <div class="card-action">
+              <a routerLink="/store/{{ store.id }}">
+                <span>Shop Store</span>
+              </a>
+            </div>
+          </div>
         </div>
+      </li>
     </div>
+  </div>
 </ul>

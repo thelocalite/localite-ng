@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
+
+/**
+ * @technologic808
+ * 
+ * ProductList Component
+ * 
+ * This component takes list of products from 
+ * any parent component who wants to display their list of products
+ * 
+ * It displays the product list as materialize cards
+ */
 export class ProductListComponent implements OnInit {
-  products: Product[];
-  constructor(private productService: ProductService) { }
+
+  // Takes array of products as input from parent component
+  // To display wherever required
+  @Input() products: Product[];
+
+  constructor() { }
 
   ngOnInit() {
-    this.getProducts();
   }
-
-  getProducts(): void {
-    this.productService.getProducts().subscribe(products => (this.products = products));
-    console.log(this.products);
-  }
-
 }

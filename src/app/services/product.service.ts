@@ -6,6 +6,7 @@ import { map, tap, catchError } from "rxjs/operators";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
+
   // private productsUrl = "https://localite-core.herokuapp.com/product"; // URL to web api PRODUCTION
   private productsUrl = "http://localhost:8080/product"; // URL to web api DEVELOPMENT
 
@@ -20,6 +21,14 @@ export class ProductService {
     return this.http
       .get<Product[]>(this.productsUrl)
       .pipe(catchError(this.handleError<Product[]>("getProducts", [])));
+  }
+
+  /** GET all products by Store ID*/
+  getProductsByStoreId(storeId: any): Observable<Product[]> {
+    const url = `${this.productsUrl}/vendor/${storeId}`;
+    return this.http
+      .get<Product[]>(url)
+      .pipe(catchError(this.handleError<Product[]>(`getProduct id=${storeId}`)));
   }
 
   /** GET product by id. Return `undefined` when id not found */

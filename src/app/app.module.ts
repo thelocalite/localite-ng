@@ -49,6 +49,7 @@ import { StorePageComponent } from './components/store/stores/store-page/store-p
 import { StoresComponent } from './components/store/stores/stores.component';
 import { ShopDetailsComponent } from './components/store/stores/shop-details/shop-details.component';
 import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
+import { ProductPageComponent } from './components/store/products/product-page/product-page.component';
 
 const config = new AuthServiceConfig([
   {
@@ -103,7 +104,8 @@ export function provideConfig() {
     StorePageComponent,
     AddStoreComponent,
     StoresComponent,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

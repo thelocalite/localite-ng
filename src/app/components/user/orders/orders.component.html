@@ -17,7 +17,7 @@
 <!-- Past Orders Tab Content -->
 <div id="test1" class="col s12 ">
   <!-- Hard coded content for view, can be commented  START-->
-  <div class="order-group">
+  <!-- <div class="order-group">
     <table>
       <thead class="grey">
         <tr>
@@ -106,16 +106,16 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
   <!-- Hard Coded Conetent END -->
 
   <!-- Dynamic content -->
   <!-- Check if pastOrders Array has length -->
-  <div *ngIf="pastOrders.length; else emptyDiv1">
+  <div *ngIf="pastOrders.length>=1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of pastOrders">
-      <table>
-        <thead class="grey">
+      <table class="centered striped">
+        <thead>
           <tr>
             <th>
               <span class="left">Order Date:{{ order.orderDate }}</span>
@@ -127,18 +127,20 @@
             </th>
           </tr>
         </thead>
-        <tbody class="grey lighten-2">
+        <tbody>
           <tr *ngFor="let product of order.products">
             <td>
               <img
-                src="../../../../assets/images/cart/chocos.jpg"
-                alt="chocos"
-                class="left"
+                src="{{ product.imgUrl }}"
+                alt="{{ product.name }}"
+                class="left responsive-img"
               />
             </td>
             <!-- <td > -->
             <td>
-              {{ product.name }}
+              <a [routerLink]="['/product/' + product.id]">{{
+                product.name
+              }}</a>
             </td>
             <td>Quntity: {{ product.quantity }}</td>
             <td>
@@ -150,18 +152,18 @@
     </div>
   </div>
   <!-- If order array is empty -->
-  <ng-template #emptyDiv1>
+  <ng-template *ngIf="pastOrders.length<1 && !isFetching">
     <h5 class="center flow-text">No Past Orders.</h5>
   </ng-template>
 </div>
 
 <!-- Ongoing Orders Tab Content -->
 <div id="test2" class="col s12">
-  <div *ngIf="ongoingOrders.length; else emptyDiv2">
+  <div *ngIf="ongoingOrders.length>=1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of ongoingOrders">
-      <table>
-        <thead class="grey">
+      <table class="centered striped">
+        <thead>
           <tr>
             <th>
               <span class="left">Order Date:{{ order.orderDate }}</span>
@@ -173,18 +175,20 @@
             </th>
           </tr>
         </thead>
-        <tbody class="grey lighten-2">
+        <tbody>
           <tr *ngFor="let product of order.products">
             <td>
               <img
-                src="../../../../assets/images/cart/chocos.jpg"
-                alt="chocos"
-                class="left"
+                src="{{ product.imgUrl }}"
+                alt="{{ product.name }}"
+                class="left responsive-img"
               />
             </td>
             <!-- <td > -->
             <td>
-              {{ product.name }}
+              <a [routerLink]="['/product/' + product.id]">{{
+                product.name
+              }}</a>
             </td>
             <td>Quntity: {{ product.quantity }}</td>
             <td>
@@ -196,7 +200,7 @@
     </div>
   </div>
 
-  <ng-template #emptyDiv2>
+  <ng-template *ngIf="ongoingOrders.length<1 && !isFetching">
     <h5 class="center flow-text">No Ongoing Orders.</h5>
   </ng-template>
 </div>

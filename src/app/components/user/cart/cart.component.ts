@@ -22,32 +22,26 @@ export class CartComponent implements OnInit {
   //Current Product being worked on
   product: CartProduct;
 
- 
-
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getCartProducts()
-    .subscribe(cartProducts => {this.cartProducts = cartProducts
+    this.userService.getCartProducts().subscribe(cartProducts => {
+      this.cartProducts = cartProducts;
       this.cartProducts.forEach(cartProduct => {
         this.subTotal = this.subTotal + cartProduct.price;
       });
       console.log(cartProducts);
     });
-    
 
-    this.userService.getSavedProducts()
-    .subscribe(savedProducts => {this.savedProducts = savedProducts
+    this.userService.getSavedProducts().subscribe(savedProducts => {
+      this.savedProducts = savedProducts;
       console.log(savedProducts);
     });
-
   }
 
   getSubTotal(): number {
-
-      return this.subTotal;
+    return this.subTotal;
   }
-
 
   //----------------'Shopping Cart' methods-----------
 
@@ -103,8 +97,6 @@ export class CartComponent implements OnInit {
     this.userService.deleteFromSaved(savedProduct.id).subscribe();
   }
 
-
-
   //---------On deleting product from Cart and saving to 'save for later'------
   onMoveToCart(savedProduct) {
     console.log("Entered onMoveToCart");
@@ -120,8 +112,6 @@ export class CartComponent implements OnInit {
     //Delete From Saved Products
     this.onDeleteFromSavedItems(this.product);
   }
-
-
 
   //---------------To Place Order/Proceed To Buy-----------
 

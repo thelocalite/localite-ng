@@ -6,7 +6,13 @@
   padding-top: 9px;
 }
 .order-group {
-  border: 2px solid;
-  border-color: grey;
+  border: 1px solid;
+  border-color: lightgrey;
   margin-bottom: 10px;
+}
+
+img {
+  max-width: 100px;
+  margin-left: 30px;
+  /* align-self: center; */
 }

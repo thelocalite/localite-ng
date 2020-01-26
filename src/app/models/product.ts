@@ -1,11 +1,11 @@
 // Defines Product Model for rendering
 
 export class Product {
-    productId: number;
-    productName: string;
-    productBrand: string;
-    productImageUrl: string;
-    productDescription: string;
-    productMrp: number;
-    productCategory: string;
+    id: number;
+    name: string;
+    brand: string;
+    imageUrl: string;
+    description: string;
+    mrp: number;
+    category: string;
 }

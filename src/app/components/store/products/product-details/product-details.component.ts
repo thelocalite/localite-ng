@@ -9,9 +9,19 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
+/**
+ * Product Details Component
+ * 
+ * This is the Product Card
+ * 
+ * This card displays product information which can be reused by other components
+ * 
+ */
 export class ProductDetailsComponent implements OnInit {
-  // Takes product as input from parent component
-  @Input() product: Product;
+
+  // Takes product id as input from parent component
+  @Input() productId: number;
+  product: Product;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +33,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
-    this.productService.getProduct(id).subscribe(product => (this.product = product));
+    this.productService.getProduct(this.productId).subscribe(product => (this.product = product));
   }
 
 

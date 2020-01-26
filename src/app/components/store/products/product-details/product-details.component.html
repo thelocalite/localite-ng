@@ -17,8 +17,8 @@
             <img src={{product.imageUrl}}>
         </div>
         <div class="card-content">
-            <h6>{{product.name}}</h6>
-            <p>by {{product.brand}}</p>
+            <h6 class="card-title truncate">{{product.name}}</h6>
+            <p class="truncate">by {{product.brand}}</p>
         </div>
         <div class="card-action">
             <a routerLink="/product/{{product.id}}">

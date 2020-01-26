@@ -20,9 +20,7 @@ import { ProductService } from 'src/app/services/product.service';
  * The user can choose which store he wishes to buy the product from
  */
 export class ProductPageComponent implements OnInit {
-
-  // Takes product as input from parent component
-  @Input() product: Product;
+  product: Product;
 
 
 

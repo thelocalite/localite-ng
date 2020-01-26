@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Store } from "../models/store";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
-  // private storesUrl = "https://localite-core.herokuapp.com/vendor"; // URL to web api PRODUCTION
-  private storesUrl = "http://localhost:8080/vendor"; // URL to web api DEVELOPMENT
+  private storesUrl = environment.restAPIUrl + "/vendor"; // URL to web api 
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

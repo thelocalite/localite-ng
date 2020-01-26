@@ -21,3 +21,5 @@ deploy:
   skip_cleanup: true
   acl: public_read
   local_dir: "dist/localite-ng"
+notifications:
+  slack: thelocaliteteam:cv4T37tIifEuVZW2i2Sl2qzw

@@ -7,32 +7,28 @@
             <h5>Add Product</h5>
 
             <div class="input-field">
-                <input type="text" placeholder="Product Name" name="productName" [(ngModel)]="product.productName"
-                    required="" />
+                <input type="text" placeholder="Product Name" name="name" [(ngModel)]="product.name" required="" />
             </div>
 
             <div class="input-field">
-                <input type="text" placeholder="Brand" name="productBrand" [(ngModel)]="product.productBrand" />
+                <input type="text" placeholder="Brand" name="brand" [(ngModel)]="product.brand" />
             </div>
 
             <div class="input-field">
-                <input type="text" placeholder="Description" name="productDescription"
-                    [(ngModel)]="product.productDescription" />
+                <input type="text" placeholder="Description" name="description" [(ngModel)]="product.description" />
             </div>
 
             <!-- TODO: convert to dropdown list of categories -->
             <div class="input-field">
-                <input type="text" placeholder="Category" name="productCategory"
-                    [(ngModel)]="product.productCategory" />
+                <input type="text" placeholder="Category" name="category" [(ngModel)]="product.category" />
             </div>
 
             <div class="input-field">
-                <input type="number" placeholder=" MRP" name="productMrp" [(ngModel)]="product.productMrp" />
+                <input type="number" placeholder=" MRP" name="mrp" [(ngModel)]="product.mrp" />
             </div>
 
             <div class="input-field">
-                <input type="text" placeholder="Product Image URL" name="productImageUrl"
-                    [(ngModel)]="product.productImageUrl" />
+                <input type="text" placeholder="Product Image URL" name="imageUrl" [(ngModel)]="product.imageUrl" />
             </div>
 
             <input type="submit" value="Add" class="btn z-depth-2" />

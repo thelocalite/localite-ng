@@ -2,21 +2,9 @@
   <div class="xcarousel-row">
     <div *ngFor="let store of stores" class="xcarousel-tile">
       <div id="content-wrapper">
-        <div class="card">
-          <div class="card-image">
-            <img src="{{ store.imageUrl }}" />
-            <a
-              class="btn-floating btn-large halfway-fab waves-effect waves-light red"
-              routerLink="/store/{{ store.id }}"
-            >
-              <i class="large material-icons">arrow_forward</i>
-            </a>
-          </div>
-          <div class="card-content">
-            <span class="card-title">{{ store.name }}</span>
-            <p>{{ store.description }}</p>
-          </div>
-        </div>
+
+        <app-shop-details [storeId]="store.id"></app-shop-details>
+
       </div>
     </div>
   </div>

@@ -7,13 +7,13 @@
  -->
 
 <ul>
-  <div class="container">
-    <div class="row">
-      <li *ngFor="let store of stores">
-        <div class="col s12 m6 l4">
-          <app-shop-details [storeId]="store.id"></app-shop-details>
-        </div>
-      </li>
-    </div>
+
+  <div class="row">
+    <li *ngFor="let store of stores">
+      <div class="col s12 m6 l3">
+        <app-shop-details [storeId]="store.id"></app-shop-details>
+      </div>
+    </li>
   </div>
+
 </ul>

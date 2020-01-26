@@ -9,7 +9,7 @@ import { map, tap, catchError } from "rxjs/operators";
 })
 export class StoreService {
   // private storesUrl = "https://localite-core.herokuapp.com/vendor"; // URL to web api PRODUCTION
-  private storesUrl = "http://localhost/vendor"; // URL to web api DEVELOPMENT
+  private storesUrl = "http://localhost:8080/vendor"; // URL to web api DEVELOPMENT
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

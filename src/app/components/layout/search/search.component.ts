@@ -15,15 +15,10 @@ import { ProductService } from '../../../services/product.service'
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  products$: Observable<Product[]>;
-  private searchTerms = new Subject<string>();
+  products: Product[];
+  searchTerm: String;
 
   constructor(private productService: ProductService) { }
-
-  // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
 
   ngOnInit(): void {
 
@@ -31,16 +26,5 @@ export class SearchComponent implements OnInit {
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems, {});
     });
-
-    this.products$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.productService.searchProducts(term))
-    );
   }
 }

@@ -1,27 +1,12 @@
-<div id="search" class="section section-search center" mt="6 rem">
-  <h5>Search Products & Servcies</h5>
-  <div class="input-field white" id="wrapper">
-    <div class="" id="select">
-      <select id="selectBox">
-        <option value="" disabled selected>Categories</option>
-        <option value="1">Products</option>
-        <option value="2">Services</option>
-      </select>
+<div class="row">
+  <form class="col s12">
+
+    <div class="input-field">
+      <i class="material-icons prefix">search</i>
+      <input type="text" id="autocomplete-input" class="autocomplete">
+      <label for="icon_prefix">Search</label>
     </div>
 
-    <div id="search">
-      <input type="text" class="white center autocomplete" id="searchBox" placeholder="Carrot, Crocin, etc" />
-    </div>
-  </div>
+
+  </form>
 </div>
-
-
-<input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-<ul class="search-result">
-  <li *ngFor="let product of products$ | async">
-    <a routerLink="/product/{{product.id}}">
-      {{product.name}}
-    </a>
-  </li>
-</ul>

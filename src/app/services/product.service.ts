@@ -17,6 +17,15 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   /** GET all products from the server */
+  search(searchTerm: String): Observable<Product[]> {
+    const url = `${this.productsUrl}/search/${searchTerm}`;
+    return this.http
+      .get<Product[]>(url)
+      .pipe(catchError(this.handleError<Product[]>(`search Term=${searchTerm}`)));
+  }
+
+
+  /** GET all products from the server */
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(this.productsUrl)

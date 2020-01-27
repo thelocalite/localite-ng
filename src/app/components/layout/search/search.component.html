@@ -3,10 +3,10 @@
 
     <div class="input-field">
       <i class="material-icons prefix">search</i>
-      <input type="text" id="autocomplete-input" class="autocomplete">
+      <input [formControl]="searchTerm" type="text" id="autocomplete-input" class="autocomplete">
       <label for="autocomplete-input">Search</label>
     </div>
-
+    <input type="submit" (click)="search()" hidden>
 
   </form>
 </div>

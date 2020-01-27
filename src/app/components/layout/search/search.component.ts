@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from '../../../../assets/js/materialize.min';
-
-import { Product } from "../../../models/product";
-
-import { ProductService } from '../../../services/product.service'
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-  products: Product[];
-  searchTerm: String;
 
-  constructor(private productService: ProductService) { }
+/**
+ * Search Component
+ * 
+ * Displays a search bar on the home page
+ * 
+ * Gets the search query from the user and routes to search results page
+ * 
+ * where the query is picked up from the url and searched using product service
+ */
+export class SearchComponent implements OnInit {
+
+
+  searchTermString: String;
+  searchTerm = new FormControl('');
+
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -29,4 +38,6 @@ export class SearchComponent implements OnInit {
       });
     });
   }
+
+
 }

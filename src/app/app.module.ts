@@ -1,6 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -50,6 +50,7 @@ import { StoresComponent } from './components/store/stores/stores.component';
 import { ShopDetailsComponent } from './components/store/stores/shop-details/shop-details.component';
 import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
 import { ProductPageComponent } from './components/store/products/product-page/product-page.component';
+import { SearchResultsComponent } from './components/store/products/search-results/search-results.component';
 
 const config = new AuthServiceConfig([
   {
@@ -105,12 +106,14 @@ export function provideConfig() {
     AddStoreComponent,
     StoresComponent,
     ImageUploaderComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule
   ],

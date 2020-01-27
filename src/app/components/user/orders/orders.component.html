@@ -111,7 +111,7 @@
 
   <!-- Dynamic content -->
   <!-- Check if pastOrders Array has length -->
-  <div *ngIf="pastOrders.length>=1 && !isFetching">
+  <div *ngIf="pastOrders.length >= 1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of pastOrders">
       <table class="centered striped">
@@ -151,15 +151,39 @@
       </table>
     </div>
   </div>
-  <!-- If order array is empty -->
-  <ng-template *ngIf="pastOrders.length<1 && !isFetching">
+
+  <!-- If pastorder array is empty -->
+  <div *ngIf="pastOrders.length < 1 && !isFetching && !error">
     <h5 class="center flow-text">No Past Orders.</h5>
-  </ng-template>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="!error && isFetching" class="center">
+    <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-green-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- If an error occours -->
+  <div *ngIf="error && pastOrders.length < 1">
+    <h5 class="center flow-text">An Error Has Occured</h5>
+    <h5 class="center flow-text">{{ error }}</h5>
+  </div>
 </div>
 
 <!-- Ongoing Orders Tab Content -->
 <div id="test2" class="col s12">
-  <div *ngIf="ongoingOrders.length>=1 && !isFetching">
+  <div *ngIf="ongoingOrders.length >= 1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of ongoingOrders">
       <table class="centered striped">
@@ -199,8 +223,30 @@
       </table>
     </div>
   </div>
-
-  <ng-template *ngIf="ongoingOrders.length<1 && !isFetching">
+  <!-- If no Ongoing orders -->
+  <div *ngIf="ongoingOrders.length < 1 && !isFetching && !error">
     <h5 class="center flow-text">No Ongoing Orders.</h5>
-  </ng-template>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="!error && isFetching && ongoingOrders.length < 1" class="center">
+    <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-green-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- If an error occours -->
+  <div *ngIf="error && ongoingOrders.length < 1">
+    <h5 class="center flow-text">An Error Has Occured</h5>
+    <h5 class="center flow-text">{{ error }}</h5>
+  </div>
 </div>

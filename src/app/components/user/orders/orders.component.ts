@@ -12,57 +12,54 @@ import { stringify } from "querystring";
   styleUrls: ["./orders.component.css"]
 })
 export class OrdersComponent implements OnInit {
+  // Array of past Orders
   pastOrders: Order[] = [];
+
+  // Array of ongoing Orders
   ongoingOrders: Order[] = [];
-  userName: string = "test";
+
+  // Flag to check if the get request is being executed
   isFetching: boolean = false;
 
+  // Error Flag / Property
+  error = null;
+
+  // Http headers
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
   constructor(private http: HttpClient, private orderService: OrderService) {}
 
   ngOnInit() {
-    // this.fetchUser(101);
     this.isFetching = true;
-    this.orderService.fetchPastOrders().subscribe(orders => {
-      console.log(orders);
-      this.pastOrders = orders;
-      this.isFetching = false;
-    });
+    this.orderService.fetchPastOrders().subscribe(
+      orders => {
+        console.log(orders);
+        this.pastOrders = orders;
+        this.isFetching = false;
+      },
+      error => {
+        this.error = error.message;
+        console.log(error);
+      }
+    );
 
     this.isFetching = true;
-    this.orderService.fetchOngoingOrders().subscribe(orders => {
-      console.log(orders);
-      this.ongoingOrders = orders;
-      this.isFetching = false;
-    });
+    this.orderService.fetchOngoingOrders().subscribe(
+      orders => {
+        console.log(orders);
+        this.ongoingOrders = orders;
+        this.isFetching = false;
+      },
+      error => {
+        this.error = error.message;
+        console.log(error);
+      }
+    );
 
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".tabs");
       var instance = M.Tabs.init(elems);
     });
-  }
-
-  fetchOrders() {
-    this.http
-      .get(
-        "https://my-json-server.typicode.com/10maycdac/json-server/pastOrders"
-      )
-      .subscribe(orders => {
-        console.log(orders);
-        // this.ongoingOrders = orders;
-      });
-  }
-
-  fetchUser(id: number) {
-    this.http
-      .get(
-        "https://my-json-server.typicode.com/10maycdac/json-server/users/" + id
-      )
-      .subscribe((user: { id: number; name: string }) => {
-        console.log(user);
-        this.userName = user.name;
-      });
   }
 }

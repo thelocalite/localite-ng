@@ -10,27 +10,34 @@ import { CartProduct } from "../models/cartProducts";
   providedIn: "root"
 })
 export class OrderService {
+  // Past orders
   private pastOrdersURL: string =
     "https://my-json-server.typicode.com/10maycdac/json-server/pastOrders";
+
+  // Ongoing Orders
   private ongoingOrdersURL: string =
     "https://my-json-server.typicode.com/10maycdac/json-server/ongoingOrders";
-  private userURL: string =
-    "https://my-json-server.typicode.com/10maycdac/json-server/users/";
-  error = new Subject<string>();
 
   orders: Order[] = [];
-  constructor(private http: HttpClient) {}
 
+  constructor(private http: HttpClient) {}
+  // fetch orders from given url
   fetchOrders(ordersURL: string) {
     return this.http.get<Order[]>(ordersURL).pipe(
+      retry(3),
       map((orders: Order[]) => {
         this.orders = orders;
+        // Itrating throught each order
         this.orders.forEach((order: Order) => {
           let productsArray: CartProduct[] = order.products;
+
           order.totalPrice = 0;
+
+          // calculating the total price of the order by itrating throught each product
           productsArray.forEach((product: CartProduct) => {
             order.totalPrice += product.price * product.quantity;
           });
+
           console.log();
         });
         return this.orders;
@@ -44,15 +51,4 @@ export class OrderService {
   fetchOngoingOrders() {
     return this.fetchOrders(this.ongoingOrdersURL);
   }
-
-  // fetchUser(id: number) {
-  //   this.http
-  //     .get(this.userURL + id)
-  //     .subscribe((user: { id: number; name: string }) => {
-  //       this.userName = user.name;
-  //     });
-  //   console.log(this.userName);
-
-  //   return this.userName;
-  // }
 }

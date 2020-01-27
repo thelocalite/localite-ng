@@ -20,19 +20,37 @@ import { ActivatedRoute } from '@angular/router';
  */
 
 export class SearchResultsComponent implements OnInit {
+
+  // Products array to store search results
   products: Product[];
+
+  // Gets the search term from the URL
   searchTermString: String = this.route.snapshot.paramMap.get("searchTerm");
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.search();
+    // Searches based on query
+    this.search(this.searchTermString);
+
+    /**
+     * This was a really tricky one.
+     * 
+     * This line of code is for making the persistent search box work
+     * 
+     * It subscribes to the Observable returned by the ActivatedRoute objects paramMap property
+     * 
+     * Whenever there is a change in the searchbox, it calls the callback function which calls the search again!
+     */
+    this.route.paramMap.subscribe(data => (this.search(data.params.searchTerm)));
   }
 
-  search() {
+
+  // Calls the search API using the string entered by the user 
+  search(searchTermString: String) {
     console.log("Search is called " + this.searchTermString)
-    this.productService.search(this.searchTermString).subscribe(products => (this.products = products));
+    this.productService.search(searchTermString).subscribe(products => (this.products = products));
     console.log(this.products);
   }
 

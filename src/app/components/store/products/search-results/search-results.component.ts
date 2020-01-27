@@ -43,7 +43,7 @@ export class SearchResultsComponent implements OnInit {
      * 
      * Whenever there is a change in the searchbox, it calls the callback function which calls the search again!
      */
-    this.route.paramMap.subscribe(data => (this.search(data.params.searchTerm)));
+    this.route.paramMap.subscribe(data => (this.search(this.route.snapshot.paramMap.get("searchTerm"))));
   }
 
 

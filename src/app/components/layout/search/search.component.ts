@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from '../../../../assets/js/materialize.min';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +24,7 @@ export class SearchComponent implements OnInit {
   searchTermString: String;
   searchTerm = new FormControl('');
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 
@@ -37,6 +38,11 @@ export class SearchComponent implements OnInit {
         }
       });
     });
+  }
+
+  onSubmit() {
+    console.log(this.searchTerm.value);
+    this.router.navigateByUrl('/search/' + this.searchTerm.value);
   }
 
 

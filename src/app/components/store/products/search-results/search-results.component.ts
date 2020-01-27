@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-results',
@@ -20,11 +21,13 @@ import { ProductService } from 'src/app/services/product.service';
 
 export class SearchResultsComponent implements OnInit {
   products: Product[];
-  searchTermString: String;
+  searchTermString: String = this.route.snapshot.paramMap.get("searchTerm");
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.search();
   }
 
   search() {

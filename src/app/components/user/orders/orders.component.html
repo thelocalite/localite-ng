@@ -1,5 +1,6 @@
 <!-- <p>orders works!</p> -->
 
+<div id="container">
 <!-- Tab -->
 <ul class="tabs tabs-fixed-width flow-text teal z-depth-1">
   <li class="tab">
@@ -114,16 +115,16 @@
   <div *ngIf="pastOrders.length >= 1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of pastOrders">
-      <table class="centered striped">
-        <thead>
+      <table class="centered">
+        <thead class="grey lighten-3">
           <tr>
             <th>
-              <span class="left">Order Date:{{ order.orderDate }}</span>
+              <span class="center">Order Date:{{ order.orderDate }}</span>
             </th>
             <th>Shipped to: {{ order.shippedTo }}</th>
             <th>Order Status: {{ order.status }}</th>
             <th>
-              <span class="right">Total: &#8377;{{ order.totalPrice }}</span>
+              <span class="center">Total: &#8377;{{ order.totalPrice }}</span>
             </th>
           </tr>
         </thead>
@@ -133,18 +134,18 @@
               <img
                 src="{{ product.imgUrl }}"
                 alt="{{ product.name }}"
-                class="left responsive-img"
+                class="center responsive-img"
               />
             </td>
             <!-- <td > -->
             <td>
-              <a [routerLink]="['/product/' + product.id]">{{
+              <a [routerLink]="['/product/' + product.id]" class="teal-text flow-text">{{
                 product.name
               }}</a>
             </td>
             <td>Quntity: {{ product.quantity }}</td>
             <td>
-              <span class="right">Price: &#8377;{{ product.price }}</span>
+              <span class="center">Price: &#8377;{{ product.price }}</span>
             </td>
           </tr>
         </tbody>
@@ -186,16 +187,16 @@
   <div *ngIf="ongoingOrders.length >= 1 && !isFetching">
     <!-- A single order containing a number of products  -->
     <div class="order-group" *ngFor="let order of ongoingOrders">
-      <table class="centered striped">
+      <table class="centered">
         <thead>
           <tr>
             <th>
-              <span class="left">Order Date:{{ order.orderDate }}</span>
+              <span class="center">Order Date:{{ order.orderDate }}</span>
             </th>
             <th>Shipped to: {{ order.shippedTo }}</th>
             <th>Order Status: {{ order.status }}</th>
             <th>
-              <span class="right">Total: &#8377;{{ order.totalPrice }}</span>
+              <span class="center">Total: &#8377;{{ order.totalPrice }}</span>
             </th>
           </tr>
         </thead>
@@ -205,7 +206,7 @@
               <img
                 src="{{ product.imgUrl }}"
                 alt="{{ product.name }}"
-                class="left responsive-img"
+                class="center responsive-img"
               />
             </td>
             <!-- <td > -->
@@ -216,7 +217,7 @@
             </td>
             <td>Quntity: {{ product.quantity }}</td>
             <td>
-              <span class="right">Price: &#8377;{{ product.price }}</span>
+              <span class="center">Price: &#8377;{{ product.price }}</span>
             </td>
           </tr>
         </tbody>
@@ -249,4 +250,6 @@
     <h5 class="center flow-text">An Error Has Occured</h5>
     <h5 class="center flow-text">{{ error }}</h5>
   </div>
+</div>
+
 </div>

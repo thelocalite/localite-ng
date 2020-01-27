@@ -37,8 +37,6 @@ export class OrderService {
           productsArray.forEach((product: CartProduct) => {
             order.totalPrice += product.price * product.quantity;
           });
-
-          console.log();
         });
         return this.orders;
       })

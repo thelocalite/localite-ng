@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { Order } from "../../../models/order";
 import * as M from "../../../../assets/js/materialize.min";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
 import { OrderService } from "../../../services/order.service";
-import { stringify } from "querystring";
 
 @Component({
   selector: "app-orders",
@@ -19,7 +18,7 @@ export class OrdersComponent implements OnInit {
   ongoingOrders: Order[] = [];
 
   // Flag to check if the get request is being executed
-  isFetching: boolean = false;
+  isFetching = false;
 
   // Error Flag / Property
   error = null;
@@ -28,7 +27,7 @@ export class OrdersComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
-  constructor(private http: HttpClient, private orderService: OrderService) {}
+  constructor(private orderService: OrderService) {}
 
   ngOnInit() {
     this.isFetching = true;

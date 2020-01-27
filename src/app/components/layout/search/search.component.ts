@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from '../../../../assets/js/materialize.min';
 
-import { Observable, Subject } from "rxjs";
-
-import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
-
 import { Product } from "../../../models/product";
 
 import { ProductService } from '../../../services/product.service'
@@ -23,8 +19,14 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
 
     document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems, {});
+      var elems = document.querySelectorAll('.autocomplete');
+      var instances = M.Autocomplete.init(elems, {
+        data: {
+          "Apple": null,
+          "Microsoft": null,
+          "Google": 'https://placehold.it/250x250'
+        }
+      });
     });
   }
 }

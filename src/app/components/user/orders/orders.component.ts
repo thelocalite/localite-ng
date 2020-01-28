@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 
 import { Order } from "../../../models/order";
 import * as M from "../../../../assets/js/materialize.min";
@@ -11,11 +11,10 @@ import { OrderService } from "../../../services/order.service";
   styleUrls: ["./orders.component.css"]
 })
 export class OrdersComponent implements OnInit {
-  // Array of past Orders
-  pastOrders: Order[] = [];
+  // Array of Orders
+  orders: Order[] = [];
 
-  // Array of ongoing Orders
-  ongoingOrders: Order[] = [];
+  currentWindowWidth: number;
 
   // Flag to check if the get request is being executed
   isFetching = false;
@@ -30,24 +29,12 @@ export class OrdersComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   ngOnInit() {
+    this.currentWindowWidth = window.innerWidth;
     this.isFetching = true;
-    this.orderService.fetchPastOrders().subscribe(
+    this.orderService.fetchOrders().subscribe(
       orders => {
         console.log(orders);
-        this.pastOrders = orders;
-        this.isFetching = false;
-      },
-      error => {
-        this.error = error.message;
-        console.log(error);
-      }
-    );
-
-    this.isFetching = true;
-    this.orderService.fetchOngoingOrders().subscribe(
-      orders => {
-        console.log(orders);
-        this.ongoingOrders = orders;
+        this.orders = orders;
         this.isFetching = false;
       },
       error => {
@@ -59,6 +46,33 @@ export class OrdersComponent implements OnInit {
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".tabs");
       var instance = M.Tabs.init(elems);
+      var elems1 = document.querySelectorAll(".fixed-action-btn");
+      var options = { hoverEnabled: true };
+      var instances1 = M.FloatingActionButton.init(elems1, options);
     });
+  }
+  onCancel() {}
+
+  onCanelProduct() {}
+
+  onRecived() {}
+
+  addVendorReview() {}
+
+  addProductRating() {}
+
+  addToCart() {}
+
+  addProductToCart() {}
+
+  handleError() {
+    this.error = null;
+    window.location.reload();
+    // this.isFetching = false;
+  }
+
+  @HostListener("window:resize")
+  onResize() {
+    this.currentWindowWidth = window.innerWidth;
   }
 }

@@ -1,33 +1,30 @@
-.tabs {
-  margin-top: 5px;
-}
-
 #test1 {
-  padding-top: 9px;
+  padding-top: 20px;
 }
 .order-group {
   border: 1px solid;
-  border-color: lightgrey;
-  margin-bottom: 10px;
+  border-color: teal;
+  margin-bottom: 20px;
 }
-
+#error{
+  max-width: 100%;
+}
 img {
   max-width: 100px;
   margin: auto;
   /* align-self: center; */
 }
-
-#container{
+.ptr{
+  cursor: pointer;
+}
+#container {
   /* margin-left: 10%;
   margin-right: 10%; */
   margin: auto 10%;
 }
 
-
-@media only screen and (max-width: 600px) {
-  #container{
+@media only screen and (max-width: 800px) {
+  #container {
     margin: 0px;
   }
 }
-
-

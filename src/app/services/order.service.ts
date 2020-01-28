@@ -11,42 +11,41 @@ import { CartProduct } from "../models/cartProducts";
 })
 export class OrderService {
   // Past orders
-  private pastOrdersURL: string =
-    "https://my-json-server.typicode.com/10maycdac/json-server/pastOrders";
-
-  // Ongoing Orders
-  private ongoingOrdersURL: string =
-    "https://my-json-server.typicode.com/10maycdac/json-server/ongoingOrders";
+  private ordersURL: string =
+    "https://my-json-server.typicode.com/10maycdac/json-server/orders";
 
   orders: Order[] = [];
 
   constructor(private http: HttpClient) {}
   // fetch orders from given url
-  fetchOrders(ordersURL: string) {
-    return this.http.get<Order[]>(ordersURL).pipe(
+  fetchOrders() {
+    return this.http.get<Order[]>(this.ordersURL).pipe(
       retry(3),
       map((orders: Order[]) => {
         this.orders = orders;
+
         // Itrating throught each order
         this.orders.forEach((order: Order) => {
           let productsArray: CartProduct[] = order.products;
-
+          order.orderDate = new Date(order.orderDate);
           order.totalPrice = 0;
-
           // calculating the total price of the order by itrating throught each product
           productsArray.forEach((product: CartProduct) => {
             order.totalPrice += product.price * product.quantity;
           });
         });
+        this.orders.sort(function(order1, order2) {
+          var date1 = order1.orderDate;
+          var date2 = order2.orderDate;
+          if (date1 < date2) {
+            return 1;
+          } else if (date1 > date2) {
+            return -1;
+          }
+          return 0;
+        });
         return this.orders;
       })
     );
-  }
-
-  fetchPastOrders() {
-    return this.fetchOrders(this.pastOrdersURL);
-  }
-  fetchOngoingOrders() {
-    return this.fetchOrders(this.ongoingOrdersURL);
   }
 }

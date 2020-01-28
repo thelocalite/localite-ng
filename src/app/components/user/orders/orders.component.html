@@ -24,7 +24,7 @@
                 Shipped to: {{ order.shippedTo }}
               </th>
               <!-- order Status -->
-              <th>{{ order.status | uppercase }}</th>
+              <th *ngIf="currentWindowWidth > 500">{{ order.status | uppercase }}</th>
               <!-- Total Price -->
               <th>
                 <span class="center">
@@ -102,7 +102,7 @@
                 >
               </td>
               <!-- Product Quantity -->
-              <td>Quntity: {{ product.quantity }}</td>
+              <td *ngIf="currentWindowWidth > 500">Quntity: {{ product.quantity }}</td>
               <td>
                 <span class="center">
                   {{ product.price | currency: "INR" }}</span

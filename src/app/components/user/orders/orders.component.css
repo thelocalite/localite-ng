@@ -1,12 +1,17 @@
 #test1 {
   padding-top: 20px;
 }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
 .order-group {
   border: 1px solid;
   border-color: teal;
   margin-bottom: 20px;
 }
-#error{
+#error {
   max-width: 100%;
 }
 img {
@@ -14,7 +19,7 @@ img {
   margin: auto;
   /* align-self: center; */
 }
-.ptr{
+.ptr {
   cursor: pointer;
 }
 #container {

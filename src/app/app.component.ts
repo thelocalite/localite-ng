@@ -13,9 +13,8 @@ export class AppComponent {
   constructor(private router: Router){
     this.router.events.subscribe((ev)=>{
       if (ev instanceof NavigationEnd) {
-        console.log("****************************************************");
         console.log(window.location.pathname.split("/")[1]);
-        if(window.location.pathname.split("/")[1] === "orders"){
+        if(window.location.pathname.split("/")[1] === "orders" || window.location.pathname.split("/")[1] === "location"){
           this.container=false;
         }else{
           this.container=true;

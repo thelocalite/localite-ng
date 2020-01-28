@@ -1,4 +1,12 @@
 agm-map{
   width: 100vw;
-  height: 100vh;
+  height: 75vh;
+}
+
+#container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /*Horizontally*/
+
 }

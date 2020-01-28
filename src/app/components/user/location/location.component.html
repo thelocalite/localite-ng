@@ -1,15 +1,38 @@
-<div *ngIf="lat && lng">
+<div id="container" class="center grey lighten-3">
+  <div *ngIf="lat && lng" id="map" class="center z-depth-4">
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng" >
+        <agm-info-window>
+          <h3>Howdy!</h3>
+          <p>You are here!</p>
+        </agm-info-window>
+      </agm-marker>
 
-  <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker *ngFor="let marker of markers"
+                  [latitude]="marker.lat"
+                  [longitude]="marker.lng"
+                  >
 
-    <agm-marker [latitude]="lat" [longitude]="lng" >
+                  <agm-info-window>
+                    <h3>Howdy!</h3>
+                  </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
 
-      <agm-info-window>
-        <h3>Howdy!</h3>
-        <p>You are here!</p>
-      </agm-info-window>
-
-    </agm-marker>
-
-  </agm-map>
+  <div id="address" class="center grey lighten-3">
+    <div class="row">
+      <form class="col s12">
+          <div class="row" style="display: flex; justify-items: stretch">
+              <div class="input-field col s8">
+                  <input id="name" type="text" class="validate">
+                  <label for="name">Name</label>
+              </div>
+              <div class="input-field col s4">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Go!
+                  </button>
+              </div>
+          </div>
+      </form>
+   </div>
 </div>

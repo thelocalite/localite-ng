@@ -3,14 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import {environment} from "../environments/environment";
-
-
-// <FIRE MODULES>
 import {AgmCoreModule} from "@agm/core";
-import {AngularFireModule} from '@angular/fire';
-export const firebaseConfig = environment.firebaseConfig;
 
-// </FIRE MODULES>
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -125,7 +119,6 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
-    AngularFireModule.initializeApp(firebaseConfig),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     })

@@ -8,7 +8,7 @@ export const environment = {
   firebaseConfig: {
 
   },
-  googleMapsKey: "AIzaSyA6T8LxCbD4STsVP36PGDXT8HKR_g1zrq8",
+  googleMapsKey: "AIzaSyAvZlvoKzHhEocWPjZnV6lbTrzG7iekjbg",
   // uploadUrl: 'http://localhost:3000/upload',
   uploadUrl: 'https://j0fw5osim7.execute-api.us-east-1.amazonaws.com/dev/upload',
   restAPIUrl: 'http://localhost:8080'

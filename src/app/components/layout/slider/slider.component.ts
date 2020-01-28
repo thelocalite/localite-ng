@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Service } from 'src/app/models/service';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-slider',
@@ -6,8 +8,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
-  vars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  constructor() {}
+ 
+  services: Service[];
+  constructor(private serviceService: ServiceService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getServices();
+  }
+
+  getServices(): void {
+    
+    this.serviceService.getServices().subscribe(services => (this.services = services));
+    
+  }
 }

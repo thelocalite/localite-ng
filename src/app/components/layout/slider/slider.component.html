@@ -1,23 +1,70 @@
-<div>
-  <div class="xcarousel">
-    <div class="xcarousel-row">
-      <div *ngFor="let item of vars" class="xcarousel-tile">
+
+<div class="xcarousel">
+  <div class="xcarousel-row">
+    <div *ngFor="let service of services" class="xcarousel-tile">
+      <div id="content-wrapper">
+           <div class="card hoverable">
+                <div class="card-image">
+                    <img style="width: 350px; height: 250;" src="{{service.imageUrl }}" />
+                </div>                
+                <div class="card-action">
+                  <a routerLink="/service/{{service.serviceId}}">
+                      <span>Details of {{service.name}}</span>
+                  </a>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+    <div style="margin-bottom: 20px;">
+      <button class="btn" [routerLink]="['/services']" style="margin-left: 10px;">
+        Available Services
+      </button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
+  <div class="xcarousel" horizontal>
+    <div class="xcarousel-row" >
+      <div *ngFor="let service of services" class="xcarousel-tile">
         <div id="content-wrapper">
           <div class="card-panel">
-            <i class="material-icons large teal-text">room</i>
-            <h4>Pick Where</h4>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur <br />
-              adipisicing elit. Natus, placeat?
-            </p>
-          </div>
+            <i class="material-icons large teal-text">room</i>         
+               <app-service-list></app-service-list>
+            </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="ml-3"><h6>See all devices</h6></div>
+  <br>
+  <div style="margin-bottom: 20px;">
+    <button class="btn" [routerLink]="['/services']" style="margin-left: 10px;">
+      Available Services
+    </button>
+  </div>
   <br />
-</div>
+</div> -->
 
 <!-- Stuff
   [style.background-color]="'#' + item + item + item + item + item + item"

@@ -10,10 +10,8 @@ import { Technician } from 'src/app/models/technician';
   styleUrls: ['./service-details.component.css']
 })
 export class ServiceDetailsComponent implements OnInit {
-  @Input() service: Service;
+  @Input() technicians: Technician[];
  
-  list:Technician[] = [];
-
   constructor(
     private route: ActivatedRoute,
     private serviceService: ServiceService,
@@ -25,8 +23,8 @@ export class ServiceDetailsComponent implements OnInit {
 
   getService(): void {
     const id = +this.route.snapshot.paramMap.get("id");
-    this.serviceService.getService(id).subscribe(service => (this.service = service));
-    this.list = this.service.list;
+    this.serviceService.getService(id).subscribe(technicians => (this.technicians = technicians));
     
   }
+  
 }

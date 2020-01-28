@@ -1,4 +1,4 @@
-// Defines Service Model for rendering
+// Defines technician Model for rendering
 export class Technician {
     id: number;
     firstName: string;

@@ -3,11 +3,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
 import { Service } from '../models/service';
-
+import { environment } from 'src/environments/environment';
+import { Technician } from '../models/technician';
 @Injectable({ providedIn: "root" })
 export class ServiceService {
-  private servicesUrl = "https://my-json-server.typicode.com/sonali-mandloi/LocaliteServices/service"; // URL to web api
-
+  private servicesUrl= environment.restAPIUrl + "/services";
+  
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
@@ -35,12 +36,12 @@ export class ServiceService {
   }
 
   /** GET service by id. Will 404 if id not found */
-  getService(id: number): Observable<Service> {
+  getService(id: number): Observable<Technician[]> {
     const url = `${this.servicesUrl}/${id}`;
     
     return this.http
-      .get<Service>(url)
-      .pipe(catchError(this.handleError<Service>(`getService id=${id}`)));
+      .get<Technician[]>(url)
+      .pipe(catchError(this.handleError<Technician[]>(`getService id=${id}`)));
   }
 
   /* GET services whose name contains search term */

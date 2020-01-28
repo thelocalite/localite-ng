@@ -2,8 +2,8 @@ import { Technician } from './technician';
 
 // Defines Service Model for rendering
 export class Service {
-    id: number;
+    serviceId: number;
     name: string;
-    imageurl: string;
-    list: Technician[];
+    description:string;
+    imageUrl: string;
 }

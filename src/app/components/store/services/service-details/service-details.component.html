@@ -1,12 +1,9 @@
-<!-- <p>service-details works!</p> -->
-
-<div *ngIf="service" >
+<div *ngIf="technicians.length" >
     <ul>
     <div class="container">
-        <div class="card-image">
-            <img src="/assets/images/services/{{service.imageurl}}">
+        <div class="card-image">           
         </div>
-            <li *ngFor="let technician of service.list">
+            <li *ngFor="let technician of technicians">
             <div class="col s12 m6">
                 <div class="card horizontal">                   
                     <div class="card-content">
@@ -17,7 +14,7 @@
                     </div>
                 </div>
             </div>
-        </li>    
-    </div>
-</ul>
+             </li>    
+         </div>
+    </ul>
 </div>

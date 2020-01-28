@@ -23,7 +23,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
 import { AuthGaurdService } from './services/auth/auth-gaurd.service';
 import { ProductPageComponent } from './components/store/products/product-page/product-page.component';
-import { SearchResultsComponent } from './components/store/products/search-results/search-results.component';
+import { TechnicianDetailsComponent } from './components/store/services/technician-details/technician-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,11 +41,11 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductPageComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'products/add', component: AddProductComponent },
-  { path: 'search/:searchTerm', component: SearchResultsComponent },
   { path: 'stores', component: StoresComponent },
   { path: 'stores/add', component: AddStoreComponent },
   { path: 'store/:id', component: StorePageComponent },
   { path: 'services', component: ServicesComponent },
+  { path: 'technicianRegistration', component: TechnicianDetailsComponent },
   { path: 'service/:id', component: ServiceDetailsComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'test-uploader', component: ImageUploaderComponent },

@@ -1,1 +1,25 @@
 <p>add-store works!</p>
+
+<!-- Register  -->
+<div class="col s12 m6" id="form">
+    <div class="card-panel grey lighten-5">
+        <form (ngSubmit)="addStore()" #form="ngForm">
+            <h5>Add Store</h5>
+
+            <div class="input-field">
+                <input type="text" placeholder="Store Name" name="name" [(ngModel)]="store.name" required="" />
+            </div>
+
+            <div class="input-field">
+                <input type="text" placeholder="Description" name="description" [(ngModel)]="store.description" />
+            </div>
+
+            <div class="input-field">
+                <input type="text" placeholder="Store Image URL" name="imageUrl" [(ngModel)]="store.imageUrl" />
+            </div>
+
+            <input type="submit" value="Add" class="btn z-depth-2" />
+
+        </form>
+    </div>
+</div>

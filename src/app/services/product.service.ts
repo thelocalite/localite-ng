@@ -24,6 +24,14 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`search Term=${searchTerm}`)));
   }
 
+  /** GET all product names from the server */
+  getProductNames(): Observable<any> {
+    const url = `${this.productsUrl}/productNames`;
+    return this.http
+      .get<any>(url)
+      .pipe(catchError(this.handleError<Product[]>(`get Product Names`)));
+  }
+
 
   /** GET all products from the server */
   getProducts(): Observable<Product[]> {

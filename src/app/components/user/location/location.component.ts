@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
+  lat: number;
+  lng: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.getUserLocation().then((position: any)=>{
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+      console.log(position);
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
+
+  private getUserLocation() {
+    return new Promise((resolve, reject)=>{
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    })
   }
 
 }

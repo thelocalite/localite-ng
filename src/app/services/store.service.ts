@@ -32,6 +32,12 @@ export class StoreService {
       .pipe(catchError(this.handleError<Store>(`getStores id=${id}`)));
   }
 
+  /** POST: add a new Store to the server */
+  addStore(store: Store): Observable<Store> {
+    return this.http.post<Store>(this.storesUrl + "/add", store, this.httpOptions).pipe(catchError(this.handleError<Store>("addStore"))
+    );
+  }
+
 
   /**
    * Handle Http operation that failed.

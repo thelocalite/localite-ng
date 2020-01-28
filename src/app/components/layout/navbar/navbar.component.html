@@ -1,103 +1,63 @@
 <!-- Navbar  -->
 <div class="navbar-fixed">
-  <nav class="teal">
+  <nav class="teal lighten-2">
     <div class="container">
       <div class="nav-wrapper">
         <!-- Branding  -->
         <div class="brand-logo">
-          <i
-            [routerLink]="['/']"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="material-icons white-text center"
-            style="font-size: 40px;"
-            id="navLogoIcon"
-            >location_on</i
-          >
-          <a
-            [routerLink]="['/']"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            id="navLogoText"
-            >The Localite</a
-          >
+          <i [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            class="material-icons black-text center" style="font-size: 40px;" id="navLogoIcon">location_on</i>
+          <a [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            id="navLogoText" class="black-text">The Localite</a>
         </div>
 
         <!-- Hamburger / Sidenav // Links to id = mobile-nav-->
         <a data-target="mobile-nav" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
+          <i class="large material-icons black-text" style="font-size: 40px">menu</i>
         </a>
         <!-- / Hamburger / Sidenav -->
 
         <!-- Menubar Items  -->
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down ">
           <li>
-            <a
-              [routerLink]="['/']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Home</a
-            >
+            <a class="black-text" [routerLink]="['/']" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Home</a>
           </li>
 
           <!-- Login  -->
           <li *ngIf="!authService.isLoggedIn()">
-            <a
-              [routerLink]="['/login']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Login</a
-            >
+            <a class="black-text" [routerLink]="['/login']" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Login</a>
           </li>
 
           <!-- Register  -->
           <li *ngIf="!authService.isLoggedIn()">
-            <a
-              [routerLink]="['/register']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Register</a
-            >
+            <a class="black-text" [routerLink]="['/register']" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Register</a>
           </li>
 
           <!-- Logout  -->
 
           <li *ngIf="authService.isLoggedIn()">
-            <a
-              [routerLink]="['/logout']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >Logout</a
-            >
+            <a class="black-text" [routerLink]="['/logout']" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Logout</a>
           </li>
 
           <!-- cart  -->
           <li>
-            <a
-              [routerLink]="['/cart']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><i class="material-icons white-text">shopping_cart</i></a
-            >
+            <a [routerLink]="['/cart']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+                class="material-icons black-text">shopping_cart</i></a>
           </li>
 
           <li *ngIf="authService.isLoggedIn()">
-            <a
-              class="dropdown-trigger"
-              id="profileListDrop"
-              data-target="profileList"
-              ><i class="material-icons white-text">face</i></a
-            >
+            <a class="dropdown-trigger" id="profileListDrop" data-target="profileList"><i
+                class="material-icons black-text">face</i></a>
           </li>
 
           <li>
-            <a
-              id="locationIcon"
-              [routerLink]="['/location']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              <i class="material-icons white-text">near_me</i>
+            <a id="locationIcon" [routerLink]="['/location']" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+              <i class="material-icons black-text">near_me</i>
             </a>
           </li>
         </ul>
@@ -108,87 +68,49 @@
 
 <!-- sidenav menulist -->
 <ul class="sidenav" id="mobile-nav">
-  <li
-    [routerLink]="['/']"
-    [routerLinkActive]="['active']"
-    [routerLinkActiveOptions]="{ exact: true }"
-    style="height: 100px;"
-    class="center teal white-text sidenav-close z-depth-2"
-  >
-    <div
-      [routerLink]="['/']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      style="text-align: center !important; height: 100%;"
-    >
-      <h6
-        class="white-text center"
-        style="height: 100%; margin: auto; font-size: 25px; padding-top: 15px"
-      >
-        <i class="material-icons white-text center" style="font-size: 40px;"
-          >location_on</i
-        >
-        <div style="margin-bottom: 50px;">The Localite</div>
+  <li [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+    style="height: 100px;" class="center teal lighten-2 black-text sidenav-close z-depth-2">
+    <div [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+      style="text-align: center !important; height: 100%;">
+      <h6 class="black-text center" style="height: 100%; margin: auto; font-size: 25px; padding-top: 15px">
+        <i class="material-icons black-text center" style="font-size: 40px;">location_on</i>
+        <div style="margin-bottom: 50px;" class="black-text">The Localite</div>
       </h6>
     </div>
   </li>
 
   <li class="sidenav-close">
-    <a
-      [routerLink]="['/']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      ><i class="material-icons black-text">home</i>Home</a
-    >
+    <a [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+        class="material-icons black-text">home</i>Home</a>
   </li>
 
   <!-- Login  -->
   <li *ngIf="!authService.isLoggedIn()" class="sidenav-close">
-    <a
-      [routerLink]="['/login']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      ><i class="material-icons black-text">person</i>Login</a
-    >
+    <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+        class="material-icons black-text">person</i>Login</a>
   </li>
 
   <!-- Register  -->
   <li *ngIf="!authService.isLoggedIn()" class="sidenav-close">
-    <a
-      [routerLink]="['/register']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      ><i class="material-icons black-text">group_add</i>Register</a
-    >
+    <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+        class="material-icons black-text">group_add</i>Register</a>
   </li>
 
   <!-- Logout  -->
 
   <li *ngIf="authService.isLoggedIn()" class="sidenav-close">
-    <a
-      [routerLink]="['/logout']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      ><i class="material-icons black-text">exit_to_app</i>Logout</a
-    >
+    <a [routerLink]="['/logout']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+        class="material-icons black-text">exit_to_app</i>Logout</a>
   </li>
 
   <li class="sidenav-close">
-    <a
-      [routerLink]="['/cart']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      ><i class="material-icons black-text">shopping_cart</i> Cart</a
-    >
+    <a [routerLink]="['/cart']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><i
+        class="material-icons black-text">shopping_cart</i> Cart</a>
   </li>
 
   <li class="sidenav-close">
-    <a
-      id="locationIcon"
-      [routerLink]="['/location']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
+    <a id="locationIcon" [routerLink]="['/location']" [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }">
       <i class="material-icons black-text">near_me</i> Location
     </a>
   </li>

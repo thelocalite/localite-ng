@@ -3,16 +3,35 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
+// Fire Base
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from "@angular/fire/auth";
+
 @Injectable({ providedIn: "root" })
 export class AuthService {
   user = null;
   jwtToken = null;
   loggedIn = false;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
 
   isLoggedIn() {
     let email = sessionStorage.getItem("email");
     return !(email === null);
+  }
+
+  // Sign in with Facebook
+  FacebookAuth() {
+    return this.AuthLogin(new auth.FacebookAuthProvider());
+  }
+
+   // Auth logic to run auth providers
+  AuthLogin(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+    .then((result) => {
+        console.log("You have been successfully logged in!");
+    }).catch((error) => {
+        console.log(error);
+    })
   }
 
   logout() {

@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
-import { AuthService as AxAuthService } from "angularx-social-login";
+// import { AuthService as AxAuthService } from "angularx-social-login";
 
 import * as M from "../../../../assets/js/materialize.min";
 import { AuthService } from "src/app/services/auth/auth.service";
-import { SocialUser } from "angularx-social-login";
 import {
   GoogleLoginProvider,
   FacebookLoginProvider
@@ -38,9 +37,8 @@ export class LoginComponent implements OnInit {
   failedToRegister = false;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
-    private axAuthService: AxAuthService
   ) {}
 
   ngOnInit() {
@@ -106,15 +104,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  googleLogin() {
-    this.axAuthService
-      .signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then(x => console.log(x));
-  }
+  // googleLogin() {
+  //   this.axAuthService
+  //     .signIn(GoogleLoginProvider.PROVIDER_ID)
+  //     .then(x => console.log(x));
+  // }
 
-  facebookLogin() {
-    this.axAuthService
-      .signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then(x => console.log(x));
-  }
+  // facebookLogin() {
+  //   this.axAuthService
+  //     .signIn(FacebookLoginProvider.PROVIDER_ID)
+  //     .then(x => console.log(x));
+  // }
 }

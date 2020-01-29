@@ -54,12 +54,18 @@
       </form>
       <br />
       <!-- facebook  -->
-      <a
+      <!-- <a
         class="btn left z-depth-2"
         style="width: 45%; background-color: #3b5998;"
         (click)="facebookLogin()"
         ><i class="fab fa-facebook-f"></i> Facebook</a
-      >
+      > -->
+      <!-- Calling FacebookAuth Api from AuthService -->
+        <div class="formGroup">
+          <button type="button" (click)="authService.FacebookAuth()">
+            Log in with Facebook
+          </button>
+        </div>
       <!-- google  -->
       <a
         class="btn right z-depth-2"

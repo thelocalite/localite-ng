@@ -79,11 +79,26 @@ export class ImageUploaderComponent implements OnInit {
     this.isSelectedFile = true;
   }
 
+  /**
+   * @technologic808
+   * Creates a random string of size @length
+   * @param length : Number of characters in String
+   */
+  createRandomFileName(length) {
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
   uploadFile() {
     this.isUploading = true;
 
     // Please name the file uniquely, based on userID, Context, etc - Upload with an existing filename will be overritten
-    const filePath = "h3";
+    const filePath = this.createRandomFileName(10);
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, this.selectedFile);
 

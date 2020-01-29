@@ -1,10 +1,10 @@
-<div class="center">
-<!-- Don't need a form here  -->
-<form class="center">
-  <button
-    (click)="clickIt()"
-    style="background-color: transparent; border: none"
-  >
+<div class="row">
+  <!-- Don't need a form here  -->
+  <div class="col s12 m2 l2">
+    <!-- <button
+      (click)="clickIt()"
+      style="background-color: transparent; border: none"
+    > -->
     <!-- The main input elements that sucks images  -->
     <input
       (change)="onFileSelected($event)"
@@ -16,32 +16,54 @@
     />
     <!-- The file input element is ugly, so I tries to use placeholder image, and hide the input.  -->
     <!-- i've added an event to placeholderimage, when the image is clicked, it replicates a click on input tag  -->
-    <img width="200px" *ngIf="!gotUrl" [src]="placeholderImg" class="responsive-img circle" />
-    <img width="200px" *ngIf="gotUrl" [src]="(downloadURL | async)" class="responsive-img circle" />
-  </button>
+    <!-- <img
+        width="200px"
+        *ngIf="!gotUrl"
+        [src]="placeholderImg"
+        class="responsive-img circle"
+      />
+      <img
+        width="200px"
+        *ngIf="gotUrl"
+        [src]="downloadURL | async"
+        class="responsive-img circle"
+      /> -->
+    <!-- </button> -->
 
-  <!-- Progress Bar -->
-  <div class="progress" *ngIf="isUploading">
-    <div class="determinate" [ngStyle]="{'width': ((uploadPercent | async) + '%')}" ></div>
+    <!-- Progress Bar -->
+
+    <!-- Select File / Upload Button, which changes behaviour per need  -->
+    <a
+      class="waves-effect waves-light btn-large "
+      type="button"
+      (click)="isSelectedFile ? uploadFile() : clickIt()"
+    >
+      <i class="material-icons right">image</i>
+      <span *ngIf="!isSelectedFile">Select Image</span>
+      <span *ngIf="isSelectedFile && !isUploading">Upload Selected Image</span>
+      <span *ngIf="isUploading">Uploading Image</span>
+    </a>
   </div>
 
-  <!-- Select File / Upload Button, which changes behaviour per need  -->
-  <button
-    class="btn"
-    type="button"
-    (click)="selectedFile ? uploadFile() : clickIt()"
-  >
-    <span *ngIf="!selectedFile">Select Image</span>
-    <span *ngIf="selectedFile">Upload Image</span>
-  </button>
+  <div class="col s12 m10 l10">
+    <input
+      [(ngModel)]="imgUrlData"
+      type="text"
+      placeholder="Uploaded Image URL"
+      (ngModelChange)="onModelChange($event)"
+    />
+  </div>
 
-</form>
+  <div class="progress col s12 m12 l12" *ngIf="isUploading">
+    <div
+      class="determinate"
+      [ngStyle]="{ width: (uploadPercent | async) + '%' }"
+    ></div>
+  </div>
 
-
-<!-- <div>{{ uploadPercent | async }}</div> -->
-<!-- <div class="progress">
+  <!-- <div>{{ uploadPercent | async }}</div> -->
+  <!-- <div class="progress">
   <div class="determinate" [ngStyle]="{'width': ((uploadPercent | async) + '%')}" ></div>
 </div> -->
-<!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->
-
-<div>
+  <!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->
+</div>

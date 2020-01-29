@@ -1,38 +1,82 @@
-<p>add-product works!</p>
-
 <!-- Register  -->
 <div class="col s12 m6" id="form">
-    <div class="card-panel grey lighten-5">
-        <form (ngSubmit)="addProduct()" #form="ngForm">
-            <h5>Add Product</h5>
+  <div class="card-panel grey lighten-5">
+    <form (ngSubmit)="addProduct()" #form="ngForm">
+      <h5>Add Product</h5>
 
-            <div class="input-field">
-                <input type="text" placeholder="Product Name" name="name" [(ngModel)]="product.name" required="" />
-            </div>
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Product Name"
+          name="name"
+          [(ngModel)]="product.name"
+          required=""
+        />
+      </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Brand" name="brand" [(ngModel)]="product.brand" />
-            </div>
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Brand"
+          name="brand"
+          [(ngModel)]="product.brand"
+        />
+      </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Description" name="description" [(ngModel)]="product.description" />
-            </div>
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Description"
+          name="description"
+          [(ngModel)]="product.description"
+        />
+      </div>
 
-            <!-- TODO: convert to dropdown list of categories -->
-            <div class="input-field">
-                <input type="text" placeholder="Category" name="category" [(ngModel)]="product.category" />
-            </div>
+      <!-- TODO: convert to dropdown list of categories -->
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Category"
+          name="category"
+          [(ngModel)]="product.category"
+        />
+      </div>
 
-            <div class="input-field">
-                <input type="number" placeholder=" MRP" name="mrp" [(ngModel)]="product.mrp" />
-            </div>
+      <div class="input-field">
+        <input
+          type="number"
+          placeholder=" MRP"
+          name="mrp"
+          [(ngModel)]="product.mrp"
+        />
+      </div>
+      <!--
+            
+                @technologic808
+                 
+                The image uploader element uploads the image to the cloud and generates a URL
+                We can access this URL using Angular Two Way Binding 
 
-            <div class="input-field">
-                <input type="text" placeholder="Product Image URL" name="imageUrl" [(ngModel)]="product.imageUrl" />
-            </div>
+                So we Set the binding to the url property of Prodcut
 
-            <input type="submit" value="Add" class="btn z-depth-2" />
+                ISSUE!
+                The property binding works only if the input field is interacted with
+                For example, unless you change something with the input field,
+                the ImageURL property of Product wont be assigned!!!
+            
+            -->
+      <app-image-uploader
+        [(imgUrlData)]="product.imageUrl"
+      ></app-image-uploader>
 
-        </form>
-    </div>
+      <button
+        class="btn-large waves-effect waves-light"
+        type="submit"
+        name="action"
+      >
+        Add Product
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
 </div>

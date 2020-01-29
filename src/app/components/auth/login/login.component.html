@@ -5,6 +5,7 @@
       <!-- Login Form -->
       <form (ngSubmit)="login()" #form="ngForm">
         <h5>Login</h5>
+        <br>
         <div class="input-field">
           <!-- Email -->
           <input
@@ -32,6 +33,7 @@
             [(ngModel)]="loginPassword"
             class="validate form-control"
             required
+            minlength="8"
           />
           <label for="loginPassword">Password</label>
           <span
@@ -45,7 +47,7 @@
           type="submit"
           value="Login"
           class="btn z-depth-2"
-          [disabled]="!form.valid"
+          [disabled]="!form.valid && (form.dirty || form.touched)"
         />
         <p *ngIf="faliedToLogin" class="red-text">
           Failed To Login
@@ -119,6 +121,7 @@
             [(ngModel)]="registerName"
             class="validate form-control"
             required
+            minlength="3"
           />
           <label for="registerName">Name</label>
           <span
@@ -154,31 +157,35 @@
             [(ngModel)]="registerPassword"
             class="validate form-control"
             required
+            minlength="8"
           />
           <label for="registerPassword">Password</label>
           <span
-          class="helper-text"
-          data-error="Invalid Password"
-          data-success=""
+            class="helper-text"
+            data-error="At Least 8 Characters"
+            data-success=""
           ></span>
         </div>
         <!-- Confirm Password -->
         <div class="input-field">
           <input
-          type="password"
-          name="registerConfirmPassword"
-          id="registerConfirmPassword"
-          [(ngModel)]="registerConfirmPassword"
-          class="validate form-control"
-          required
+            type="password"
+            name="registerConfirmPassword"
+            id="registerConfirmPassword"
+            [(ngModel)]="registerConfirmPassword"
+            class="validate form-control"
+            required
+            minlength="8"
+            pattern="{{ registerPassword }}"
           />
           <label for="registerConfirmPassword">Confirm Password</label>
           <span
             class="helper-text"
-            data-error="Invalid Password"
+            data-error="Passwords Do not Match"
             data-success=""
           ></span>
         </div>
+        <!-- Not sure if it's required any more -->
         <p *ngIf="passwordsDontMatch" class="red-text">
           Passwords don't match!
         </p>
@@ -187,9 +194,9 @@
           type="submit"
           value="Register"
           class="btn left z-depth-2"
-          [disabled]="!rform.valid"
-          />
-          <!-- && passwordsDontMatch" -->
+          [disabled]="!rform.valid && (form.dirty || form.touched)"
+        />
+        <!-- && passwordsDontMatch" -->
         <p *ngIf="registeredSuccesfully" class="green-text">
           Registered Succesfully!
         </p>

@@ -8,6 +8,16 @@ export const environment = {
   production: false,
   authurl: 'http://localhost:9090',
   googleMapsKey: env.MAPS_API,
+  firebaseConfig: {
+    apiKey: "AIzaSyDd1Mnv3_a0qjGF3V0YgFcfglaYenPr8BM",
+    authDomain: "the-localite-265418.firebaseapp.com",
+    databaseURL: "https://the-localite-265418.firebaseio.com",
+    projectId: "the-localite-265418",
+    storageBucket: "the-localite-265418.appspot.com",
+    messagingSenderId: "922098637906",
+    appId: "1:922098637906:web:4266a7cecc7909c6d9538b",
+    measurementId: "G-15J3QMD0JW"
+  },
   // uploadUrl: 'http://localhost:3000/upload',
   uploadUrl: 'https://j0fw5osim7.execute-api.us-east-1.amazonaws.com/dev/upload',
   restAPIUrl: 'http://localhost:8080'

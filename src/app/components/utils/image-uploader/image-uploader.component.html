@@ -1,26 +1,47 @@
-<form>
+<div class="center">
+<!-- Don't need a form here  -->
+<form class="center">
   <button
     (click)="clickIt()"
     style="background-color: transparent; border: none"
   >
+    <!-- The main input elements that sucks images  -->
     <input
-      (change)="onImagePicked($event)"
+      (change)="onFileSelected($event)"
       placeholder="Upload Image"
       type="file"
       id="fileInput"
       style="display:none;"
+      accept=".png,.jpg,.jpeg"
     />
-    <img width="200px" src="{{ imageUrl }}" class="responsive-img circle" />
+    <!-- The file input element is ugly, so I tries to use placeholder image, and hide the input.  -->
+    <!-- i've added an event to placeholderimage, when the image is clicked, it replicates a click on input tag  -->
+    <img width="200px" *ngIf="!gotUrl" [src]="placeholderImg" class="responsive-img circle" />
+    <img width="200px" *ngIf="gotUrl" [src]="(downloadURL | async)" class="responsive-img circle" />
   </button>
-  <div *ngIf="isUploading" class="progress">
-    <div class="indeterminate"></div>
+
+  <!-- Progress Bar -->
+  <div class="progress" *ngIf="isUploading">
+    <div class="determinate" [ngStyle]="{'width': ((uploadPercent | async) + '%')}" ></div>
   </div>
+
+  <!-- Select File / Upload Button, which changes behaviour per need  -->
   <button
     class="btn"
-    type="submit"
-    (click)="imageObj ? onImageUpload() : clickIt()"
+    type="button"
+    (click)="selectedFile ? uploadFile() : clickIt()"
   >
-    <span *ngIf="!imageObj">Select Image</span>
-    <span *ngIf="imageObj">Upload Image</span>
+    <span *ngIf="!selectedFile">Select Image</span>
+    <span *ngIf="selectedFile">Upload Image</span>
   </button>
+
 </form>
+
+
+<!-- <div>{{ uploadPercent | async }}</div> -->
+<!-- <div class="progress">
+  <div class="determinate" [ngStyle]="{'width': ((uploadPercent | async) + '%')}" ></div>
+</div> -->
+<!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->
+
+<div>

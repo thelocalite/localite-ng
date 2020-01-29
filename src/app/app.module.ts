@@ -3,7 +3,18 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import {environment} from "../environments/environment";
+
+
+// FIREBASE
 import {AgmCoreModule} from "@agm/core";
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
+
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -41,7 +52,7 @@ import {
 import { AuthHttpInterceptorService } from "./services/auth/auth-http-interceptor.service";
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
 import { ProductService } from "./services/product.service";
-import { UserService } from "./services/user.service";
+import { UserService } from "./services/user/user.service";
 import { PrivacyComponent } from "./components/pages/privacy/privacy.component";
 import { TermsComponent } from "./components/pages/terms/terms.component";
 import { StoreCarouselComponent } from "./components/layout/store-carousel/store-carousel.component";
@@ -121,7 +132,11 @@ export function provideConfig() {
     SocialLoginModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule // storage
   ],
   providers: [
     ProductService,
@@ -135,7 +150,8 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    { provide: StorageBucket, useValue: 'localite-uploads' }
   ],
   bootstrap: [AppComponent]
 })

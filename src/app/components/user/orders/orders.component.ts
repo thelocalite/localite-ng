@@ -3,7 +3,7 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { Order } from "../../../models/order";
 import * as M from "../../../../assets/js/materialize.min";
 import { HttpHeaders } from "@angular/common/http";
-import { OrderService } from "../../../services/order.service";
+import { OrderService } from "../../../services/user/order.service";
 
 @Component({
   selector: "app-orders",

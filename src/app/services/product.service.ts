@@ -48,6 +48,14 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProduct id=${storeId}`)));
   }
 
+  /** GET Store specific Product price by Product and Store ID*/
+  getStoreSpecificProductPrice(productId: any, storeId: any): Observable<number> {
+    const url = `${this.productsUrl}/price/${productId}/${storeId}`;
+    return this.http
+      .get<number>(url)
+      .pipe(catchError(this.handleError<number>(`Get specific price Productid = ${productId} store id=${storeId}`)));
+  }
+
   /** GET product by id. Return `undefined` when id not found */
   getProductNo404<Data>(id: number): Observable<Product> {
     const url = `${this.productsUrl}/?id=${id}`;

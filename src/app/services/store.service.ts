@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Store } from "../models/store";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
-import { environment } from 'src/environments/environment';
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StoreService {
-  private storesUrl = environment.restAPIUrl + "/vendor"; // URL to web api 
+  private storesUrl = environment.restAPIUrl + "/vendor"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -24,6 +24,14 @@ export class StoreService {
       .pipe(catchError(this.handleError<Store[]>("getStores", [])));
   }
 
+  /** GET all stores by Product ID*/
+  getStoresByProductId(productId: any): Observable<Store[]> {
+    const url = `${this.storesUrl}/product/${productId}`;
+    return this.http
+      .get<Store[]>(url)
+      .pipe(catchError(this.handleError<Store[]>(`getStore id=${productId}`)));
+  }
+
   /** GET Store by id. Will 404 if id not found */
   getStore(id: number): Observable<Store> {
     const url = `${this.storesUrl}/${id}`;
@@ -34,10 +42,10 @@ export class StoreService {
 
   /** POST: add a new Store to the server */
   addStore(store: Store): Observable<Store> {
-    return this.http.post<Store>(this.storesUrl + "/add", store, this.httpOptions).pipe(catchError(this.handleError<Store>("addStore"))
-    );
+    return this.http
+      .post<Store>(this.storesUrl + "/add", store, this.httpOptions)
+      .pipe(catchError(this.handleError<Store>("addStore")));
   }
-
 
   /**
    * Handle Http operation that failed.
@@ -54,5 +62,4 @@ export class StoreService {
       return of(result as T);
     };
   }
-
 }

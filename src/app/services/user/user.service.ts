@@ -2,16 +2,17 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError, retry } from "rxjs/operators";
-import { CartProduct } from "../../models/cartProducts";
+import { CartProduct } from "../models/cartProducts";
+import { environment } from 'src/environments/environment';
 
 @Injectable(
   { providedIn: "root" }
   )
 export class UserService {
-  private cartUrl =
-    "https://my-json-server.typicode.com/ndivya03/json-server/cartProducts"; // URL to web api
-  private savedUrl =
-    "https://my-json-server.typicode.com/ndivya03/json-server/savedProducts";
+  private cartUrl =  environment.restAPIUrl + "/cart/cartItems";
+  // "https://my-json-server.typicode.com/ndivya03/json-server/cartProducts"; // URL to web api
+private savedUrl = environment.restAPIUrl + "/cart/savedItems";
+  // "https://my-json-server.typicode.com/ndivya03/json-server/savedProducts";
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -24,9 +25,9 @@ export class UserService {
 
   /** GET all services from the server */
   getCartProducts(): Observable<CartProduct[]> {
-
+    const url = `${this.cartUrl}/3`;
     return this.http
-    .get<CartProduct[]>(this.cartUrl)
+    .get<CartProduct[]>(url)
     .pipe(retry(3),catchError(this.handleError<CartProduct[]>("getCartProducts", [])));
   }
 
@@ -47,8 +48,9 @@ export class UserService {
   //----------------SavedProducts Methods-------------------
 
   getSavedProducts(): Observable<CartProduct[]> {
+    const url = `${this.savedUrl}/3`;
     return this.http
-      .get<CartProduct[]>(this.savedUrl)
+      .get<CartProduct[]>(url)
       .pipe(retry(3),
         catchError(this.handleError<CartProduct[]>("getSavedProducts", []))
       );

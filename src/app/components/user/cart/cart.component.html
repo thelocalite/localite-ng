@@ -19,12 +19,12 @@
     *ngFor="let cartProduct of cartProducts"
   >
     <div class="card-image">
-      <img src="/assets/images/cart/{{ cartProduct.imgUrl }}" />
+      <img src="{{ cartProduct.product.imageUrl }}" />
     </div>
     <div class="card-stacked">
       <div class="card-content">
         <a href="#"
-          ><span class="card-title"> {{ cartProduct.name }}</span>
+          ><span class="card-title"> {{ cartProduct.product.name }}</span>
         </a>
       </div>
       <div class="right">
@@ -77,13 +77,13 @@
     *ngFor="let savedProduct of savedProducts"
   >
     <div class="card-image">
-      <img src="/assets/images/cart/{{ savedProduct.imgUrl }}" />
+      <img src="{{ savedProduct.product.imageUrl }}" />
     </div>
     <div class="card-stacked">
       <!-- <div> -->
       <div class="card-content">
         <a href="#"
-          ><span class="card-title"> {{ savedProduct.name }}</span>
+          ><span class="card-title"> {{ savedProduct.product.name }}</span>
         </a>
       </div>
       <div class="right">

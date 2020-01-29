@@ -2,24 +2,54 @@
 
 <!-- Register  -->
 <div class="col s12 m6" id="form">
-    <div class="card-panel grey lighten-5">
-        <form (ngSubmit)="addStore()" #form="ngForm">
-            <h5>Add Store</h5>
+  <div class="card-panel grey lighten-5">
+    <form (ngSubmit)="addStore()" #form="ngForm">
+      <h5>Add Store</h5>
 
-            <div class="input-field">
-                <input type="text" placeholder="Store Name" name="name" [(ngModel)]="store.name" required="" />
-            </div>
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Store Name"
+          name="name"
+          [(ngModel)]="store.name"
+          required=""
+        />
+      </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Description" name="description" [(ngModel)]="store.description" />
-            </div>
+      <div class="input-field">
+        <input
+          type="text"
+          placeholder="Description"
+          name="description"
+          [(ngModel)]="store.description"
+        />
+      </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Store Image URL" name="imageUrl" [(ngModel)]="store.imageUrl" />
-            </div>
+      <!--
+            
+                @technologic808
+                 
+                The image uploader element uploads the image to the cloud and generates a URL
+                We can access this URL using Angular Two Way Binding 
 
-            <input type="submit" value="Add" class="btn z-depth-2" />
+                So we Set the binding to the url property of Store
 
-        </form>
-    </div>
+                ISSUE!
+                The property binding works only if the input field is interacted with
+                For example, unless you change something with the input field,
+                the ImageURL property of Product wont be assigned!!!
+            
+            -->
+      <app-image-uploader [(imgUrlData)]="store.imageUrl"></app-image-uploader>
+
+      <button
+        class="btn-large waves-effect waves-light"
+        type="submit"
+        name="action"
+      >
+        Add Store
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
 </div>

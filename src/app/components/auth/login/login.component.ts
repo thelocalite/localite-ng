@@ -103,16 +103,4 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
-  // googleLogin() {
-  //   this.axAuthService
-  //     .signIn(GoogleLoginProvider.PROVIDER_ID)
-  //     .then(x => console.log(x));
-  // }
-
-  // facebookLogin() {
-  //   this.axAuthService
-  //     .signIn(FacebookLoginProvider.PROVIDER_ID)
-  //     .then(x => console.log(x));
-  // }
 }

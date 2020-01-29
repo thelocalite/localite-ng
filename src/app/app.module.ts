@@ -14,9 +14,6 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
-
-
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ChangePasswordComponent } from "./components/auth/change-password/change-password.component";
@@ -42,13 +39,7 @@ import { OrdersComponent } from "./components/user/orders/orders.component";
 import { ServiceDetailsComponent } from "./components/store/services/service-details/service-details.component";
 import { NotFoundComponent } from "./components/layout/not-found/not-found.component";
 
-// Social Login
-import { SocialLoginModule } from "angularx-social-login";
-import {
-  AuthServiceConfig,
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from "angularx-social-login";
+
 import { AuthHttpInterceptorService } from "./services/auth/auth-http-interceptor.service";
 import { AuthGaurdService } from "./services/auth/auth-gaurd.service";
 import { ProductService } from "./services/product.service";
@@ -66,22 +57,7 @@ import { ImageUploaderComponent } from './components/utils/image-uploader/image-
 import { ProductPageComponent } from './components/store/products/product-page/product-page.component';
 import { SearchResultsComponent } from './components/store/products/search-results/search-results.component';
 
-const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(
-      "200802725189-eg42ov83u9fch748jp5sfcg4gf29pl10.apps.googleusercontent.com"
-    )
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("2533623390096460")
-  }
-]);
 
-export function provideConfig() {
-  return config;
-}
 
 // Social Login Ends
 
@@ -129,7 +105,6 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     }),
@@ -146,10 +121,6 @@ export function provideConfig() {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptorService,
       multi: true
-    },
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
     },
     { provide: StorageBucket, useValue: 'localite-uploads' }
   ],

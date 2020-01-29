@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError, retry } from "rxjs/operators";
-import { CartProduct } from "../models/cartProducts";
+
+import { CartProduct } from 'src/app/models/cartProducts';
 import { environment } from 'src/environments/environment';
 
 @Injectable(

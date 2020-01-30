@@ -26,13 +26,17 @@ import { ProductPageComponent } from "./components/store/products/product-page/p
 import { SearchResultsComponent } from "./components/store/products/search-results/search-results.component";
 import { TechnicianDetailsComponent } from "./components/store/services/technician-details/technician-details.component";
 import { ChangePasswordComponent } from "./components/auth/change-password/change-password.component";
-import { TestComponent } from './components/auth/test/test.component';
+import { TestComponent } from "./components/auth/test/test.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: LoginComponent },
-  { path: "change-password", component: ChangePasswordComponent },
+  {
+    path: "change-password",
+    component: ChangePasswordComponent,
+    canActivate: [AuthGaurdService]
+  },
   {
     path: "logout",
     component: LogoutComponent,
@@ -59,7 +63,7 @@ const routes: Routes = [
   { path: "privacy", component: PrivacyComponent },
   { path: "test-uploader", component: ImageUploaderComponent },
   { path: "terms", component: TermsComponent },
-  { path: "test", component: TestComponent},
+  { path: "test", component: TestComponent },
   {
     path: "forgot-password",
     children: [

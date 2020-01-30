@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
 // Fire Base
-import { auth } from 'firebase/app';
+import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable({ providedIn: "root" })
@@ -24,14 +24,16 @@ export class AuthService {
     return this.AuthLogin(new auth.FacebookAuthProvider());
   }
 
-   // Auth logic to run auth providers
+  // Auth logic to run auth providers
   AuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-    .then((result) => {
+    return this.afAuth.auth
+      .signInWithPopup(provider)
+      .then(result => {
         console.log("You have been successfully logged in!");
-    }).catch((error) => {
+      })
+      .catch(error => {
         console.log(error);
-    })
+      });
   }
 
   logout() {
@@ -48,7 +50,7 @@ export class AuthService {
       })
       .pipe(
         map(data => {
-          console.log("***** Pipemap received data *****");
+          console.log("***** Pipe-map received data *****");
           console.log(data);
           if (data.success === true) {
             this.loggedIn = true;
@@ -115,5 +117,27 @@ export class AuthService {
       environment.authurl + "/users/token-signin/" + token,
       { password: password }
     );
+  }
+
+  changePassword(email, password) {
+    return this.httpClient
+      .post<any>(environment.authurl + "/users/change-password", {
+        newPassword: password,
+        email: email
+      })
+      .pipe(
+        map(data => {
+          console.log("***** Pipe-map received data *****");
+          console.log(data);
+          if (data.result) {
+            console.log(data.result);
+            return true;
+          } else {
+            console.log(data.err);
+            // this.loggedIn = false;
+            return false;
+          }
+        })
+      );
   }
 }

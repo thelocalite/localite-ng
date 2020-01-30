@@ -9,7 +9,7 @@
  -->
 
 <div *ngIf="product">
-  <div class="card large">
+  <div class="card hoverable">
     <div class="card-image">
       <img src="{{ product.imageUrl }}" />
     </div>
@@ -17,7 +17,7 @@
       <h6 class="card-title truncate">{{ product.name }}</h6>
       <p class="truncate">by {{ product.brand }}</p>
     </div>
-    <div class="card-action">
+    <div *ngIf="isProductPage == true" class="card-action">
       <a routerLink="/product/{{ product.id }}">
         <span>Product Details</span>
       </a>

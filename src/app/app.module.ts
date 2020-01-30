@@ -56,6 +56,7 @@ import { ShopDetailsComponent } from './components/store/stores/shop-details/sho
 import { ImageUploaderComponent } from './components/utils/image-uploader/image-uploader.component';
 import { ProductPageComponent } from './components/store/products/product-page/product-page.component';
 import { SearchResultsComponent } from './components/store/products/search-results/search-results.component';
+import { TestComponent } from './components/auth/test/test.component';
 
 
 
@@ -97,7 +98,8 @@ import { SearchResultsComponent } from './components/store/products/search-resul
     StoresComponent,
     ImageUploaderComponent,
     ProductPageComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

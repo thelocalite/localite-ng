@@ -8,7 +8,7 @@ import { env } from 'process';
 
 export const environment = {
   production: false,
-  authurl: 'http://localhost:9090',
+  authurl: 'https://fp9ww16qv4.execute-api.us-east-1.amazonaws.com/dev',
   googleMapsKey: env.MAPS_API,
   firebaseConfig: {
     apiKey: "AIzaSyDd1Mnv3_a0qjGF3V0YgFcfglaYenPr8BM",

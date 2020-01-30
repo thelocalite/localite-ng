@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { StoreService } from "src/app/services/store.service";
 import { ProductService } from "src/app/services/product.service";
 import { Store } from "src/app/models/store";
+declare const M;
 
 @Component({
   selector: "app-product-page",

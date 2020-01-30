@@ -30,14 +30,13 @@ export class ChangePasswordComponent implements OnInit {
     console.log("cNewPassword" + this.cNewPassword);
     console.log(this.form);
 
-    this.isChanging = true;
-
     if (
       this.loginEmail != "" &&
       this.newPassword != "" &&
       this.cNewPassword != ""
     ) {
       if (this.newPassword === this.cNewPassword) {
+        this.isChanging = true;
         this.authService
           .changePassword(this.loginEmail, this.newPassword)
           .subscribe(data => {
@@ -51,16 +50,18 @@ export class ChangePasswordComponent implements OnInit {
               this.failedToChange = true;
               this.isChanging = false;
               this.changeSuccessful = false;
+              // this.router.navigateByUrl("/");
             }
           });
+      } else {
+        this.failedToChange = true;
+        this.isChanging = false;
+        this.changeSuccessful = false;
       }
+    } else {
+      this.failedToChange = true;
+      this.isChanging = false;
+      this.changeSuccessful = false;
     }
   }
 }
-
-// .subscribe(data => {
-//             console.log(data);
-//             if (data.msg === "success") {
-//               this.updatedPassword = true;
-//             }
-//           });

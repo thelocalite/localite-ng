@@ -130,10 +130,10 @@ export class AuthService {
           console.log("***** Pipe-map received data *****");
           console.log(data);
           if (data.result) {
-            console.log(data.result);
+            console.log("*** Result ***" + data.result);
             return true;
           } else {
-            console.log(data.err);
+            console.log("*** Error ***"+data.err);
             // this.loggedIn = false;
             return false;
           }

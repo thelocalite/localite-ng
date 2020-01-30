@@ -65,4 +65,8 @@ export class ProductPageComponent implements OnInit {
     );
     console.log(this.stores);
   }
+
+  toast() {
+    M.toast({ html: this.product.name + " added to Cart" });
+  }
 }

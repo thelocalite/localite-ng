@@ -33,7 +33,7 @@
             [(ngModel)]="loginPassword"
             class="validate form-control"
             required
-            minlength="8"
+            minlength="5"
           />
           <label for="loginPassword">Password</label>
           <span
@@ -49,9 +49,9 @@
           class="btn z-depth-2"
           [disabled]="!form.valid && (form.dirty || form.touched)"
         />
-        <p *ngIf="faliedToLogin" class="red-text">
-          Failed To Login
-        </p>
+
+
+
         <h6><a href="/forgot-password">Forgot Password</a></h6>
       </form>
       <br />
@@ -69,6 +69,15 @@
         (click)="googleLogin()"
         ><i class="fab fa-google-plus-g"></i> Google</a
       > -->
+      <br>
+      <br>
+      <br>
+      <div *ngIf="loggingIn" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      <p *ngIf="faliedToLogin" class="red-text">
+        Failed To Login
+      </p>
     </div>
   </div>
 
@@ -88,7 +97,7 @@
                 type="radio"
                 class="form-control"
                 [(ngModel)]="registerRole"
-                value="CUSTOMER"
+                value="ROLE_USER"
                 checked
               />
               <span>Customer</span>
@@ -100,7 +109,7 @@
                 name="registerRole"
                 type="radio"
                 class="form-control"
-                value="MERCHANT"
+                value="ROLE_VENDOR"
                 [(ngModel)]="registerRole"
                 required
               />
@@ -157,12 +166,12 @@
             [(ngModel)]="registerPassword"
             class="validate form-control"
             required
-            minlength="8"
+            minlength="5"
           />
           <label for="registerPassword">Password</label>
           <span
             class="helper-text"
-            data-error="At Least 8 Characters"
+            data-error="At Least 5 Characters"
             data-success=""
           ></span>
         </div>
@@ -175,7 +184,7 @@
             [(ngModel)]="registerConfirmPassword"
             class="validate form-control"
             required
-            minlength="8"
+            minlength="5"
             pattern="{{ registerPassword }}"
           />
           <label for="registerConfirmPassword">Confirm Password</label>
@@ -196,14 +205,28 @@
           class="btn left z-depth-2"
           [disabled]="!rform.valid && (form.dirty || form.touched)"
         />
-        <!-- && passwordsDontMatch" -->
-        <p *ngIf="registeredSuccesfully" class="green-text">
-          Registered Succesfully!
-        </p>
-        <p *ngIf="failedToRegister" class="red-text">
-          Registration Failed!
-        </p>
+
       </form>
+
+      <br>
+      <br>
+
+      <div *ngIf="registering" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+
+      <!-- && passwordsDontMatch" -->
+      <p *ngIf="registeredSuccesfully" class="green-text">
+        Registered Succesfully!
+      </p>
+      <p *ngIf="failedToRegister" class="red-text">
+        Registration Failed! <br>
+        An account with this email already exists.
+      </p>
+
     </div>
+
   </div>
+  <br>
+
 </div>

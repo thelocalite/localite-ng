@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
 
   isLoggedIn() {
-    let email = sessionStorage.getItem("email");
+    let email = localStorage.getItem("email");
     return !(email === null);
   }
 
@@ -35,9 +35,9 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem("email");
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("name");
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
   }
 
   login(email, password) {
@@ -48,14 +48,15 @@ export class AuthService {
       })
       .pipe(
         map(data => {
+          console.log("***** Pipemap received data *****");
           console.log(data);
           if (data.success === true) {
             this.loggedIn = true;
             this.user = data.user;
             this.jwtToken = data.token;
-            sessionStorage.setItem("email", email);
-            sessionStorage.setItem("name", data.user.name);
-            sessionStorage.setItem("token", data.token);
+            localStorage.setItem("email", email);
+            localStorage.setItem("name", data.user.name);
+            localStorage.setItem("token", data.token);
             return true;
           } else {
             this.loggedIn = false;

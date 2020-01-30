@@ -2,14 +2,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
-// import { AuthService as AxAuthService } from "angularx-social-login";
-
 import * as M from "../../../../assets/js/materialize.min";
 import { AuthService } from "src/app/services/auth/auth.service";
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from "angularx-social-login";
+
 
 @Component({
   selector: "app-login",
@@ -36,6 +31,10 @@ export class LoginComponent implements OnInit {
   registeredSuccesfully = false;
   failedToRegister = false;
 
+  // preloader flags
+  loggingIn = false;
+  registering = false;
+
   constructor(
     public authService: AuthService,
     private router: Router,
@@ -51,14 +50,18 @@ export class LoginComponent implements OnInit {
     console.log(this.loginPassword);
     console.log(this.loginForm);
 
+    this.loggingIn = true;
+
     if (this.loginEmail != "" && this.loginPassword != "") {
       this.authService
         .login(this.loginEmail, this.loginPassword)
         .subscribe(data => {
           if (data === true) {
+            this.loggingIn = false;
             this.router.navigateByUrl("/");
           } else {
             this.faliedToLogin = true;
+            this.loggingIn = false;
           }
         });
     }
@@ -73,7 +76,6 @@ export class LoginComponent implements OnInit {
     console.log(this.registrationForm);
 
     this.passwordsDontMatch = false;
-
     if (
       this.registerEmail != "" &&
       this.registerName != "" &&
@@ -84,6 +86,7 @@ export class LoginComponent implements OnInit {
         this.passwordsDontMatch = true;
       } else {
         this.passwordsDontMatch = false;
+        this.registering = true;
         this.authService
           .register(
             this.registerEmail,
@@ -95,9 +98,14 @@ export class LoginComponent implements OnInit {
             this.passwordsDontMatch = false;
             if (data == true) {
               this.registeredSuccesfully = true;
+              this.registering = false;
+
             } else {
+              console.log(data);
+
               this.registeredSuccesfully = false;
               this.failedToRegister = true;
+              this.registering = false;
             }
           });
       }

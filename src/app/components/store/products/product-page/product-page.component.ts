@@ -32,7 +32,7 @@ export class ProductPageComponent implements OnInit {
     private route: ActivatedRoute,
     private storeService: StoreService,
     private productService: ProductService
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Get Product by URL
@@ -51,18 +51,18 @@ export class ProductPageComponent implements OnInit {
 
   // Gets Vendors for a product by Product ID
   getStores(): void {
-    this.storeService
-      .getStoresByProductId(this.productId)
-      .subscribe(stores => (this.stores = stores));
+    this.storeService.getStoresByProductId(this.productId).subscribe(
+      stores => (
+        (this.stores = stores),
+        this.stores.forEach(store => {
+          this.productService
+            .getStoreSpecificProductPrice(this.product.id, store.id)
+            .subscribe(
+              discountedPrice => (store.discountedPrice = discountedPrice)
+            );
+        })
+      )
+    );
     console.log(this.stores);
-  }
-
-  // Gets Product Specific Prices for Vendors
-  populateSpecificPrices() {
-    this.stores.forEach(store => {
-      this.productService
-        .getStoreSpecificProductPrice(this.product.id, store.id)
-        .subscribe(discountedPrice => (store.discountedPrice = discountedPrice));
-    });
   }
 }

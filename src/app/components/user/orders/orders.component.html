@@ -86,7 +86,7 @@
               <!-- Cancel disabled -->
               <th *ngIf="order.status == 'canceled'">
                 <a
-                  (click)="onCancel(); $event.stopPropagation()"
+                  (click)="onCancel(order); $event.stopPropagation()"
                   class="btn red disabled"
                   ><i class="material-icons" *ngIf="currentWindowWidth < 800"
                     >cancel</i
@@ -161,7 +161,7 @@
               </td>
               <!-- Cancel Products disabled -->
               <td *ngIf="order.status == 'canceled'">
-                <a class="btn red disabled" (click)="onCancelProduct(order)"
+                <a class="btn red disabled" (click)="onCancelProduct(order,i)"
                   ><i class="material-icons">cancel</i>
                   <p *ngIf="currentWindowWidth > 800"></p>
                 </a>

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from "src/app/models/product";
 import { ProductService } from "src/app/services/product.service";
 
@@ -21,20 +20,9 @@ export class ProductDetailsComponent implements OnInit {
   @Input() productId: number;
   product: Product;
 
-  // Flag to check the current page
-  isProductPage: boolean = false;
-  isStorePage: boolean = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private router: Router
-  ) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    // Checks URL
-    this.checkPageUrl();
-
     // Gets Product
     this.getProduct();
   }
@@ -44,25 +32,5 @@ export class ProductDetailsComponent implements OnInit {
     this.productService
       .getProduct(this.productId)
       .subscribe(product => (this.product = product));
-  }
-
-  // Checks the current page and updates flags
-  checkPageUrl() {
-    this.router.url.split("/").forEach(route => {
-      switch (route) {
-        case "product":
-          this.isProductPage = true;
-          break;
-        case "store":
-          this.isStorePage = true;
-          break;
-        default:
-          this.isProductPage = false;
-          this.isStorePage = false;
-          break;
-      }
-    });
-    console.log("isProductPage ? " + this.isProductPage);
-    console.log("isStorePage ? " + this.isStorePage);
   }
 }

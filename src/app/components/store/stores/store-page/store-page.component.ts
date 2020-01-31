@@ -1,25 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Store } from 'src/app/models/store';
-import { StoreService } from 'src/app/services/store.service';
-import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
+import { Store } from "src/app/models/store";
+import { StoreService } from "src/app/services/store.service";
+import { Product } from "src/app/models/product";
+import { ProductService } from "src/app/services/product.service";
 
 @Component({
-  selector: 'app-store-page',
-  templateUrl: './store-page.component.html',
-  styleUrls: ['./store-page.component.css']
+  selector: "app-store-page",
+  templateUrl: "./store-page.component.html",
+  styleUrls: ["./store-page.component.css"]
 })
 
 /**
  * @technologic808
- * 
+ *
  * StorePage Component
- * 
+ *
  * Displays the products available for a particular store
  */
 export class StorePageComponent implements OnInit {
-
   // Takes store as input from parent component
   @Input() store: Store;
 
@@ -33,11 +32,12 @@ export class StorePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private storeService: StoreService,
-    private productService: ProductService) { }
+    private productService: ProductService
+  ) {}
 
   /**
    * OnInit Component Lifecycle hook
-   * On Initialization of component,    
+   * On Initialization of component,
    * gets store by url id,
    * gets products by store
    */
@@ -55,7 +55,17 @@ export class StorePageComponent implements OnInit {
 
   // Gets Products by Store ID
   getProductsByStoreId(storeId): void {
-    this.productService.getProductsByStoreId(storeId).subscribe(products => (this.products = products));
+    this.productService.getProductsByStoreId(storeId).subscribe(products => {
+      (this.products = products),
+        // Populate the discounted price for all products
+        this.products.forEach(product => {
+          this.productService
+            .getStoreSpecificProductPrice(product.id, this.store.id)
+            .subscribe(
+              discountedPrice => (product.discountedPrice = discountedPrice)
+            );
+        });
+    });
     console.log(this.products);
   }
 }

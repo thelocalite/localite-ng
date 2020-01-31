@@ -4,11 +4,11 @@
 
 table {
   table-layout: fixed;
-  width: 100%;
+  width       : 100%;
 }
 .order-group {
-  border: 1px solid;
-  border-color: teal;
+  border       : 1px solid;
+  border-color : teal;
   margin-bottom: 20px;
 }
 #error {
@@ -16,7 +16,7 @@ table {
 }
 img {
   max-width: 100px;
-  margin: auto;
+  margin   : auto;
   /* align-self: center; */
 }
 .ptr {

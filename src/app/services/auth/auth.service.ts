@@ -6,15 +6,15 @@ import { environment } from "../../../environments/environment";
 // Fire Base
 import { auth, database } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
-import {Router} from '@angular/router';
-import {User} from "./user.model";
 
-interface AuthPayload{
+import { Router } from "@angular/router";
+import { User } from "./user.model";
+
+interface AuthPayload {
   user: User;
   success: boolean;
   token: string;
 }
-
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -24,8 +24,8 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private afAuth: AngularFireAuth,
-    private router: Router) {
-    }
+    private router: Router
+  ) {}
 
   isLoggedIn() {
     let email = localStorage.getItem("email");
@@ -37,7 +37,7 @@ export class AuthService {
     return this.AuthLogin(new auth.FacebookAuthProvider());
   }
 
-  GoogleAuth(){
+  GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
 
@@ -46,32 +46,53 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(result => {
-        let user : User;
+        let user: User;
         console.log("You have been successfully logged in!");
         console.log(result);
         console.log(result.user);
         console.log(result.user.email);
 
         console.log("IDTOKEN: ");
-        result.user.getIdToken(true).then((idToken => {
-          var observable = this.httpClient.post<AuthPayload>(environment.authurl + "/users/firebase-login" ,
-          { idToken, email:  result.user.email, name: result.user.displayName})
-          .pipe(map(response => {
-            return response;
-          }));
+        result.user.getIdToken(true).then(idToken => {
+          var observable = this.httpClient
+            .post<AuthPayload>(environment.authurl + "/users/firebase-login", {
+              idToken,
+              email: result.user.email,
+              name: result.user.displayName
+            })
+            .pipe(
+              map(response => {
+                return response;
+              })
+            );
 
           observable.subscribe(data => {
+<<<<<<< HEAD
+            console.log(data);
+            this.loggedIn = true;
+            localStorage.setItem("email", data.user.email);
+            localStorage.setItem("name", data.user.name);
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("userId", "" + data.user.id);
+            this.router.navigateByUrl("/");
+            this.user = data.user;
+            this.jwtToken = data.token;
+          });
+        });
+=======
            console.log(data);
            this.loggedIn = true;
            localStorage.setItem("email", data.user.email);
            localStorage.setItem("name", data.user.name);
            localStorage.setItem("token", data.token);
            localStorage.setItem("userId", "" + data.user.id);
-           this.router.navigateByUrl("/");
+           window.location.replace(window.location.origin);
            this.user = data.user;
            this.jwtToken = data.token;
+           localStorage.setItem("photoURL", result.user.photoURL);
          });
         }))
+>>>>>>> da7187091c74851c491b7f437197eb96c2dc0feb
       })
       .catch(error => {
         this.loggedIn = false;
@@ -84,6 +105,8 @@ export class AuthService {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("userId");
+    localStorage.removeItem("photoURL");
+    this.router.navigateByUrl[('/')];
   }
 
   login(email, password) {
@@ -168,20 +191,20 @@ export class AuthService {
     return this.httpClient
       .post<any>(environment.authurl + "/users/change-password", {
         newPassword: password,
-        email: email
+        email      : email
       })
       .pipe(
         map(data => {
           console.log("***** Pipe-map received data *****");
           console.log(data);
-          if (data.result) {
-            console.log("*** Result ***" + data.result);
-            return true;
-          } else {
-            console.log("*** Error ***"+data.err);
-            // this.loggedIn = false;
-            return false;
-          }
+          // if (data.result) {
+          //   console.log("*** Result ***" + data.result);
+          //   return true;
+          // } else {
+          //   console.log("*** Error ***" + data.err);
+          //   // this.loggedIn = false;
+          //   return false;
+          // }
         })
       );
   }

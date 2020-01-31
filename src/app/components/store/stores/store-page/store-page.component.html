@@ -6,10 +6,11 @@
 
  -->
 <div class="row">
-    <div class="col s12 l2">
-        <app-shop-details [storeId]="store.id"></app-shop-details>
-    </div>
+  <div class="col s12 l2">
+    <app-shop-details [storeId]="store.id"></app-shop-details>
+  </div>
 
-    <div class="col s12 l10">
-        <app-product-list [products]="products"></app-product-list>
-    </div>
+  <div class="col s12 l10">
+    <app-product-list [products]="products" [store]="store"></app-product-list>
+  </div>
+</div>

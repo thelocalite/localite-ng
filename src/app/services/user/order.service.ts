@@ -28,6 +28,7 @@ export class OrderService {
           let productsArray    = order.products;
               order.orderDate  = new Date(order.orderDate);
               order.totalPrice = 0;
+
           // calculating the total price of the order by iterating through each product
           productsArray.forEach((product: OrderProduct) => {
             order.totalPrice += product.vendorPrice * product.quantity;

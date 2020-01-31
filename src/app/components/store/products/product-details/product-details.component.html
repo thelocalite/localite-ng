@@ -17,10 +17,5 @@
       <h6 class="card-title truncate">{{ product.name }}</h6>
       <p class="truncate">by {{ product.brand }}</p>
     </div>
-    <div *ngIf="isProductPage == true" class="card-action">
-      <a routerLink="/product/{{ product.id }}">
-        <span>Product Details</span>
-      </a>
-    </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Product } from "src/app/models/product";
 import { ProductService } from "src/app/services/product.service";
 import { Store } from "src/app/models/store";
+declare const M;
 
 @Component({
   selector: "app-product-list",

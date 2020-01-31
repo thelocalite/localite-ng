@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginEmail = "";
   loginPassword = "";
 
-  faliedToLogin = false;
+  failedToLogin = false;
 
   registerEmail = "";
   registerPassword = "";
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   emptyOption = false;
 
   passwordsDontMatch = false;
-  registeredSuccesfully = false;
+  registeredSuccessfully = false;
   failedToRegister = false;
 
   // preloader flags
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.registeredSuccesfully = false;
+    this.registeredSuccessfully = false;
     console.log(this.loginEmail);
     console.log(this.loginPassword);
     console.log(this.loginForm);
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
             this.loggingIn = false;
             window.location.replace(window.location.origin);
           } else {
-            this.faliedToLogin = true;
+            this.failedToLogin = true;
             this.loggingIn = false;
           }
         });
@@ -110,13 +110,13 @@ export class LoginComponent implements OnInit {
           .subscribe(data => {
             this.passwordsDontMatch = false;
             if (data == true) {
-              this.registeredSuccesfully = true;
+              this.registeredSuccessfully = true;
               this.registering = false;
 
             } else {
               console.log(data);
 
-              this.registeredSuccesfully = false;
+              this.registeredSuccessfully = false;
               this.failedToRegister = true;
               this.registering = false;
             }

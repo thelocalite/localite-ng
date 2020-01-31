@@ -75,7 +75,7 @@
       <div *ngIf="loggingIn" class="progress">
         <div class="indeterminate"></div>
       </div>
-      <p *ngIf="faliedToLogin" class="red-text">
+      <p *ngIf="failedToLogin" class="red-text">
         Failed To Login
       </p>
     </div>
@@ -84,7 +84,7 @@
   <!-- Register  -->
   <div class="col s12 m6" id="form">
     <div class="card-panel grey lighten-5">
-      <!-- Registeration Form -->
+      <!-- Registration Form -->
       <form (ngSubmit)="register()" #rform="ngForm">
         <h5>Register</h5>
         <p class="text-flow">If you're new to Localite</p>
@@ -216,8 +216,8 @@
       </div>
 
       <!-- && passwordsDontMatch" -->
-      <p *ngIf="registeredSuccesfully" class="green-text">
-        Registered Succesfully!
+      <p *ngIf="registeredSuccessfully" class="green-text">
+        Registered Successfully!
       </p>
       <p *ngIf="failedToRegister" class="red-text">
         Registration Failed! <br>

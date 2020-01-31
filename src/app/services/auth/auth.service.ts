@@ -6,17 +6,67 @@ import { environment } from "../../../environments/environment";
 // Fire Base
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from "@angular/fire/firestore";
+import {Router} from '@angular/router';
+
+import {Observable, of} from 'rxjs';
+import {switchMap} from "rxjs/operators";
+import {User} from "./user.model";
+
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
+  user$: Observable<User>;
+
   user = null;
   jwtToken = null;
   loggedIn = false;
-  constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
+  constructor(
+    private httpClient: HttpClient,
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private afs: AngularFirestore) {
+      this.user$ = this.afAuth.authState.pipe(
+        switchMap(user => {
+          if(user) {
+            return this.afs.doc<User>(`user/${user.uid}`).valueChanges();
+          }else {
+            return of(null);
+          }
+        })
+      );
+    }
 
   isLoggedIn() {
     let email = localStorage.getItem("email");
     return !(email === null);
+  }
+
+  async googleSignin(){
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
+  }
+
+  async singOut(){
+    await this.afAuth.auth.signOut();
+    return this.router.navigate(['/']);
+  }
+
+  private updateUserData(user) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    };
+
+    return userRef.set(data, {merge: true});
   }
 
   // Sign in with Facebook
@@ -31,6 +81,8 @@ export class AuthService {
       .then(result => {
         console.log("You have been successfully logged in!");
         console.log(result);
+        console.log("IDTOKEN: ");
+        console.log(result.user.getIdToken());
       })
       .catch(error => {
         console.log(error);

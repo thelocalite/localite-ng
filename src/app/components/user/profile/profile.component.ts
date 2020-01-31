@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
 
   profileURL: string;
 
+  profileURL: string;
+
   constructor() {}
 
   ngOnInit() {

@@ -14,10 +14,10 @@
           <h5 class="text-flow">Profile</h5>
 
           <!-- user role -->
-
-          <div class="input-field">
+        <div>{{userRole}}</div>
+          <!-- <div class="input-field"> -->
             <!-- user role : customer -->
-            <p>
+            <!-- <p>
               <label>
                 <input
                   class="with-gap form-control"
@@ -27,27 +27,28 @@
                   checked
                   [(ngModel)]="userRole"
                   required
-                  checked="userRole=='ROLE_USER'"
+                  checked="userRole==='ROLE_USER'"
                 />
                 <span>Customer</span>
               </label>
-            </p>
+            </p> -->
 
             <!-- user role : Vendor -->
-            <p>
+            <!-- <p>
               <label>
                 <input
                   class="with-gap form-control"
                   name="userRole"
+                  id="{{userRole}}"
                   type="radio"
                   value="MERCHANT"
                   [(ngModel)]="userRole"
-                  checked="userRole=='ROLE_VENDOR'"
+                  checked="userRole==='ROLE_VENDOR'"
                 />
                 <span>Merchant</span>
               </label>
             </p>
-          </div>
+          </div> -->
         </div>
         <!-- <span *ngIf="emptyOption" class="red-text"
             >Please select an option</span
@@ -157,6 +158,9 @@
         <div class="determinate" style="width: 70%"></div>
       </div>
 
+      <p *ngIf="fetchingerror" class="red-text">
+        An Error Occurred
+      </p>
       <p *ngIf="updatedSuccessfully" class="green-text">
         Updated Successfully!
       </p>

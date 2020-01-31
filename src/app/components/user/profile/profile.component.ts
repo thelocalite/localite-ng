@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   userContact: string = "";
   userAddress: string = "";
   isfetching: boolean = null;
+  fetchingerror: boolean = null;
   updatedSuccessfully = false;
   updateFailed = false;
 
@@ -67,8 +68,9 @@ export class ProfileComponent implements OnInit {
     this.http.get<User>(this.profileURL).subscribe(
       (user: User) => {
         console.log(user);
+        console.log(user.role);
 
-        this.userRole = user.role;
+        this.userRole = user.role == "ROLE_USER" ? "Customer" : "Merchant";
         this.userName = user.username;
         this.userEmail = user.email;
         this.userContact = user.contactNumber;
@@ -77,6 +79,7 @@ export class ProfileComponent implements OnInit {
       },
       error => {
         this.isfetching = false;
+        this.fetchingerror = true;
         console.log(error);
       }
     );

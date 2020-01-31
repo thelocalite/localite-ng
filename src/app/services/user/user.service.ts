@@ -33,16 +33,17 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
   }
 
   /** DELETE: delete the product from the server */
-  deleteFromCart(id: number): Observable<{}> {
-    const url = `${this.cartUrl}/${id}`; // DELETE cartProducts/id
+  deleteFromCart(cartProduct: CartProduct): Observable<{}> {
+    const url = `${this.cartUrl}/delete/3`; // DELETE cartProducts/id
     return this.http
-      .delete(url, this.httpOptions)
+      .post(url, cartProduct,this.httpOptions)
       .pipe(catchError(this.handleError("deleteCartProduct")));
   }
 
   updateCart(cartProduct: CartProduct): Observable<CartProduct> {
+    const url = `${this.cartUrl}/add/3`;
     return this.http
-      .post<CartProduct>(this.cartUrl, cartProduct, this.httpOptions)
+      .post<CartProduct>(url, cartProduct, this.httpOptions)
       .pipe(catchError(this.handleError("updateCart", cartProduct)));
   }
 
@@ -57,16 +58,14 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
       );
   }
 
-  deleteFromSaved(id: number): Observable<{}> {
-    const url = `${this.savedUrl}/${id}`; // DELETE cartProducts/id
-    return this.http
-      .delete(url, this.httpOptions)
-      .pipe(catchError(this.handleError("deleteSavedProduct")));
-  }
+  // deleteFromSaved(savedProduct: CartProduct ){
+  //       this.deleteFromCart(savedProduct);
+  // }
 
   updateSaved(savedProduct: CartProduct): Observable<CartProduct> {
+    const url = `${this.savedUrl}/add/3`; 
     return this.http
-      .post<CartProduct>(this.savedUrl, savedProduct, this.httpOptions)
+      .post<CartProduct>(url, savedProduct, this.httpOptions)
       .pipe(catchError(this.handleError("updateSaved", savedProduct)));
   }
 

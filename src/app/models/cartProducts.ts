@@ -7,5 +7,5 @@ export interface CartProduct {
   product:  Product;
   quantity: number;
   price: number;
-  
+  savedForLater: boolean;
 }

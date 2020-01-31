@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
       this.cartProducts.splice(index, 1);
     }
 
-    this.userService.deleteFromCart(cartProduct.id).subscribe();
+    this.userService.deleteFromCart(cartProduct).subscribe();
   }
 
   //----------On Saving to 'save for later' and deleting product from Cart---------
@@ -75,9 +75,18 @@ export class CartComponent implements OnInit {
     this.savedProducts.push(this.product);
     this.userService.updateSaved(this.product).subscribe();
 
-    //Delete the Product from CartProducts
-    this.onDeleteFromCart(this.product);
+    
+    this.subTotal = this.subTotal - this.product.price;
+
+    //Remove the Product From CartProducts
+    const index: number = this.cartProducts.indexOf(this.product);
+    if (index !== -1) {
+      this.cartProducts.splice(index, 1);
+    }
   }
+
+
+
 
   // ---------------'Saved Items' methods----------
 
@@ -94,7 +103,7 @@ export class CartComponent implements OnInit {
       this.savedItemsFlag = false;
     }
 
-    this.userService.deleteFromSaved(savedProduct.id).subscribe();
+    this.userService.deleteFromCart(savedProduct).subscribe();
   }
 
   //---------On deleting product from Cart and saving to 'save for later'------
@@ -110,7 +119,14 @@ export class CartComponent implements OnInit {
     this.userService.updateCart(this.product).subscribe();
 
     //Delete From Saved Products
-    this.onDeleteFromSavedItems(this.product);
+    const index: number = this.savedProducts.indexOf(this.product);
+    if (index !== -1) {
+      this.savedProducts.splice(index, 1);
+    }
+
+    if (this.savedProducts.length == 0) {
+      this.savedItemsFlag = false;
+    }
   }
 
   //---------------To Place Order/Proceed To Buy-----------

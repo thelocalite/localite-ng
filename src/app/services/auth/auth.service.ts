@@ -7,7 +7,7 @@ import { environment } from "../../../environments/environment";
 import { auth, database } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {Router} from '@angular/router';
-import {User} from "./user.model";
+import {User} from "../../models/user.model";
 
 interface AuthPayload{
   user: User;

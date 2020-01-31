@@ -1,12 +1,12 @@
 <div class="container">
-    <!-- Register  -->
+  <!-- Register  -->
   <div class="col s12 m4 offset-m4" id="form">
     <div class="card-panel grey lighten-5">
       <!-- form  -->
-      <form (ngSubmit)="onUpdate()" #form="ngForm">
+      <form *ngIf="!isfetching" (ngSubmit)="onUpdate()" #form="ngForm">
         <div class="section">
           <img
-            [src]=profileURL
+            [src]="profileURL"
             class="circle responsive-img right"
             style="width: 40%;"
             alt="Image on Aditya's Request"
@@ -59,13 +59,15 @@
           <div class="input-field">
             <input
               type="text"
+              placeholder="Name"
+              value="{{ userName }}"
               name="userName"
               id="userName"
               [(ngModel)]="userName"
               class="validate form-control"
               required
             />
-            <label for="userName">Name</label>
+            <!-- <label for="userName">Name</label> -->
             <!-- <span
               class="helper-text"
               data-error="Invalid Name"
@@ -74,9 +76,11 @@
           </div>
 
           <!-- User Email -->
-          <!-- <div class="input-field">
+          <div class="input-field">
             <input
               type="text"
+              placeholder="Email"
+              value="{{ userEmail }}"
               name="userEmail"
               [(ngModel)]="userEmail"
               class="validate form-control"
@@ -84,25 +88,27 @@
               required
               email
             />
-            <label for="userEmail">Email</label>
+            <!-- <label for="userEmail">Email</label> -->
             <span
               class="helper-text"
               data-error="Invalid Email"
               data-success=""
             ></span>
-          </div> -->
+          </div>
 
           <!-- User Address -->
           <div class="input-field">
             <input
               type="text"
+              placeholder="Address"
+              value="{{ userAddress }}"
               name="userAddress"
               id="userAddress"
               [(ngModel)]="userAddress"
               class="validate form-control"
               required
             />
-            <label for="userAddress">Address</label>
+            <!-- <label for="userAddress">Address</label> -->
             <!-- <span
               class="helper-text"
               data-error="Invalid Address"
@@ -113,13 +119,15 @@
           <div class="input-field">
             <input
               type="text"
+              placeholder="Contact Number"
+              value="{{ userContact }}"
               name="userContact"
               id="userContact"
               [(ngModel)]="userContact"
               class="validate form-control"
               required
             />
-            <label for="userContact">Contact No.</label>
+            <!-- <label for="userContact">Contact No.</label> -->
             <!-- <span
               class="helper-text"
               data-error="Invalid Contact Number"
@@ -142,6 +150,11 @@
           />
         </div>
       </form>
+
+      <div *ngIf="isfetching" class="progress">
+        <div class="determinate" style="width: 70%"></div>
+      </div>
+
       <p *ngIf="updatedSuccessfully" class="green-text">
         Updated Successfully!
       </p>

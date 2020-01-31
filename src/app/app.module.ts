@@ -17,7 +17,6 @@ import { AppComponent } from "./app.component";
 import { ChangePasswordComponent } from "./components/auth/change-password/change-password.component";
 import { ForgotPasswordComponent } from "./components/auth/forgot-password/forgot-password.component";
 import { LoginComponent } from "./components/auth/login/login.component";
-import { LogoutComponent } from "./components/auth/logout/logout.component";
 import { UsersComponent } from "./components/auth/users/users.component";
 import { FooterComponent } from "./components/layout/footer/footer.component";
 import { HomeComponent } from "./components/layout/home/home.component";
@@ -68,7 +67,6 @@ import { CategoryCarouselComponent } from "./components/layout/category-carousel
     ChangePasswordComponent,
     UsersComponent,
     FooterComponent,
-    LogoutComponent,
     CartComponent,
     LocationComponent,
     SearchComponent,

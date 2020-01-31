@@ -6,9 +6,9 @@ import { Order, OrderProduct } from "../../../models/order";
 import { OrderService } from "../../../services/user/order.service";
 
 @Component({
-  selector: "app-orders",
+  selector   : "app-orders",
   templateUrl: "./orders.component.html",
-  styleUrls: ["./orders.component.css"]
+  styleUrls  : ["./orders.component.css"]
 })
 export class OrdersComponent implements OnInit {
   // Array of Orders
@@ -30,11 +30,12 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.currentWindowWidth = window.innerWidth;
-    this.isFetching = true;
+    this.isFetching         = true;
+
     this.orderService.fetchOrders().subscribe(
       orders => {
         console.log(orders);
-        this.orders = orders;
+        this.orders     = orders;
         this.isFetching = false;
       },
       error => {
@@ -44,10 +45,10 @@ export class OrdersComponent implements OnInit {
     );
 
     document.addEventListener("DOMContentLoaded", function() {
-      var elements = document.querySelectorAll(".tabs");
-      var instance = M.Tabs.init(elements);
-      var elements1 = document.querySelectorAll(".fixed-action-btn");
-      var options = { hoverEnabled: true };
+      var elements   = document.querySelectorAll(".tabs");
+      var instance   = M.Tabs.init(elements);
+      var elements1  = document.querySelectorAll(".fixed-action-btn");
+      var options    = { hoverEnabled: true };
       var instances1 = M.FloatingActionButton.init(elements1, options);
     });
   }

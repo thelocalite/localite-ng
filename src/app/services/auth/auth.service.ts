@@ -67,9 +67,10 @@ export class AuthService {
            localStorage.setItem("name", data.user.name);
            localStorage.setItem("token", data.token);
            localStorage.setItem("userId", "" + data.user.id);
-           this.router.navigateByUrl("/");
+           window.location.replace(window.location.origin);
            this.user = data.user;
            this.jwtToken = data.token;
+           localStorage.setItem("photoURL", result.user.photoURL);
          });
         }))
       })
@@ -84,6 +85,8 @@ export class AuthService {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("userId");
+    localStorage.removeItem("photoURL");
+    window.location.replace(window.location.origin);
   }
 
   login(email, password) {
@@ -167,6 +170,8 @@ export class AuthService {
   changePassword(email, password) {
     return this.httpClient
       .post<any>(environment.authurl + "/users/change-password", {
+        // .post<any>("http://localhost:9090" + "/users/change-password", {
+
         newPassword: password,
         email: email
       })
@@ -178,7 +183,7 @@ export class AuthService {
             console.log("*** Result ***" + data.result);
             return true;
           } else {
-            console.log("*** Error ***"+data.err);
+            console.log("*** Error ***"+ data.err);
             // this.loggedIn = false;
             return false;
           }

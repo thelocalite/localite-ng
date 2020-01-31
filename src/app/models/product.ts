@@ -1,5 +1,3 @@
-// Defines Product Model for rendering
-
 export class Product {
   id: number;
   name: string;
@@ -7,6 +5,6 @@ export class Product {
   imageUrl: string;
   description: string;
   mrp: number;
-  category: string;
   discountedPrice: number;
+  category: string;
 }

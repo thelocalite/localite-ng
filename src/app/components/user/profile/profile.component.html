@@ -1,23 +1,22 @@
 <div class="container">
-  <!-- Register  -->
+    <!-- Register  -->
   <div class="col s12 m4 offset-m4" id="form">
     <div class="card-panel grey lighten-5">
       <!-- form  -->
       <form (ngSubmit)="onUpdate()" #form="ngForm">
         <div class="section">
           <img
-            src="../../../../assets/images/md.jpg
-          "
+            [src]=profileURL
             class="circle responsive-img right"
             style="width: 40%;"
             alt="Image on Aditya's Request"
           />
-          <h5 class="text-flow">Pofile</h5>
+          <h5 class="text-flow">Profile</h5>
 
           <!-- user role -->
 
           <div class="input-field">
-            <!-- user role : coustomer -->
+            <!-- user role : customer -->
             <p>
               <label>
                 <input
@@ -33,7 +32,7 @@
               </label>
             </p>
 
-            <!-- user role : coustomer -->
+            <!-- user role : customer -->
             <p>
               <label>
                 <input
@@ -53,8 +52,8 @@
           > -->
         <br />
         <div></div>
-        <br>
-        <br>
+        <br />
+        <br />
         <div class="section">
           <!-- User Name  -->
           <div class="input-field">
@@ -92,18 +91,6 @@
               data-success=""
             ></span>
           </div> -->
-
-          <!-- User DOB -->
-          <div class="input-field">
-            <input
-              type="text"
-              [(ngModel)]="userDOB"
-              name="userDOB"
-              class="datepicker form-control"
-              id="date"
-            />
-            <label for="date">Date of Birth</label>
-          </div>
 
           <!-- User Address -->
           <div class="input-field">
@@ -147,14 +134,20 @@
             class="btn z-depth-2"
             [disabled]="!form.valid || !form.touched"
           />
-          <p *ngIf="updatedSuccessfully" class="green-text">
-            Updated Successfully!
-          </p>
-          <p *ngIf="updateFailed" class="red-text">
-            Update Failed!
-          </p>
+          <input
+            [routerLink]="['/change-password']"
+            type="button"
+            value="Change Password"
+            class="btn z-depth-2 right"
+          />
         </div>
       </form>
+      <p *ngIf="updatedSuccessfully" class="green-text">
+        Updated Successfully!
+      </p>
+      <p *ngIf="updateFailed" class="red-text">
+        Update Failed!
+      </p>
     </div>
   </div>
 </div>

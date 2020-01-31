@@ -2,24 +2,20 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth/auth.service";
 
 @Component({
-  selector: "app-forgot-password",
+  selector   : "app-forgot-password",
   templateUrl: "./forgot-password.component.html",
-  styleUrls: ["./forgot-password.component.css"]
+  styleUrls  : ["./forgot-password.component.css"]
 })
 export class ForgotPasswordComponent implements OnInit {
-  email = false;
-  nomail = false;
-
-  forgotEmail = "";
-
-  token = null;
-
-  password = "";
+  forgotEmail     = "";
+  password        = "";
   confirmPassword = "";
-  notMatching = false;
-
-  changedPassword = false;
+  token           = null;
   updatedPassword = null;
+  email           = false;
+  nomail          = false;
+  notMatching     = false;
+  changedPassword = false;
 
   constructor(private authService: AuthService) {}
 
@@ -29,15 +25,15 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   forgotPassword() {
-    this.email = false;
+    this.email  = false;
     this.nomail = false;
     if (this.forgotEmail != "") {
       this.authService.forgotPassword(this.forgotEmail).subscribe(data => {
         if (data === true) {
-          this.email = true;
+          this.email  = true;
           this.nomail = false;
         } else {
-          this.email = false;
+          this.email  = false;
           this.nomail = true;
         }
       });
@@ -61,7 +57,7 @@ export class ForgotPasswordComponent implements OnInit {
           });
       } else {
         this.updatedPassword = false;
-        this.notMatching = true;
+        this.notMatching     = true;
       }
     }
   }

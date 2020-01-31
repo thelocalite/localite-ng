@@ -3,7 +3,6 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { ForgotPasswordComponent } from "./components/auth/forgot-password/forgot-password.component";
 import { LoginComponent } from "./components/auth/login/login.component";
-import { LogoutComponent } from "./components/auth/logout/logout.component";
 import { AddProductComponent } from "./components/data/add-product/add-product.component";
 import { AddStoreComponent } from "./components/data/add-store/add-store.component";
 import { HomeComponent } from "./components/layout/home/home.component";
@@ -37,11 +36,6 @@ const routes: Routes = [
   {
     path: "change-password",
     component: ChangePasswordComponent,
-    canActivate: [AuthGaurdService]
-  },
-  {
-    path: "logout",
-    component: LogoutComponent,
     canActivate: [AuthGaurdService]
   },
   { path: "cart", component: CartComponent },

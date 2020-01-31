@@ -25,6 +25,9 @@ export class CartComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
+    /**
+     * Populate the Shopping Cart section and Saved For Later Section
+     */
     this.userService.getCartProducts().subscribe(cartProducts => {
       this.cartProducts = cartProducts;
       this.cartProducts.forEach(cartProduct => {

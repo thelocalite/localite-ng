@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
   )
 export class UserService {
   private cartUrl =  environment.restAPIUrl + "/cart/cartItems";
-  // "https://my-json-server.typicode.com/ndivya03/json-server/cartProducts"; // URL to web api
-private savedUrl = environment.restAPIUrl + "/cart/savedItems";
-  // "https://my-json-server.typicode.com/ndivya03/json-server/savedProducts";
+ 
+  private savedUrl = environment.restAPIUrl + "/cart/savedItems";
+  
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -24,7 +24,7 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
 
   //---------------CartProducts Methods--------------
 
-  /** GET all services from the server */
+  /** GET all Cart Items from the cart Table */
   getCartProducts(): Observable<CartProduct[]> {
     const url = `${this.cartUrl}/3`;
     return this.http
@@ -32,7 +32,7 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
     .pipe(retry(3),catchError(this.handleError<CartProduct[]>("getCartProducts", [])));
   }
 
-  /** DELETE: delete the product from the server */
+  /** DELETE: delete the cartItem/savedForLaterItem from the cart Table */
   deleteFromCart(cartProduct: CartProduct): Observable<{}> {
     const url = `${this.cartUrl}/delete/3`; // DELETE cartProducts/id
     return this.http
@@ -40,6 +40,13 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
       .pipe(catchError(this.handleError("deleteCartProduct")));
   }
 
+  /** Insert: Insert a new Cart Item into the Cart Table a  
+   *                          OR
+   *          'onMoveToCart' from 'saved for later' items which 
+   *           changes the 'savedForLater' flag of existing item 
+   *           to false thereby making making it visible under 
+   *           Shopping Cart. 
+   */
   updateCart(cartProduct: CartProduct): Observable<CartProduct> {
     const url = `${this.cartUrl}/add/3`;
     return this.http
@@ -49,6 +56,7 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
 
   //----------------SavedProducts Methods-------------------
 
+  /** GET all SavedForLater Items from the cart Table */
   getSavedProducts(): Observable<CartProduct[]> {
     const url = `${this.savedUrl}/3`;
     return this.http
@@ -58,9 +66,14 @@ private savedUrl = environment.restAPIUrl + "/cart/savedItems";
       );
   }
 
-  // deleteFromSaved(savedProduct: CartProduct ){
-  //       this.deleteFromCart(savedProduct);
-  // }
+
+  /** Insert: Insert a new 'SavedForLater' Item into the Cart Table 
+   *                          OR
+   *          'onSaveForLater' from 'ShoppingCart' items which 
+   *           changes the 'savedForLater' flag of existing item 
+   *           to true thereby making making it visible under 
+   *           Saved For Later section. 
+   */
 
   updateSaved(savedProduct: CartProduct): Observable<CartProduct> {
     const url = `${this.savedUrl}/add/3`; 

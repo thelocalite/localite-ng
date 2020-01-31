@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({ providedIn: "root" })
 export class ProductService {
 
-  private productsUrl = environment.restAPIUrl + "/product"; // URL to web api 
+  private productsUrl = environment.restAPIUrl + "/product"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

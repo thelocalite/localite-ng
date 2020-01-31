@@ -11,18 +11,17 @@ import * as M from "../../../../assets/js/materialize.min";
 export class ProfileComponent implements OnInit {
   @ViewChild("form", { static: false }) updateForm: NgForm;
 
-  userRole           : string  = "";
-  userName           : string  = "";
-  userEmail          : string  = "";
-  userContact        : string  = "";
-  userDOB            : string  = "";
-  userAddress        : string  = "";
-  updatedSuccessfully: boolean = false;
-  updateFailed       : boolean = false;
+  userRole: string  = "";
+  userName: string  = "";
+  userEmail: string  = "";
+  userContact: string  = "";
+  userDOB: string  = "";
+  userAddress: string  = "";
+  updatedSuccessfully = false;
+  updateFailed = false;
 
   profileURL: string;
 
-  profileURL: string;
 
   constructor() {}
 

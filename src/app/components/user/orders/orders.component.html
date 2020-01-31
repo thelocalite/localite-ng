@@ -24,7 +24,10 @@
                 Shipped to: {{ order.shippedTo }}
               </th>
               <!-- order Status -->
-              <th *ngIf="currentWindowWidth > 500">{{ order.status | uppercase }}</th>
+              <th *ngIf="currentWindowWidth > 500">
+                {{ order.status | uppercase }}
+              </th>
+
               <!-- Total Price -->
               <th>
                 <span class="center">
@@ -32,10 +35,14 @@
                 >
               </th>
 
-              <!-- Recived -->
-              <th *ngIf="order.status !== 'delivered'">
+              <!-- Received -->
+              <th
+                *ngIf="
+                  order.status !== 'delivered' && order.status !== 'canceled'
+                "
+              >
                 <a
-                  (click)="onRecived(); $event.stopPropagation()"
+                  (click)="onReceived(order); $event.stopPropagation()"
                   class="btn green"
                   ><i class="material-icons" *ngIf="currentWindowWidth < 800"
                     >done</i
@@ -45,9 +52,13 @@
               </th>
 
               <!-- Cancel -->
-              <th *ngIf="order.status !== 'delivered'">
+              <th
+                *ngIf="
+                  order.status !== 'delivered' && order.status !== 'canceled'
+                "
+              >
                 <a
-                  (click)="onCancel(); $event.stopPropagation()"
+                  (click)="onCancel(order); $event.stopPropagation()"
                   class="btn red"
                   ><i class="material-icons" *ngIf="currentWindowWidth < 800"
                     >cancel</i
@@ -55,9 +66,15 @@
                   <span *ngIf="currentWindowWidth > 800">Cancel</span>
                 </a>
               </th>
+
               <!-- Reorder -->
-              <th *ngIf="order.status === 'delivered'">
+              <th
+                *ngIf="
+                  order.status === 'delivered' || order.status == 'canceled'
+                "
+              >
                 <a
+                  [routerLink]="['/store/' + order.vendorId]"
                   (click)="addToCart(); $event.stopPropagation()"
                   class="btn green"
                   ><i class="material-icons" *ngIf="currentWindowWidth < 800"
@@ -66,10 +83,21 @@
                   <span *ngIf="currentWindowWidth > 800">Reorder</span>
                 </a>
               </th>
+              <!-- Cancel disabled -->
+              <th *ngIf="order.status == 'canceled'">
+                <a
+                  (click)="onCancel(); $event.stopPropagation()"
+                  class="btn red disabled"
+                  ><i class="material-icons" *ngIf="currentWindowWidth < 800"
+                    >cancel</i
+                  >
+                  <span *ngIf="currentWindowWidth > 800">Cancel</span>
+                </a>
+              </th>
               <!-- Review -->
               <th *ngIf="order.status === 'delivered'">
                 <a
-                  [routerLink]="['/vendor/' + order.vendorId]"
+                  [routerLink]="['/store/' + order.vendorId]"
                   (click)="addVendorReview(); $event.stopPropagation()"
                   class="btn orange"
                   ><i class="material-icons" *ngIf="currentWindowWidth < 800"
@@ -83,7 +111,7 @@
 
           <!-- table body -->
           <tbody *ngIf="order.show">
-            <tr *ngFor="let product of order.products">
+            <tr *ngFor="let product of order.products; index as i;">
               <!-- Product Image -->
               <td>
                 <img
@@ -102,24 +130,40 @@
                 >
               </td>
               <!-- Product Quantity -->
-              <td *ngIf="currentWindowWidth > 500">Quntity: {{ product.quantity }}</td>
+              <td *ngIf="currentWindowWidth > 500">
+                Quantity: {{ product.quantity }}
+              </td>
               <td>
                 <span class="center">
-                  {{ product.price | currency: "INR" }}</span
+                  {{ product.vendorPrice | currency: "INR" }}</span
                 >
               </td>
               <!-- Add to Cart -->
               <td>
-                <a class="btn green" (click)="addProductToCart()"
+                <a
+                  [routerLink]="['/product/' + product.id]"
+                  class="btn green"
+                  (click)="addProductToCart()"
                   ><i class="material-icons">add_shopping_cart</i>
                   <p *ngIf="currentWindowWidth > 800">Reorder</p></a
                 >
               </td>
               <!--Cancel Product -->
-              <td *ngIf="order.status !== 'delivered'">
-                <a class="btn red" (click)="onCanelProduct()"
+              <td
+                *ngIf="
+                  order.status !== 'delivered' && order.status !== 'canceled'
+                "
+              >
+                <a class="btn red" (click)="onCancelProduct(order, i)"
                   ><i class="material-icons">cancel</i>
                   <p *ngIf="currentWindowWidth > 800">Cancel</p>
+                </a>
+              </td>
+              <!-- Cancel Products disabled -->
+              <td *ngIf="order.status == 'canceled'">
+                <a class="btn red disabled" (click)="onCancelProduct(order)"
+                  ><i class="material-icons">cancel</i>
+                  <p *ngIf="currentWindowWidth > 800"></p>
                 </a>
               </td>
               <!--Rate Product -->
@@ -160,7 +204,7 @@
       </div>
     </div>
 
-    <!-- If an error occours -->
+    <!-- If an error occurs -->
     <div *ngIf="error && orders.length < 1">
       <div class="row">
         <div class="col s12 m6 offset-m3">

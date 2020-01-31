@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, of, Subject } from "rxjs";
-import { map, tap, catchError, retry } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { map, retry } from "rxjs/operators";
 
-import { Order } from "../../models/order";
+import { Order, OrderProduct } from "../../models/order";
 import { CartProduct } from "../../models/cartProducts";
 
 @Injectable({
@@ -24,16 +23,18 @@ export class OrderService {
       map((orders: Order[]) => {
         this.orders = orders;
 
-        // Itrating throught each order
+        // Iterating through each order
         this.orders.forEach((order: Order) => {
-          let productsArray: CartProduct[] = order.products;
-          order.orderDate = new Date(order.orderDate);
-          order.totalPrice = 0;
-          // calculating the total price of the order by itrating throught each product
-          productsArray.forEach((product: CartProduct) => {
-            order.totalPrice += product.price * product.quantity;
+          let productsArray    = order.products;
+              order.orderDate  = new Date(order.orderDate);
+              order.totalPrice = 0;
+          // calculating the total price of the order by iterating through each product
+          productsArray.forEach((product: OrderProduct) => {
+            order.totalPrice += product.vendorPrice * product.quantity;
           });
         });
+
+        // Sorting the orders array with respect to order date in descending order
         this.orders.sort(function(order1, order2) {
           var date1 = order1.orderDate;
           var date2 = order2.orderDate;
@@ -44,6 +45,8 @@ export class OrderService {
           }
           return 0;
         });
+
+        // returning the transformed data as an observable to pip
         return this.orders;
       })
     );

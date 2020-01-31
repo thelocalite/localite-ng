@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-
-import { Order } from "../../../models/order";
-import * as M from "../../../../assets/js/materialize.min";
 import { HttpHeaders } from "@angular/common/http";
+
+import * as M from "../../../../assets/js/materialize.min";
+import { Order, OrderProduct } from "../../../models/order";
 import { OrderService } from "../../../services/user/order.service";
 
 @Component({
@@ -44,18 +44,33 @@ export class OrdersComponent implements OnInit {
     );
 
     document.addEventListener("DOMContentLoaded", function() {
-      var elems = document.querySelectorAll(".tabs");
-      var instance = M.Tabs.init(elems);
-      var elems1 = document.querySelectorAll(".fixed-action-btn");
+      var elements = document.querySelectorAll(".tabs");
+      var instance = M.Tabs.init(elements);
+      var elements1 = document.querySelectorAll(".fixed-action-btn");
       var options = { hoverEnabled: true };
-      var instances1 = M.FloatingActionButton.init(elems1, options);
+      var instances1 = M.FloatingActionButton.init(elements1, options);
     });
   }
-  onCancel() {}
+  onCancel(order: Order) {
+    console.log("cancel clicked");
+    order.status = "canceled";
+  }
 
-  onCanelProduct() {}
+  onReceived(order) {
+    console.log("received clicked");
+    order.status = "delivered";
+  }
 
-  onRecived() {}
+  onCancelProduct(order: Order, i) {
+    let length = order.products.length;
+    if (i <= length - 1) {
+      order.products.splice(i, 1);
+    }
+
+    if (order.products.length < 1) {
+      order.status = "canceled";
+    }
+  }
 
   addVendorReview() {}
 

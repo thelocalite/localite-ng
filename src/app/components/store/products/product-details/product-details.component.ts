@@ -21,8 +21,9 @@ export class ProductDetailsComponent implements OnInit {
   @Input() productId: number;
   product: Product;
 
-  // Flag to check if page is Product Page
+  // Flag to check the current page
   isProductPage: boolean = false;
+  isStorePage: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,14 +46,23 @@ export class ProductDetailsComponent implements OnInit {
       .subscribe(product => (this.product = product));
   }
 
-  // Checks if the current page is the product page and updates the isProductPageFlag
+  // Checks the current page and updates flags
   checkPageUrl() {
-    this.router.url
-      .split("/")
-      .forEach(route =>
-        route == "product"
-          ? (this.isProductPage = true)
-          : (this.isProductPage = false)
-      );
+    this.router.url.split("/").forEach(route => {
+      switch (route) {
+        case "product":
+          this.isProductPage = true;
+          break;
+        case "store":
+          this.isStorePage = true;
+          break;
+        default:
+          this.isProductPage = false;
+          this.isStorePage = false;
+          break;
+      }
+    });
+    console.log("isProductPage ? " + this.isProductPage);
+    console.log("isStorePage ? " + this.isStorePage);
   }
 }

@@ -27,12 +27,13 @@
                   checked
                   [(ngModel)]="userRole"
                   required
+                  checked="userRole=='ROLE_USER'"
                 />
                 <span>Customer</span>
               </label>
             </p>
 
-            <!-- user role : customer -->
+            <!-- user role : Vendor -->
             <p>
               <label>
                 <input
@@ -41,6 +42,7 @@
                   type="radio"
                   value="MERCHANT"
                   [(ngModel)]="userRole"
+                  checked="userRole=='ROLE_VENDOR'"
                 />
                 <span>Merchant</span>
               </label>

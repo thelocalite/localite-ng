@@ -17,10 +17,26 @@
       <h6 class="card-title truncate">{{ product.name }}</h6>
       <p class="truncate">by {{ product.brand }}</p>
     </div>
+
     <div *ngIf="isProductPage == true" class="card-action">
-      <a routerLink="/product/{{ product.id }}">
-        <span>Product Details</span>
-      </a>
+      <a
+        (click)="toast()"
+        class="btn-floating btn-large waves-effect waves-light red"
+        routerLink="/product/{{ product.id }}"
+        ><i class="material-icons left">add_shopping_cart</i></a
+      >
+      <a
+        (click)="toast()"
+        class="btn-floating btn-large waves-effect waves-light red"
+        ><i class="material-icons left">add_shopping_cart</i></a
+      >
+
+      <span class="right white-text"
+        ><h5 style="font-weight: 500;">
+          <span style="text-decoration: line-through;">₹{{ product.mrp }}</span>
+          ₹{{ store.discountedPrice }}
+        </h5></span
+      >
     </div>
   </div>
 </div>

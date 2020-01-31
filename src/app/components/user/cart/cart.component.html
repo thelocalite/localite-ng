@@ -1,7 +1,4 @@
-<p>cart works!</p>
-
 <!-- <p>cart works!</p> -->
-<br />
 <!-- Shooping cart will be displayed only when Products are there in Cart  -->
 <!-- Else display "Shopping Cart Empty Message" -->
 <div
@@ -49,11 +46,14 @@
       </div>
     </div>
   </div>
+
   <hr />
+
   <h6 class="header right-align #e65100 orange-text text-darken-4">
     Sub-Total ( {{ cartProducts.length }} items) : &#8377;{{ subTotal }}&nbsp;
   </h6>
 </div>
+
 <div *ngIf="cartProducts.length">
   <br />
   <a class="btn waves-effect right" (click)="onPlaceOrder()"
@@ -112,7 +112,11 @@
 
 <!-- Empty Shopping Cart Message -->
 <ng-template #emptyCart>
-  <div>
-    <h5 class="orange-text text-darken-4">Your Shopping Cart is Empty !!!</h5>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="center">
+    <h5 class="orange-text text-darken-4">Your Shopping Cart is Empty</h5>
   </div>
 </ng-template>

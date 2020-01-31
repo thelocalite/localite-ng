@@ -1,5 +1,6 @@
 <div id="container" class="center grey lighten-3">
   <div *ngIf="lat && lng" id="map" class="center z-depth-4">
+
     <agm-map [latitude]="lat" [longitude]="lng">
       <agm-marker [latitude]="lat" [longitude]="lng" >
         <agm-info-window>
@@ -18,21 +19,25 @@
                   </agm-info-window>
       </agm-marker>
     </agm-map>
-  </div>
 
-  <div id="address" class="center grey lighten-3">
+  </div> <!-- map  -->
+
+
+
+  <div id="address" class="container">
     <div class="row">
-      <form class="col s12">
-          <div class="row" style="display: flex; justify-items: stretch">
-              <div class="input-field col s8">
-                  <input id="name" type="text" class="validate">
-                  <label for="name">Name</label>
-              </div>
-              <div class="input-field col s4">
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Go!
-                  </button>
-              </div>
-          </div>
-      </form>
-   </div>
-</div>
+      <!-- Address Field Input  -->
+      <div class="input-field">
+        <input placeholder="Please enter your address" id="first_name" type="text" class="validate">
+      </div>
+
+      <!-- Submit Button  -->
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">cloud</i>
+      </button>
+    </div>
+  </div> <!-- address  -->
+
+
+</div> <!-- container -->
+

@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
   updatedSuccessfully = false;
   updateFailed = false;
 
+  imageUrl: string;
+
   profileURL = environment.restAPIUrl + "/user/profile";
 
   constructor(private http: HttpClient) {}
@@ -31,7 +33,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.isfetching = true;
     this.fetchProfile();
-    this.profileURL =
+    this.imageUrl =
       localStorage.getItem("photoURL") !== null
         ? localStorage.getItem("photoURL")
         : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSWfAnsnuvNwxkkK1gTTc6RE3sqbT607oDZuFntio48GpigPsAj";

@@ -78,7 +78,7 @@ export class CartComponent implements OnInit {
     this.savedProducts.push(this.product);
     this.userService.updateSaved(this.product).subscribe();
 
-    
+
     this.subTotal = this.subTotal - this.product.price;
 
     //Remove the Product From CartProducts

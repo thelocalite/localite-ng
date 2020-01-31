@@ -71,9 +71,7 @@
           <li *ngIf="authService.isLoggedIn()">
             <a
               class="black-text"
-              [routerLink]="['/logout']"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="authService.logout()"
               >Logout</a
             >
           </li>
@@ -173,9 +171,7 @@
 
   <li *ngIf="authService.isLoggedIn()" class="sidenav-close">
     <a
-      [routerLink]="['/logout']"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="authService.logout()"
       ><i class="material-icons black-text">exit_to_app</i>Logout</a
     >
   </li>

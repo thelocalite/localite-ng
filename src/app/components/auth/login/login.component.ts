@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         .subscribe(data => {
           if (data === true) {
             this.loggingIn = false;
-            this.router.navigateByUrl("/");
+            window.location.replace(window.location.origin);
           } else {
             this.faliedToLogin = true;
             this.loggingIn = false;

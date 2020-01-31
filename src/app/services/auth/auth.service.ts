@@ -67,9 +67,10 @@ export class AuthService {
            localStorage.setItem("name", data.user.name);
            localStorage.setItem("token", data.token);
            localStorage.setItem("userId", "" + data.user.id);
-           this.router.navigateByUrl("/");
+           window.location.replace(window.location.origin);
            this.user = data.user;
            this.jwtToken = data.token;
+           localStorage.setItem("photoURL", result.user.photoURL);
          });
         }))
       })
@@ -84,6 +85,8 @@ export class AuthService {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("userId");
+    localStorage.removeItem("photoURL");
+    this.router.navigateByUrl[('/')];
   }
 
   login(email, password) {

@@ -86,7 +86,7 @@ export class AuthService {
     localStorage.removeItem("name");
     localStorage.removeItem("userId");
     localStorage.removeItem("photoURL");
-    this.router.navigateByUrl[('/')];
+    window.location.replace(window.location.origin);
   }
 
   login(email, password) {
@@ -170,6 +170,8 @@ export class AuthService {
   changePassword(email, password) {
     return this.httpClient
       .post<any>(environment.authurl + "/users/change-password", {
+        // .post<any>("http://localhost:9090" + "/users/change-password", {
+
         newPassword: password,
         email: email
       })

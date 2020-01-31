@@ -40,8 +40,21 @@ export class LoginComponent implements OnInit {
     private router: Router,
   ) {}
 
+
+
+
   ngOnInit() {
     document.addEventListener("DOMContentLoaded", function() {});
+  }
+
+  FacebookLogin(){
+    this.loggingIn = true;
+    this.authService.FacebookAuth();
+  }
+
+  GoogleLogin(){
+    this.loggingIn = true;
+    this.authService.GoogleAuth();
   }
 
   login() {

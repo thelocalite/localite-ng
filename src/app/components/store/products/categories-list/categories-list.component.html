@@ -1,0 +1,15 @@
+<ul>
+  <div class="row">
+    <li *ngFor="let category of categories">
+      <div class="col s12 m6 l3">
+        <div *ngIf="category">
+          <div class="card-panel hoverable">
+            <a routerLink="/category/{{ category }}">
+              <h5 class="card-title truncate center">{{ category }}</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>

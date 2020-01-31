@@ -2,16 +2,18 @@
   <div class="xcarousel-row">
     <div *ngFor="let store of stores" class="xcarousel-tile">
       <div id="content-wrapper">
-
         <app-shop-details [storeId]="store.id"></app-shop-details>
-
       </div>
     </div>
   </div>
 </div>
 <div style="margin-bottom: 20px;">
-  <a class="waves-effect waves-light btn-large" [routerLink]="['/stores']" style="margin-left: 10px;">
+  <a
+    class="waves-effect waves-light btn-large"
+    [routerLink]="['/stores']"
+    style="margin-left: 10px;"
+  >
     <i class="material-icons right">apps</i>
-    See All Stores
+    Stores
   </a>
 </div>

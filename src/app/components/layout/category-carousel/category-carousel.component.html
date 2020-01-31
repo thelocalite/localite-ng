@@ -1,0 +1,25 @@
+<div *ngIf="categories.length > 1" class="xcarousel">
+  <div class="xcarousel-row">
+    <div *ngFor="let category of categories" class="xcarousel-tile">
+      <div id="content-wrapper">
+        <div *ngIf="category">
+          <div class="card-panel hoverable">
+            <a routerLink="/category/{{ category }}">
+              <h5 class="card-title truncate center">{{ category }}</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-bottom: 20px;">
+  <a
+    class="waves-effect waves-light btn-large"
+    [routerLink]="['/categories']"
+    style="margin-left: 10px;"
+  >
+    <i class="material-icons right">category</i>
+    Categories
+  </a>
+</div>

@@ -3,25 +3,26 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Product } from "../models/product";
 import { Observable, of } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
-import { environment } from 'src/environments/environment';
+import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
-
-  private productsUrl = environment.restAPIUrl + "/product"; // URL to web api 
+  private productsUrl = environment.restAPIUrl + "/product"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /** GET all products from the server */
   search(searchTerm: String): Observable<Product[]> {
     const url = `${this.productsUrl}/search/${searchTerm}`;
     return this.http
       .get<Product[]>(url)
-      .pipe(catchError(this.handleError<Product[]>(`search Term=${searchTerm}`)));
+      .pipe(
+        catchError(this.handleError<Product[]>(`search Term=${searchTerm}`))
+      );
   }
 
   /** GET all product names from the server */
@@ -29,9 +30,16 @@ export class ProductService {
     const url = `${this.productsUrl}/productNames`;
     return this.http
       .get<any>(url)
-      .pipe(catchError(this.handleError<Product[]>(`get Product Names`)));
+      .pipe(catchError(this.handleError<any>(`get Product Names`)));
   }
 
+  // Gets all product categories from the server
+  getProductCategories(): Observable<string[]> {
+    const url = `${this.productsUrl}/getCategories`;
+    return this.http
+      .get<string[]>(url)
+      .pipe(catchError(this.handleError<string[]>(`get Product Categories`)));
+  }
 
   /** GET all products from the server */
   getProducts(): Observable<Product[]> {
@@ -45,15 +53,26 @@ export class ProductService {
     const url = `${this.productsUrl}/vendor/${storeId}`;
     return this.http
       .get<Product[]>(url)
-      .pipe(catchError(this.handleError<Product[]>(`getProduct id=${storeId}`)));
+      .pipe(
+        catchError(this.handleError<Product[]>(`getProduct id=${storeId}`))
+      );
   }
 
   /** GET Store specific Product price by Product and Store ID*/
-  getStoreSpecificProductPrice(productId: any, storeId: any): Observable<number> {
+  getStoreSpecificProductPrice(
+    productId: any,
+    storeId: any
+  ): Observable<number> {
     const url = `${this.productsUrl}/price/${productId}/${storeId}`;
     return this.http
       .get<number>(url)
-      .pipe(catchError(this.handleError<number>(`Get specific price Productid = ${productId} store id=${storeId}`)));
+      .pipe(
+        catchError(
+          this.handleError<number>(
+            `Get specific price Productid = ${productId} store id=${storeId}`
+          )
+        )
+      );
   }
 
   /** GET product by id. Return `undefined` when id not found */
@@ -78,8 +97,9 @@ export class ProductService {
 
   /** POST: add a new product to the server */
   addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.productsUrl + "/add", product, this.httpOptions).pipe(catchError(this.handleError<Product>("addProduct"))
-    );
+    return this.http
+      .post<Product>(this.productsUrl + "/add", product, this.httpOptions)
+      .pipe(catchError(this.handleError<Product>("addProduct")));
   }
 
   /**

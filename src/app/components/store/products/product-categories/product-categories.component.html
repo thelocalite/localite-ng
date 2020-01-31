@@ -1,1 +1,18 @@
-<p>product-categories works!</p>
+<!-- 
+
+   product-categories Page
+
+    This page displays the category card along with all products that the category has to offer
+
+ -->
+<div class="row">
+  <div class="col s12 l2">
+    <div class="card-panel hoverable">
+      <h5 class="card-title truncate center">{{ category }}</h5>
+    </div>
+  </div>
+
+  <div class="col s12 l10">
+    <app-product-list [products]="products" [isCat]="true"></app-product-list>
+  </div>
+</div>

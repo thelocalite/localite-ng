@@ -27,6 +27,8 @@ import { SearchResultsComponent } from "./components/store/products/search-resul
 import { TechnicianDetailsComponent } from "./components/store/services/technician-details/technician-details.component";
 import { ChangePasswordComponent } from "./components/auth/change-password/change-password.component";
 import { TestComponent } from "./components/auth/test/test.component";
+import { CategoriesListComponent } from "./components/store/products/categories-list/categories-list.component";
+import { ProductCategoriesComponent } from "./components/store/products/product-categories/product-categories.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -55,6 +57,8 @@ const routes: Routes = [
   { path: "products/add", component: AddProductComponent },
   { path: "search/:searchTerm", component: SearchResultsComponent },
   { path: "stores", component: StoresComponent },
+  { path: "categories", component: CategoriesListComponent },
+  { path: "category/:category", component: ProductCategoriesComponent },
   { path: "stores/add", component: AddStoreComponent },
   { path: "store/:id", component: StorePageComponent },
   { path: "services", component: ServicesComponent },

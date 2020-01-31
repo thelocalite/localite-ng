@@ -25,6 +25,7 @@ export class ProductListComponent implements OnInit {
   // To display wherever required
   @Input() products: Product[];
   @Input() store: Store;
+  @Input() isCat: boolean = false;
 
   constructor(private productService: ProductService) {}
 

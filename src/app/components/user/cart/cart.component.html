@@ -56,7 +56,7 @@
 
 <div *ngIf="cartProducts.length">
   <br />
-  <a class="btn waves-effect right" (click)="onPlaceOrder()"
+  <a class="btn waves-effect right" [routerLink]="['/orders']"
     >Place Order<i class="material-icons right">send</i></a
   >
   <br />

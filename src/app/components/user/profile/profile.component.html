@@ -14,109 +14,31 @@
           <h5 class="text-flow">Profile</h5>
 
           <!-- user role -->
-
-          <div class="input-field">
-            <!-- user role : customer -->
-            <p>
-              <label>
-                <input
-                  class="with-gap form-control"
-                  name="userRole"
-                  type="radio"
-                  value="CUSTOMER"
-                  checked
-                  [(ngModel)]="userRole"
-                  required
-                  checked="userRole=='ROLE_USER'"
-                />
-                <span>Customer</span>
-              </label>
-            </p>
-
-            <!-- user role : Vendor -->
-            <p>
-              <label>
-                <input
-                  class="with-gap form-control"
-                  name="userRole"
-                  type="radio"
-                  value="MERCHANT"
-                  [(ngModel)]="userRole"
-                  checked="userRole=='ROLE_VENDOR'"
-                />
-                <span>Merchant</span>
-              </label>
-            </p>
-          </div>
+          <div class="teal-text">{{ userRole }}</div>
+          <div>Name : {{ name }}</div>
+          <div>Email: {{ userEmail }}</div>
+          <div>Contact: {{ userContact }}</div>
         </div>
-        <!-- <span *ngIf="emptyOption" class="red-text"
-            >Please select an option</span
-          > -->
+
         <br />
         <div></div>
         <br />
         <br />
         <div class="section">
-          <!-- User Name  -->
+          <!--  Name  -->
           <div class="input-field">
             <input
               type="text"
               placeholder="Name"
-              value="{{ userName }}"
-              name="userName"
-              id="userName"
-              [(ngModel)]="userName"
+              value="{{ name }}"
+              name="name"
+              id="name"
+              [(ngModel)]="name"
               class="validate form-control"
               required
             />
-            <!-- <label for="userName">Name</label> -->
-            <!-- <span
-              class="helper-text"
-              data-error="Invalid Name"
-              data-success=""
-            ></span> -->
           </div>
 
-          <!-- User Email -->
-          <div class="input-field">
-            <input
-              type="text"
-              placeholder="Email"
-              value="{{ userEmail }}"
-              name="userEmail"
-              [(ngModel)]="userEmail"
-              class="validate form-control"
-              id="userEmail"
-              required
-              email
-            />
-            <!-- <label for="userEmail">Email</label> -->
-            <span
-              class="helper-text"
-              data-error="Invalid Email"
-              data-success=""
-            ></span>
-          </div>
-
-          <!-- User Address -->
-          <div class="input-field">
-            <input
-              type="text"
-              placeholder="Address"
-              value="{{ userAddress }}"
-              name="userAddress"
-              id="userAddress"
-              [(ngModel)]="userAddress"
-              class="validate form-control"
-              required
-            />
-            <!-- <label for="userAddress">Address</label> -->
-            <!-- <span
-              class="helper-text"
-              data-error="Invalid Address"
-              data-success=""
-            ></span> -->
-          </div>
           <!-- Phone Number -->
           <div class="input-field">
             <input
@@ -129,12 +51,6 @@
               class="validate form-control"
               required
             />
-            <!-- <label for="userContact">Contact No.</label> -->
-            <!-- <span
-              class="helper-text"
-              data-error="Invalid Contact Number"
-              data-success=""
-            ></span> -->
           </div>
 
           <!-- submit button  -->
@@ -144,19 +60,19 @@
             class="btn z-depth-2"
             [disabled]="!form.valid || !form.touched"
           />
-          <input
-            [routerLink]="['/change-password']"
-            type="button"
-            value="Change Password"
-            class="btn z-depth-2 right"
-          />
         </div>
       </form>
 
       <div *ngIf="isfetching" class="progress">
         <div class="determinate" style="width: 70%"></div>
       </div>
+      <div *ngIf="isUpdating" class="progress">
+        <div class="determinate" style="width: 70%"></div>
+      </div>
 
+      <p *ngIf="fetchingerror" class="red-text">
+        An Error Occurred
+      </p>
       <p *ngIf="updatedSuccessfully" class="green-text">
         Updated Successfully!
       </p>
@@ -164,5 +80,20 @@
         Update Failed!
       </p>
     </div>
+
+    <input
+      [routerLink]="['/location']"
+      type="button"
+      id="loc"
+      value="Update Address"
+      class="btn z-depth-2 left"
+    />
+
+    <input
+      [routerLink]="['/change-password']"
+      type="button"
+      value="Change Password"
+      class="btn z-depth-2 right"
+    />
   </div>
 </div>

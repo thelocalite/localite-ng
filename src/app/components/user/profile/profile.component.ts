@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map, retry } from "rxjs/operators";
 
 import * as M from "../../../../assets/js/materialize.min";
@@ -14,19 +14,29 @@ import { environment } from "src/environments/environment";
 })
 export class ProfileComponent implements OnInit {
   @ViewChild("form", { static: false }) updateForm: NgForm;
-
+  userId: number;
   userRole: string = "";
+  name: string;
   userName: string = "";
   userEmail: string = "";
   userContact: string = "";
   userAddress: string = "";
   isfetching: boolean = null;
+  isUpdating: boolean = null;
+  fetchingerror: boolean = null;
   updatedSuccessfully = false;
   updateFailed = false;
 
   imageUrl: string;
 
   profileURL = environment.restAPIUrl + "/user/profile";
+  // profileURL = "http://192.168.1.8:8080" + "/user/profile";
+  updateProfileURL = environment.restAPIUrl + "/user/update-profile";
+  // updateProfileURL = "http://192.168.1.8:8080" + "/user/update-profile";
+
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -61,14 +71,18 @@ export class ProfileComponent implements OnInit {
 
   onUpdate() {
     console.log(this.updateForm);
+    this.updateProfile();
   }
 
   fetchProfile() {
     this.http.get<User>(this.profileURL).subscribe(
       (user: User) => {
         console.log(user);
-
-        this.userRole = user.role;
+        console.log(user.role);
+        console.log(user.contactNumber);
+        this.userId = user.id;
+        this.userRole = user.role == "ROLE_USER" ? "Customer" : "Merchant";
+        this.name = user.name;
         this.userName = user.username;
         this.userEmail = user.email;
         this.userContact = user.contactNumber;
@@ -76,9 +90,33 @@ export class ProfileComponent implements OnInit {
         this.isfetching = false;
       },
       error => {
+        this.userRole = "Customer";
+        this.userEmail = "Customer@localite";
         this.isfetching = false;
+        this.fetchingerror = true;
         console.log(error);
       }
     );
+  }
+  // Update profile
+  updateProfile() {
+    this.isUpdating = true;
+    this.http
+      .post(this.updateProfileURL, {
+        name: this.name,
+        userContact: this.userContact
+      })
+      .subscribe(
+        data => {
+          this.updatedSuccessfully = true;
+          console.log(data);
+          this.isUpdating = false;
+        },
+        error => {
+          this.updateFailed = true;
+          this.isUpdating = false;
+          console.log(error);
+        }
+      );
   }
 }

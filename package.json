@@ -30,7 +30,7 @@
     "install": "^0.13.0",
     "materialize-css": "^1.0.0-rc.2",
     "rxjs": "~6.4.0",
-    "terser": "^3.14.1",
+    "terser": "^4.8.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
